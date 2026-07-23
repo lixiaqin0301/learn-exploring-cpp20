@@ -5,94 +5,110 @@
 #include <ostream>
 
 number::number()
-: pimpl_{std::make_shared<number_void>()}
-{}
+    : pimpl_ { std::make_shared<number_void>() }
+{
+}
 
 number::number(int x)
-: pimpl_{std::make_shared<number_long>(x)}
-{}
+    : pimpl_ { std::make_shared<number_long>(x) }
+{
+}
 
 number::number(long x)
-: pimpl_{std::make_shared<number_long>(x)}
-{}
+    : pimpl_ { std::make_shared<number_long>(x) }
+{
+}
 
 number::number(long long x)
-: pimpl_{std::make_shared<number_long>(x)}
-{}
+    : pimpl_ { std::make_shared<number_long>(x) }
+{
+}
 
-number::number(rational<long long> const& x)
-: pimpl_{std::make_shared<number_rational>(x)}
-{}
+number::number(rational<long long> const &x)
+    : pimpl_ { std::make_shared<number_rational>(x) }
+{
+}
 
 number::number(double x)
-: pimpl_{std::make_shared<number_double>(x)}
-{}
+    : pimpl_ { std::make_shared<number_double>(x) }
+{
+}
 
-number::number(std::istream& stream)
-: pimpl_{number_impl::read_library(stream)}
-{}
+number::number(std::istream &stream)
+    : pimpl_ { number_impl::read_library(stream) }
+{
+}
 
 number::number(std::shared_ptr<number_impl> pimpl)
-: pimpl_{std::move(pimpl)}
-{}
-
-void number::save(std::ostream& stream)
-const
+    : pimpl_ { std::move(pimpl) }
 {
-  pimpl_->save(stream);
 }
 
-std::string number::to_string()
-const
+void
+number::save(std::ostream &stream) const
 {
-  return pimpl_->to_string();
+    pimpl_->save(stream);
 }
 
-void number::print(std::ostream& stream)
+std::string
+number::to_string() const
 {
-  pimpl_->print(stream);
+    return pimpl_->to_string();
 }
 
-void number::coerce(number& that)
+void
+number::print(std::ostream &stream)
 {
-  // Promote that number to the type of this.
-  that = number(this->pimpl_->promote(*that.pimpl_));
-  // Promote this to the type of that.
-  *this = number(that.pimpl_->promote(*this->pimpl_));
+    pimpl_->print(stream);
 }
 
-bool number::equals(number b)
+void
+number::coerce(number &that)
 {
-  coerce(b);
-  return pimpl_->equals(*b.pimpl_);
+    // Promote that number to the type of this.
+    that = number(this->pimpl_->promote(*that.pimpl_));
+    // Promote this to the type of that.
+    *this = number(that.pimpl_->promote(*this->pimpl_));
 }
 
-bool number::less(number b)
+bool
+number::equals(number b)
 {
-  coerce(b);
-  return pimpl_->less(*b.pimpl_);
+    coerce(b);
+    return pimpl_->equals(*b.pimpl_);
 }
 
-number number::operator+(number rhs)
+bool
+number::less(number b)
 {
-  coerce(rhs);
-  return number(pimpl_->add(*rhs.pimpl_));
+    coerce(b);
+    return pimpl_->less(*b.pimpl_);
 }
 
-number number::operator-(number rhs)
+number
+number::operator+(number rhs)
 {
-  coerce(rhs);
-  return number(pimpl_->subtract(*rhs.pimpl_));
+    coerce(rhs);
+    return number(pimpl_->add(*rhs.pimpl_));
 }
 
-number number::operator*(number rhs)
+number
+number::operator-(number rhs)
 {
-  coerce(rhs);
-  return number(pimpl_->multiply(*rhs.pimpl_));
+    coerce(rhs);
+    return number(pimpl_->subtract(*rhs.pimpl_));
 }
 
-number number::operator/(number rhs)
+number
+number::operator*(number rhs)
 {
-  coerce(rhs);
-  return number(pimpl_->divide(*rhs.pimpl_));
+    coerce(rhs);
+    return number(pimpl_->multiply(*rhs.pimpl_));
+}
+
+number
+number::operator/(number rhs)
+{
+    coerce(rhs);
+    return number(pimpl_->divide(*rhs.pimpl_));
 }

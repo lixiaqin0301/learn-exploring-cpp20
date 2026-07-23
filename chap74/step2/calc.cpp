@@ -18,7 +18,8 @@
    @endverbatim
  */
 
-int main()
+int
+main()
 {
-  parse_loop(std::cin, std::cout);
+    parse_loop(std::cin, std::cout);
 }

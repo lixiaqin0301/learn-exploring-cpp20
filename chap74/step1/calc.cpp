@@ -9,7 +9,8 @@
  * This version of the calculator implements simple arithmetic. It uses a recursive-descent
  * parser and immediately evaluates expressions using @c double for all values.
  */
-int main()
+int
+main()
 {
-  parse_loop(std::cin, std::cout);
+    parse_loop(std::cin, std::cout);
 }

@@ -9,545 +9,570 @@
 #include "node_impl.hpp"
 #include "variables.hpp"
 
-node_impl::node_impl()
-{}
+node_impl::node_impl() { }
 
-node_impl::~node_impl()
-{}
+node_impl::~node_impl() { }
 
-void node_impl::print(std::ostream& stream, int indent)
-const
+void
+node_impl::print(std::ostream &stream, int indent) const
 {
-  print_node(stream, indent);
+    print_node(stream, indent);
 }
 
-number node_impl::evaluate()
-const
+number
+node_impl::evaluate() const
 {
-  return evaluate_node();
+    return evaluate_node();
 }
 
-std::string node_impl::to_string()
-const
+std::string
+node_impl::to_string() const
 {
-  return evaluate_string();
+    return evaluate_string();
 }
 
-identifier_list const& node_impl::get_parameters()
-const
+identifier_list const &
+node_impl::get_parameters() const
 {
-  return evaluate_parameters();
+    return evaluate_parameters();
 }
 
-std::string node_impl::evaluate_string()
-const
+std::string
+node_impl::evaluate_string() const
 {
-  std::ostringstream stream{};
-  stream << evaluate();
-  return stream.str();
+    std::ostringstream stream {};
+    stream << evaluate();
+    return stream.str();
 }
 
-identifier_list const& node_impl::evaluate_parameters()
-const
+identifier_list const &
+node_impl::evaluate_parameters() const
 {
-  static identifier_list const empty;
-  return empty;
+    static identifier_list const empty;
+    return empty;
 }
 
-void node_impl::save(std::ostream& stream)
-const
+void
+node_impl::save(std::ostream &stream) const
 {
-  save_node(stream);
+    save_node(stream);
 }
 
 /* Factory function to create node_impl objects from a saved library file. */
-std::shared_ptr<node_impl> node_impl::read_node(std::istream& stream)
+std::shared_ptr<node_impl>
+node_impl::read_node(std::istream &stream)
 {
-  std::string type{};
-  if (not (stream >> type))
-    return nullptr;
-  if (type == "void")
-    return std::make_shared<node_void>(stream);
-  if (type == "number")
-    return std::make_shared<node_number>(stream);
-  if (type == "identifier")
-    return std::make_shared<node_identifier>(stream);
-  if (type == "function")
-    return std::make_shared<node_function>(stream);
-  if (type == "call")
-    return std::make_shared<node_function_call>(stream);
-  if (type == "negate")
-    return std::make_shared<node_negate>(stream);
-  if (type == "add")
-    return std::make_shared<node_add>(stream);
-  if (type == "subtract")
-    return std::make_shared<node_subtract>(stream);
-  if (type == "multiply")
-    return std::make_shared<node_multiply>(stream);
-  if (type == "divide")
-    return std::make_shared<node_divide>(stream);
+    std::string type {};
+    if (not(stream >> type))
+        return nullptr;
+    if (type == "void")
+        return std::make_shared<node_void>(stream);
+    if (type == "number")
+        return std::make_shared<node_number>(stream);
+    if (type == "identifier")
+        return std::make_shared<node_identifier>(stream);
+    if (type == "function")
+        return std::make_shared<node_function>(stream);
+    if (type == "call")
+        return std::make_shared<node_function_call>(stream);
+    if (type == "negate")
+        return std::make_shared<node_negate>(stream);
+    if (type == "add")
+        return std::make_shared<node_add>(stream);
+    if (type == "subtract")
+        return std::make_shared<node_subtract>(stream);
+    if (type == "multiply")
+        return std::make_shared<node_multiply>(stream);
+    if (type == "divide")
+        return std::make_shared<node_divide>(stream);
 
-  throw calc_error{"unknown node type: " + type};
+    throw calc_error { "unknown node type: " + type };
 }
 
 node_void::node_void()
-: node_impl{}
-{}
-
-node_void::node_void(std::istream&)
-: node_impl{}
-{}
-
-void node_void::print_node(std::ostream& stream, int indent)
-const
+    : node_impl {}
 {
-  stream << std::setw(indent) << "" << "void\n";
 }
 
-number node_void::evaluate_node()
-const
+node_void::node_void(std::istream &)
+    : node_impl {}
 {
-  return number();
 }
 
-std::string node_void::evaluate_string()
-const
+void
+node_void::print_node(std::ostream &stream, int indent) const
 {
-  return std::string{};
+    stream << std::setw(indent) << "" << "void\n";
 }
 
-void node_void::save_node(std::ostream& stream)
-const
+number
+node_void::evaluate_node() const
 {
-  stream << "void\n";
+    return number();
+}
+
+std::string
+node_void::evaluate_string() const
+{
+    return std::string {};
+}
+
+void
+node_void::save_node(std::ostream &stream) const
+{
+    stream << "void\n";
 }
 
 node_number::node_number(number value)
-: node_impl{}, value_{value}
-{}
-
-node_number::node_number(std::istream& stream)
-: node_impl{}, value_{stream}
-{}
-
-number node_number::value()
-const
+    : node_impl {}
+    , value_ { value }
 {
-  return value_;
 }
 
-void node_number::print_node(std::ostream& stream, int indent)
-const
+node_number::node_number(std::istream &stream)
+    : node_impl {}
+    , value_ { stream }
 {
-  stream << std::setw(indent) << "" << value() << '\n';
 }
 
-number node_number::evaluate_node()
-const
+number
+node_number::value() const
 {
-  return value();
+    return value_;
 }
 
-void node_number::save_node(std::ostream& stream)
-const
+void
+node_number::print_node(std::ostream &stream, int indent) const
 {
-  stream << "number ";
-  value().save(stream);
-  stream << '\n';
+    stream << std::setw(indent) << "" << value() << '\n';
 }
 
+number
+node_number::evaluate_node() const
+{
+    return value();
+}
+
+void
+node_number::save_node(std::ostream &stream) const
+{
+    stream << "number ";
+    value().save(stream);
+    stream << '\n';
+}
 
 node_identifier::node_identifier(std::string name)
-: node_impl{}, name_{std::move(name)}
-{}
-
-node_identifier::node_identifier(std::istream& stream)
-: node_impl{}
+    : node_impl {}
+    , name_ { std::move(name) }
 {
-  if (not (stream >> name_))
-    throw calc_error("malformed library file, cannot read identifier");
 }
 
-std::string const& node_identifier::name()
-const
+node_identifier::node_identifier(std::istream &stream)
+    : node_impl {}
 {
-  return name_;
+    if (not(stream >> name_))
+        throw calc_error("malformed library file, cannot read identifier");
 }
 
-void node_identifier::print_node(std::ostream& stream, int indent)
-const
+std::string const &
+node_identifier::name() const
 {
-  stream << std::setw(indent) << "" << "identifier " << name() << '\n';
+    return name_;
 }
 
-number node_identifier::evaluate_node()
-const
+void
+node_identifier::print_node(std::ostream &stream, int indent) const
 {
-  return get_variable(name()).evaluate();
+    stream << std::setw(indent) << "" << "identifier " << name() << '\n';
 }
 
-std::string node_identifier::evaluate_string()
-const
+number
+node_identifier::evaluate_node() const
 {
-  return name();
+    return get_variable(name()).evaluate();
 }
 
-void node_identifier::save_node(std::ostream& stream)
-const
+std::string
+node_identifier::evaluate_string() const
 {
-  stream << "identifier " << name() << '\n';
+    return name();
 }
 
+void
+node_identifier::save_node(std::ostream &stream) const
+{
+    stream << "identifier " << name() << '\n';
+}
 
 node_function::node_function(identifier_list parameters, node definition)
-: node_impl{}, parameters_{std::move(parameters)}, definition_{definition}
-{}
-
-node_function::node_function(std::istream& stream)
-: node_impl{}
+    : node_impl {}
+    , parameters_ { std::move(parameters) }
+    , definition_ { definition }
 {
-  std::size_t size;{}
-  if (not (stream >> size))
-    throw calc_error{"malformed library file, cannot read function"};
-  parameters_.reserve(size);
-  while (size-- != 0) {
-    std::string parameter{};
-    if (not (stream >> parameter))
-      throw calc_error{"malformed library file, cannot read function parameter"};
-    parameters_.emplace_back(std::move(parameter));
-  }
-  definition_ = node{stream};
 }
 
-identifier_list const& node_function::parameters()
-const
+node_function::node_function(std::istream &stream)
+    : node_impl {}
 {
-  return parameters_;
+    std::size_t size;
+    {
+    }
+    if (not(stream >> size))
+        throw calc_error { "malformed library file, cannot read function" };
+    parameters_.reserve(size);
+    while (size-- != 0) {
+        std::string parameter {};
+        if (not(stream >> parameter))
+            throw calc_error { "malformed library file, cannot read function parameter" };
+        parameters_.emplace_back(std::move(parameter));
+    }
+    definition_ = node { stream };
 }
 
-node node_function::definition()
-const
+identifier_list const &
+node_function::parameters() const
 {
-  return definition_;
+    return parameters_;
 }
 
-void print_identifier_list(std::ostream& stream, identifier_list const& identifiers)
+node
+node_function::definition() const
 {
-  stream << '(';
-  char const* sep = "";
-  for (auto const& id : identifiers) {
-    stream << sep << id;
-    sep = ", ";
-  }
-  stream << ')';
+    return definition_;
 }
 
-void node_function::print_node(std::ostream& stream, int indent)
-const
+void
+print_identifier_list(std::ostream &stream, identifier_list const &identifiers)
 {
-  stream << std::setw(indent) << "" << "fun\n";
-  print_identifier_list(stream, parameters());
-  stream << '=';
-  definition().print(stream, indent + 2);
+    stream << '(';
+    char const *sep = "";
+    for (auto const &id : identifiers) {
+        stream << sep << id;
+        sep = ", ";
+    }
+    stream << ')';
 }
 
-number node_function::evaluate_node()
-const
+void
+node_function::print_node(std::ostream &stream, int indent) const
 {
-  return definition().evaluate();
+    stream << std::setw(indent) << "" << "fun\n";
+    print_identifier_list(stream, parameters());
+    stream << '=';
+    definition().print(stream, indent + 2);
 }
 
-identifier_list const& node_function::evaluate_parameters()
-const
+number
+node_function::evaluate_node() const
 {
-  return parameters();
+    return definition().evaluate();
 }
 
-void node_function::save_node(std::ostream& stream)
-const
+identifier_list const &
+node_function::evaluate_parameters() const
 {
-  stream << "function " << parameters().size() << ' ';
-  for (auto const& parameter : parameters())
-    stream << parameter << ' ';
-  definition().save(stream);
+    return parameters();
 }
 
+void
+node_function::save_node(std::ostream &stream) const
+{
+    stream << "function " << parameters().size() << ' ';
+    for (auto const &parameter : parameters())
+        stream << parameter << ' ';
+    definition().save(stream);
+}
 
 node_function_call::node_function_call(std::string name, node_list arguments)
-: node_impl{}, name_{std::move(name)}, arguments_{std::move(arguments)}
-{}
-
-node_function_call::node_function_call(std::istream& stream)
-: node_impl{}
+    : node_impl {}
+    , name_ { std::move(name) }
+    , arguments_ { std::move(arguments) }
 {
-  std::string name{};
-  if (not (stream >> name_))
-    throw calc_error{"malformed library file, cannot read function call name"};
-  std::size_t size{};
-  if (not (stream >> size))
-    throw calc_error{"malformed library file, cannot read function call"};
-  arguments_.reserve(size);
-  while (size-- != 0) {
-    arguments_.emplace_back(stream);
-  }
 }
 
-std::string node_function_call::name()
-const
+node_function_call::node_function_call(std::istream &stream)
+    : node_impl {}
 {
-  return name_;
-}
-
-node_list const& node_function_call::arguments()
-const
-{
-  return arguments_;
-}
-
-void node_function_call::print_node(std::ostream& stream, int indent)
-const
-{
-  stream << std::setw(indent) << "" << name() << "(\n";
-  std::size_t index{0};
-  for (auto const& arg : arguments()) {
-    stream << std::setw(indent+1) << "" << "arg " << index << ": ";
-    arg.print(stream, indent + 2);
-    ++index;
-  }
-  stream << std::setw(indent) << "" << ")\n";
-}
-
-number node_function_call::evaluate_node()
-const
-{
-  // Create a local symbol table, assigning all the node values to the parameters.
-  node function{ get_function(name()) };
-  identifier_list const& parameters{ function.get_parameters() };
-  if (parameters.size() != arguments().size())
-    throw function_error{name(), parameters.size(), arguments().size()};
-  else
-  {
-    local_symbol_table locals;
-    identifier_list::const_iterator parm{parameters.begin()};
-    for (auto const& arg : arguments()) {
-      set_variable(*parm, arg);
-      ++parm;
+    std::string name {};
+    if (not(stream >> name_))
+        throw calc_error { "malformed library file, cannot read function call name" };
+    std::size_t size {};
+    if (not(stream >> size))
+        throw calc_error { "malformed library file, cannot read function call" };
+    arguments_.reserve(size);
+    while (size-- != 0) {
+        arguments_.emplace_back(stream);
     }
-    return function.evaluate();
-  }
 }
 
-void node_function_call::save_node(std::ostream& stream)
-const
+std::string
+node_function_call::name() const
 {
-  stream << "call " << name() << ' ' << arguments().size() << ' ';
-  for (auto const& arg : arguments())
-    arg.save(stream);
+    return name_;
 }
 
+node_list const &
+node_function_call::arguments() const
+{
+    return arguments_;
+}
+
+void
+node_function_call::print_node(std::ostream &stream, int indent) const
+{
+    stream << std::setw(indent) << "" << name() << "(\n";
+    std::size_t index { 0 };
+    for (auto const &arg : arguments()) {
+        stream << std::setw(indent + 1) << "" << "arg " << index << ": ";
+        arg.print(stream, indent + 2);
+        ++index;
+    }
+    stream << std::setw(indent) << "" << ")\n";
+}
+
+number
+node_function_call::evaluate_node() const
+{
+    // Create a local symbol table, assigning all the node values to the parameters.
+    node function { get_function(name()) };
+    identifier_list const &parameters { function.get_parameters() };
+    if (parameters.size() != arguments().size())
+        throw function_error { name(), parameters.size(), arguments().size() };
+    else {
+        local_symbol_table locals;
+        identifier_list::const_iterator parm { parameters.begin() };
+        for (auto const &arg : arguments()) {
+            set_variable(*parm, arg);
+            ++parm;
+        }
+        return function.evaluate();
+    }
+}
+
+void
+node_function_call::save_node(std::ostream &stream) const
+{
+    stream << "call " << name() << ' ' << arguments().size() << ' ';
+    for (auto const &arg : arguments())
+        arg.save(stream);
+}
 
 node_unary::node_unary(node operand)
-: node_impl{}, operand_{operand}
-{}
-
-node_unary::node_unary(std::istream& stream)
-: node_impl{}, operand_{stream}
-{}
-
-node node_unary::operand()
-const
+    : node_impl {}
+    , operand_ { operand }
 {
-  return operand_;
 }
 
-number node_unary::evaluate_operand()
-const
+node_unary::node_unary(std::istream &stream)
+    : node_impl {}
+    , operand_ { stream }
 {
-  return operand().evaluate();
+}
+
+node
+node_unary::operand() const
+{
+    return operand_;
+}
+
+number
+node_unary::evaluate_operand() const
+{
+    return operand().evaluate();
 }
 
 node_binary::node_binary(node left, node right)
-: node_impl{}, left_{left}, right_{right}
-{}
-
-node_binary::node_binary(std::istream& stream)
-: node_impl{}, left_{stream}, right_{stream}
-{}
-
-node node_binary::left()
-const
+    : node_impl {}
+    , left_ { left }
+    , right_ { right }
 {
-  return left_;
 }
 
-node node_binary::right()
-const
+node_binary::node_binary(std::istream &stream)
+    : node_impl {}
+    , left_ { stream }
+    , right_ { stream }
 {
-  return right_;
 }
 
-number node_binary::evaluate_left()
-const
+node
+node_binary::left() const
 {
-  return left().evaluate();
+    return left_;
 }
 
-number node_binary::evaluate_right()
-const
+node
+node_binary::right() const
 {
-  return right().evaluate();
+    return right_;
 }
 
+number
+node_binary::evaluate_left() const
+{
+    return left().evaluate();
+}
+
+number
+node_binary::evaluate_right() const
+{
+    return right().evaluate();
+}
 
 node_negate::node_negate(node operand)
-: node_unary{operand}
-{}
-
-node_negate::node_negate(std::istream& stream)
-: node_unary{stream}
-{}
-
-void node_negate::print_node(std::ostream& stream, int indent)
-const
+    : node_unary { operand }
 {
-  stream << std::setw(indent) << "" << "-\n";
-  operand().print(stream, indent + 2);
 }
 
-number node_negate::evaluate_node()
-const
+node_negate::node_negate(std::istream &stream)
+    : node_unary { stream }
 {
-  return -evaluate_operand();
 }
 
-void node_negate::save_node(std::ostream& stream)
-const
+void
+node_negate::print_node(std::ostream &stream, int indent) const
 {
-  stream << "negate ";
-  operand().save(stream);
+    stream << std::setw(indent) << "" << "-\n";
+    operand().print(stream, indent + 2);
 }
 
+number
+node_negate::evaluate_node() const
+{
+    return -evaluate_operand();
+}
 
+void
+node_negate::save_node(std::ostream &stream) const
+{
+    stream << "negate ";
+    operand().save(stream);
+}
 
 node_add::node_add(node left, node right)
-: node_binary{left, right}
-{}
-
-node_add::node_add(std::istream& stream)
-: node_binary{stream}
-{}
-
-void node_add::print_node(std::ostream& stream, int indent)
-const
+    : node_binary { left, right }
 {
-  stream << std::setw(indent) << "" << "+\n";
-  left().print(stream, indent + 2);
-  right().print(stream, indent + 2);
 }
 
-number node_add::evaluate_node()
-const
+node_add::node_add(std::istream &stream)
+    : node_binary { stream }
 {
-  return evaluate_left() + evaluate_right();
 }
 
-void node_add::save_node(std::ostream& stream)
-const
+void
+node_add::print_node(std::ostream &stream, int indent) const
 {
-  stream << "add ";
-  left().save(stream);
-  right().save(stream);
+    stream << std::setw(indent) << "" << "+\n";
+    left().print(stream, indent + 2);
+    right().print(stream, indent + 2);
 }
 
+number
+node_add::evaluate_node() const
+{
+    return evaluate_left() + evaluate_right();
+}
+
+void
+node_add::save_node(std::ostream &stream) const
+{
+    stream << "add ";
+    left().save(stream);
+    right().save(stream);
+}
 
 node_subtract::node_subtract(node left, node right)
-: node_binary{left, right}
-{}
-
-node_subtract::node_subtract(std::istream& stream)
-: node_binary{stream}
-{}
-
-void node_subtract::print_node(std::ostream& stream, int indent)
-const
+    : node_binary { left, right }
 {
-  stream << std::setw(indent) << "" << "-\n";
-  left().print(stream, indent + 2);
-  right().print(stream, indent + 2);
 }
 
-number node_subtract::evaluate_node()
-const
+node_subtract::node_subtract(std::istream &stream)
+    : node_binary { stream }
 {
-  return evaluate_left() - evaluate_right();
 }
 
-void node_subtract::save_node(std::ostream& stream)
-const
+void
+node_subtract::print_node(std::ostream &stream, int indent) const
 {
-  stream << "subtract ";
-  left().save(stream);
-  right().save(stream);
+    stream << std::setw(indent) << "" << "-\n";
+    left().print(stream, indent + 2);
+    right().print(stream, indent + 2);
 }
 
+number
+node_subtract::evaluate_node() const
+{
+    return evaluate_left() - evaluate_right();
+}
+
+void
+node_subtract::save_node(std::ostream &stream) const
+{
+    stream << "subtract ";
+    left().save(stream);
+    right().save(stream);
+}
 
 node_multiply::node_multiply(node left, node right)
-: node_binary{left, right}
-{}
-
-node_multiply::node_multiply(std::istream& stream)
-: node_binary{stream}
-{}
-
-void node_multiply::print_node(std::ostream& stream, int indent)
-const
+    : node_binary { left, right }
 {
-  stream << std::setw(indent) << "" << "*\n";
-  left().print(stream, indent + 2);
-  right().print(stream, indent + 2);
 }
 
-number node_multiply::evaluate_node()
-const
+node_multiply::node_multiply(std::istream &stream)
+    : node_binary { stream }
 {
-  return evaluate_left() * evaluate_right();
 }
 
-void node_multiply::save_node(std::ostream& stream)
-const
+void
+node_multiply::print_node(std::ostream &stream, int indent) const
 {
-  stream << "multiply ";
-  left().save(stream);
-  right().save(stream);
+    stream << std::setw(indent) << "" << "*\n";
+    left().print(stream, indent + 2);
+    right().print(stream, indent + 2);
 }
 
+number
+node_multiply::evaluate_node() const
+{
+    return evaluate_left() * evaluate_right();
+}
+
+void
+node_multiply::save_node(std::ostream &stream) const
+{
+    stream << "multiply ";
+    left().save(stream);
+    right().save(stream);
+}
 
 node_divide::node_divide(node left, node right)
-: node_binary{left, right}
-{}
-
-node_divide::node_divide(std::istream& stream)
-: node_binary{stream}
-{}
-
-void node_divide::print_node(std::ostream& stream, int indent)
-const
+    : node_binary { left, right }
 {
-  stream << std::setw(indent) << "" << "/\n";
-  left().print(stream, indent + 2);
-  right().print(stream, indent + 2);
 }
 
-number node_divide::evaluate_node()
-const
+node_divide::node_divide(std::istream &stream)
+    : node_binary { stream }
 {
-  return evaluate_left() / evaluate_right();
 }
 
-void node_divide::save_node(std::ostream& stream)
-const
+void
+node_divide::print_node(std::ostream &stream, int indent) const
 {
-  stream << "divide ";
-  left().save(stream);
-  right().save(stream);
+    stream << std::setw(indent) << "" << "/\n";
+    left().print(stream, indent + 2);
+    right().print(stream, indent + 2);
+}
+
+number
+node_divide::evaluate_node() const
+{
+    return evaluate_left() / evaluate_right();
+}
+
+void
+node_divide::save_node(std::ostream &stream) const
+{
+    stream << "divide ";
+    left().save(stream);
+    right().save(stream);
 }

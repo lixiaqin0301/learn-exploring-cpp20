@@ -45,7 +45,8 @@
  * node objects. The node class uses the pimpl idiom with a tree of
  * node_impl-derived classes.
  */
-int main()
+int
+main()
 {
-  parse_loop(std::cin, std::cout);
+    parse_loop(std::cin, std::cout);
 }
