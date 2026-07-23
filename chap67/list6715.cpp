@@ -13,8 +13,9 @@ std::size_t
 first(std::bitset<N> const &bitset)
 {
     for (std::size_t i { bitset.size() }; i-- != 0;)
-        if (bitset.test(i))
+        if (bitset.test(i)) {
             return i;
+        }
     return std::size_t(-1);
 }
 

@@ -8,6 +8,7 @@ main()
 {
     using char_traits = std::char_traits<char>; // for brevity and clarity
     char_traits::int_type c {};
-    while (c = std::cin.get(), not char_traits::eq_int_type(c, char_traits::eof()))
+    while (c = std::cin.get(), not char_traits::eq_int_type(c, char_traits::eof())) {
         std::cout.put(char_traits::to_char_type(c));
+    }
 }

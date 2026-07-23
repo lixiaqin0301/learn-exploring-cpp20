@@ -219,9 +219,9 @@ node_function_call::evaluate_node() const
     // Create a local symbol table, assigning all the node values to the parameters.
     node function { get_function(name()) };
     identifier_list const &parameters { function.get_parameters() };
-    if (parameters.size() != arguments().size())
+    if (parameters.size() != arguments().size()) {
         throw function_error { name(), parameters.size(), arguments().size() };
-    else {
+    } else {
         local_symbol_table locals;
         identifier_list::const_iterator parm { parameters.begin() };
         for (auto const &arg : arguments()) {

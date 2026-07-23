@@ -19,28 +19,37 @@ parser::charify(char c)
     // and must be the same of both sides of the string.
     // The parentheses are required. And raw characters can
     // include newlines, quotes, backslashes, etc.
-    if (c == '\a')
+    if (c == '\a') {
         return R"('\a')";
-    if (c == '\b')
+    }
+    if (c == '\b') {
         return R"('\b')";
-    if (c == '\f')
+    }
+    if (c == '\f') {
         return R"('\f')";
-    if (c == '\n')
+    }
+    if (c == '\n') {
         return R"('\n')";
-    if (c == '\r')
+    }
+    if (c == '\r') {
         return R"('\r')";
-    if (c == '\t')
+    }
+    if (c == '\t') {
         return R"('\t')";
-    if (c == '\v')
+    }
+    if (c == '\v') {
         return R"('\v')";
-    if (c == '\'')
+    }
+    if (c == '\'') {
         return R"('\'')";
-    if (c == '\\')
+    }
+    if (c == '\\') {
         return R"('\\')";
+    }
 
-    if (isprint(c))
+    if (isprint(c)) {
         return std::string { '\'', c, '\'' };
-    else {
+    } else {
         return std::format("'\\x{:02x}'", std::char_traits<char>::to_int_type(c) & 0xFF);
     }
 }
@@ -53,12 +62,14 @@ parser::get_number(double &result)
 {
     std::string token {};
     char c {};
-    if (not input_.get(c))
+    if (not input_.get(c)) {
         return false;
+    }
     if (c == '+' or c == '-') {
         token += c;
-        if (not input_.get(c))
+        if (not input_.get(c)) {
             throw parse_error { "unterminated number: expected a digit after the sign" };
+        }
     }
     if (c < '0' or c > '9') {
         input_.unget();
@@ -74,8 +85,9 @@ parser::get_number(double &result)
     }
     if (c == '.') {
         token += c;
-        if (not input_.get(c))
+        if (not input_.get(c)) {
             throw parse_error { "unterminated number: expected digit after the decimal point" };
+        }
         if (c < '0' or c > '9') {
             input_.unget();
             throw parse_error { "syntax error: expected digit after decimal point, got " + charify(c) };
@@ -91,12 +103,14 @@ parser::get_number(double &result)
     }
     if (c == 'e' or c == 'E') {
         token += c;
-        if (not input_.get(c))
+        if (not input_.get(c)) {
             throw parse_error { "unterminated number: expected digit in the exponent" };
+        }
         if (c == '-' or c == '+') {
             token += c;
-            if (not input_.get(c))
+            if (not input_.get(c)) {
                 throw parse_error { "unterminated number: expected digit after sign in the exponent" };
+            }
         }
         if (c < '0' or c > '9') {
             input_.unget();
@@ -124,8 +138,9 @@ parser::get_number(double &result)
 bool
 parser::get_expr(double &result)
 {
-    if (not get_mult_expr(result))
+    if (not get_mult_expr(result)) {
         return false;
+    }
     char c {};
     while (input_ >> c) {
         if (c != '+' and c != '-') {
@@ -133,12 +148,14 @@ parser::get_expr(double &result)
             return true;
         } else {
             double right {};
-            if (not get_mult_expr(right))
+            if (not get_mult_expr(right)) {
                 throw parse_error { "syntax error: unterminated expression. Expected a multiplicative-exprssion after " + std::string(c, 1) };
-            if (c == '+')
+            }
+            if (c == '+') {
                 result += right;
-            else
+            } else {
                 result -= right;
+            }
         }
     }
     return true;
@@ -150,8 +167,9 @@ parser::get_expr(double &result)
 bool
 parser::get_mult_expr(double &result)
 {
-    if (not get_primary(result))
+    if (not get_primary(result)) {
         return false;
+    }
     char c {};
     while (input_ >> c) {
         if (c != '*' and c != '/') {
@@ -159,14 +177,16 @@ parser::get_mult_expr(double &result)
             return true;
         } else {
             double right {};
-            if (not get_primary(right))
+            if (not get_primary(right)) {
                 throw parse_error { "syntax error: unterminated expression. Expected a primary after " + std::string(c, 1) };
-            if (c == '*')
+            }
+            if (c == '*') {
                 result *= right;
-            else if (right == 0.0)
+            } else if (right == 0.0) {
                 throw parse_error { "division by zero" };
-            else
+            } else {
                 result /= right;
+            }
         }
     }
     return true;
@@ -183,14 +203,16 @@ parser::get_primary(double &result)
         // Can't read one character, so must be end-of-file
         return false;
     else if (c == '(') {
-        if (not get_expr(result))
+        if (not get_expr(result)) {
             return false;
-        if (not(input_ >> c))
+        }
+        if (not(input_ >> c)) {
             throw parse_error { "syntax error: EOF when expecting ')'" };
-        else if (c != ')')
+        } else if (c != ')') {
             throw parse_error { "syntax error: expected ')', but got " + charify(c) };
-        else
+        } else {
             return true;
+        }
     } else {
         input_.unget();
         return get_number(result);
@@ -209,8 +231,9 @@ parse_loop(std::istream &input, std::ostream &output)
         parser p { input };
         try {
             double x {};
-            while (p.get_expr(x))
+            while (p.get_expr(x)) {
                 output << x << '\n';
+            }
         } catch (parse_error const &ex) {
             output << ex.what() << '\n';
         } catch (std::exception const &ex) {

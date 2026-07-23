@@ -10,10 +10,12 @@ main()
 
     int x {};
     try {
-        while (std::cin >> x)
+        while (std::cin >> x) {
             std::cout << x << '\n';
-        if (not std::cin.eof()) // failure without eof means invalid input
+        }
+        if (not std::cin.eof()) {
             std::cerr << "Invalid integer input. Program terminated.\n";
+        }
     } catch (std::ios_base::failure const &ex) {
         std::cerr << "Major I/O failure! Program terminated.\n" << ex.what() << '\n';
         std::terminate();

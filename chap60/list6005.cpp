@@ -33,8 +33,9 @@ main()
     }
     if (total_fuel != 0) {
         std::cout << "Net MPG=" << total_distance / total_fuel;
-        if (error)
+        if (error) {
             std::cout << " (estimated, due to input error)";
+        }
         std::cout << '\n';
     }
 }

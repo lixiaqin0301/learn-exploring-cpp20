@@ -11,15 +11,16 @@ int
 main()
 {
     std::ifstream in { "list1403.in" };
-    if (not in)
+    if (not in) {
         std::cerr << "list1403.in: " << std::generic_category().message(errno) << '\n';
-    else {
+    } else {
         std::ofstream out { "list1403.out" };
         if (out) {
             std::ranges::copy(std::ranges::istream_view<int>(in), std::ostream_iterator<int> { out, "\n" });
             out.close();
         }
-        if (not out)
+        if (not out) {
             std::cerr << "list1403.out: " << std::generic_category().message(errno) << '\n';
+        }
     }
 }

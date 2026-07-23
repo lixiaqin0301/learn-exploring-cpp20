@@ -25,9 +25,10 @@ main()
         // that points into data at a position where the value should be inserted.
         int value { *iter };
         auto here { std::lower_bound(data.begin(), iter, value) };
-        if (iter == here)
-            ++iter; // already in sorted position
-        else {
+        if (iter == here) {
+            ++iter;
+            ; // already in sorted position
+        } else {
             iter = data.erase(iter);
             // re-insert the value at the correct position.
             data.insert(here, value);
@@ -37,8 +38,9 @@ main()
     // Debugging code: check that the vector is actually sorted. Do this by comparing
     // each element with the preceding element in the vector.
     for (auto iter { data.begin() }, prev { data.end() }, end { data.end() }; iter != end; ++iter) {
-        if (prev != data.end())
+        if (prev != data.end()) {
             assert(not(*iter < *prev));
+        }
         prev = iter;
     }
 

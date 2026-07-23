@@ -63,28 +63,39 @@ std::shared_ptr<node_impl>
 node_impl::read_node(std::istream &stream)
 {
     std::string type {};
-    if (not(stream >> type))
+    if (not(stream >> type)) {
         return nullptr;
-    if (type == "void")
+    }
+    if (type == "void") {
         return std::make_shared<node_void>(stream);
-    if (type == "number")
+    }
+    if (type == "number") {
         return std::make_shared<node_number>(stream);
-    if (type == "identifier")
+    }
+    if (type == "identifier") {
         return std::make_shared<node_identifier>(stream);
-    if (type == "function")
+    }
+    if (type == "function") {
         return std::make_shared<node_function>(stream);
-    if (type == "call")
+    }
+    if (type == "call") {
         return std::make_shared<node_function_call>(stream);
-    if (type == "negate")
+    }
+    if (type == "negate") {
         return std::make_shared<node_negate>(stream);
-    if (type == "add")
+    }
+    if (type == "add") {
         return std::make_shared<node_add>(stream);
-    if (type == "subtract")
+    }
+    if (type == "subtract") {
         return std::make_shared<node_subtract>(stream);
-    if (type == "multiply")
+    }
+    if (type == "multiply") {
         return std::make_shared<node_multiply>(stream);
-    if (type == "divide")
+    }
+    if (type == "divide") {
         return std::make_shared<node_divide>(stream);
+    }
 
     throw calc_error { "unknown node type: " + type };
 }
@@ -170,8 +181,9 @@ node_identifier::node_identifier(std::string name)
 node_identifier::node_identifier(std::istream &stream)
     : node_impl {}
 {
-    if (not(stream >> name_))
+    if (not(stream >> name_)) {
         throw calc_error("malformed library file, cannot read identifier");
+    }
 }
 
 std::string const &
@@ -217,13 +229,15 @@ node_function::node_function(std::istream &stream)
     std::size_t size;
     {
     }
-    if (not(stream >> size))
+    if (not(stream >> size)) {
         throw calc_error { "malformed library file, cannot read function" };
+    }
     parameters_.reserve(size);
     while (size-- != 0) {
         std::string parameter {};
-        if (not(stream >> parameter))
+        if (not(stream >> parameter)) {
             throw calc_error { "malformed library file, cannot read function parameter" };
+        }
         parameters_.emplace_back(std::move(parameter));
     }
     definition_ = node { stream };
@@ -278,8 +292,9 @@ void
 node_function::save_node(std::ostream &stream) const
 {
     stream << "function " << parameters().size() << ' ';
-    for (auto const &parameter : parameters())
+    for (auto const &parameter : parameters()) {
         stream << parameter << ' ';
+    }
     definition().save(stream);
 }
 
@@ -294,11 +309,13 @@ node_function_call::node_function_call(std::istream &stream)
     : node_impl {}
 {
     std::string name {};
-    if (not(stream >> name_))
+    if (not(stream >> name_)) {
         throw calc_error { "malformed library file, cannot read function call name" };
+    }
     std::size_t size {};
-    if (not(stream >> size))
+    if (not(stream >> size)) {
         throw calc_error { "malformed library file, cannot read function call" };
+    }
     arguments_.reserve(size);
     while (size-- != 0) {
         arguments_.emplace_back(stream);
@@ -336,9 +353,9 @@ node_function_call::evaluate_node() const
     // Create a local symbol table, assigning all the node values to the parameters.
     node function { get_function(name()) };
     identifier_list const &parameters { function.get_parameters() };
-    if (parameters.size() != arguments().size())
+    if (parameters.size() != arguments().size()) {
         throw function_error { name(), parameters.size(), arguments().size() };
-    else {
+    } else {
         local_symbol_table locals;
         identifier_list::const_iterator parm { parameters.begin() };
         for (auto const &arg : arguments()) {
@@ -353,8 +370,9 @@ void
 node_function_call::save_node(std::ostream &stream) const
 {
     stream << "call " << name() << ' ' << arguments().size() << ' ';
-    for (auto const &arg : arguments())
+    for (auto const &arg : arguments()) {
         arg.save(stream);
+    }
 }
 
 node_unary::node_unary(node operand)

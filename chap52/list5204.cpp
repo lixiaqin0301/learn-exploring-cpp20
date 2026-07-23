@@ -8,6 +8,7 @@ int
 main()
 {
     rational<int> r {};
-    while (std::cin >> r)
+    while (std::cin >> r) {
         std::cout << r << '\n';
+    }
 }

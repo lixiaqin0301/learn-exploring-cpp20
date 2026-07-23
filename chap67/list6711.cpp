@@ -20,10 +20,11 @@ std::ranges::range_difference_t<Range>
 index_of(Range const &range, std::ranges::range_value_t<Range> const &value)
 {
     auto iter { std::ranges::find(range, value) };
-    if (iter == std::ranges::end(range))
+    if (iter == std::ranges::end(range)) {
         return -1;
-    else
+    } else {
         return std::distance(std::ranges::begin(range), iter);
+    }
 }
 
 /** Determine whether the first occurrence of a value in a container is
@@ -44,6 +45,7 @@ int
 main()
 {
     std::vector<int> data {};
-    if (is_last(data, 10))
+    if (is_last(data, 10)) {
         std::cout << "10 is the last item in data\n";
+    }
 }

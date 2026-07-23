@@ -7,12 +7,13 @@ int
 main(int, char **argv)
 {
     if (argv[1] != nullptr) {
-        if (std::string_view { argv[1] } == "--help")
+        if (std::string_view { argv[1] } == "--help") {
             std::cout << "usage: " << argv[0] << " [ARGS...]";
-        else {
+        } else {
             std::cout << *++argv;
-            while (*++argv != nullptr)
+            while (*++argv != nullptr) {
                 std::cout << ' ' << *argv;
+            }
         }
     }
     std::cout << '\n';

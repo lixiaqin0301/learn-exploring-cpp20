@@ -41,8 +41,9 @@ to_upper(char ch)
 std::string
 to_upper(std::string str)
 {
-    for (char &ch : str)
+    for (char &ch : str) {
         ch = to_upper(ch);
+    }
     return str;
 }
 
@@ -51,10 +52,11 @@ main()
 {
     std::string str {};
     while (std::cin >> str) {
-        if (is_alpha(str))
+        if (is_alpha(str)) {
             std::cout << "alpha\n";
-        else
+        } else {
             std::cout << "not alpha\n";
+        }
         std::cout << "lower: " << to_lower(str)
                   << "\n"
                      "upper: "

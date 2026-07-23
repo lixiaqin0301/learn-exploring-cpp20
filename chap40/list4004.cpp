@@ -83,8 +83,9 @@ operator>>(std::istream &in, color &c)
     ioflags flags { in };
 
     char hash {};
-    if (not(in >> hash))
+    if (not(in >> hash)) {
         return in;
+    }
     if (hash != '#') {
         // malformed color: no leading # character
         in.unget(); // return the character to the input stream
@@ -94,8 +95,9 @@ operator>>(std::istream &in, color &c)
     // Read the color number, which is hexadecimal: RRGGBB.
     int combined {};
     in >> std::hex >> std::noskipws;
-    if (not(in >> combined))
+    if (not(in >> combined)) {
         return in;
+    }
     // Extract the R, G, and B bytes.
     int red, green, blue;
     blue = combined % 256;
@@ -115,9 +117,10 @@ main()
 {
     color c;
     while (std::cin >> c) {
-        if (c == color {})
+        if (c == color {}) {
             std::cout << "black\n";
-        else
+        } else {
             std::cout << c << '\n';
+        }
     }
 }

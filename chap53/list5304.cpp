@@ -6,8 +6,9 @@ int
 main()
 {
     less<int> const x;
-    if (x(1, 2))
+    if (x(1, 2)) {
         std::cout << "success\n";
-    else
+    } else {
         std::cout << "fail\n";
+    }
 }

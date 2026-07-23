@@ -37,10 +37,11 @@ count_down(int n)
     std::cout << "start count_down(" << n << ")\n";
     visual v { "count_down local" };
     try {
-        if (n == 3)
+        if (n == 3) {
             throw visual("exception");
-        else if (n > 0)
+        } else if (n > 0) {
             count_down(n - 1);
+        }
     } catch (visual ex) {
         ex.print("catch on line 50 ");
         throw;

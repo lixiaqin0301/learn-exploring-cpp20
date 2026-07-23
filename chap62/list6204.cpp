@@ -45,8 +45,9 @@ artifact_index
 lookup_artifact(std::string const &name)
 {
     auto iter { std::find_if(artifacts.begin(), artifacts.end(), [&name](artifact const &a) { return a.name() == name; }) };
-    if (iter != artifacts.end())
+    if (iter != artifacts.end()) {
         return iter - artifacts.begin();
+    }
     // Artifact not found, so add it to the end.
     artifacts.emplace_back(name);
     return artifacts.size() - 1;
@@ -77,8 +78,9 @@ main()
         std::vector<artifact_index> sorted {};
         graph.sort(std::back_inserter(sorted));
         // Print in build order, which is reverse of dependency order.
-        for (auto index : sorted | std::ranges::views::reverse)
+        for (auto index : sorted | std::ranges::views::reverse) {
             std::cout << artifacts.at(index).name() << '\n';
+        }
     } catch (std::runtime_error const &ex) {
         std::cerr << ex.what() << '\n';
         return EXIT_FAILURE;

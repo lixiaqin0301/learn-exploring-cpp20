@@ -15,13 +15,15 @@ main()
     // Read words from the standard input and count the number of times
     // each word occurs.
     std::string word {};
-    while (std::cin >> word)
+    while (std::cin >> word) {
         ++counts[word];
+    }
 
-    if (count_iterator the { counts.find("the") }; the == counts.end())
+    if (count_iterator the { counts.find("the") }; the == counts.end()) {
         std::cout << "\"the\": not found\n";
-    else if (the->second == 1)
+    } else if (the->second == 1) {
         std::cout << "\"the\": occurs " << the->second << " time\n";
-    else
+    } else {
         std::cout << "\"the\": occurs " << the->second << " times\n";
+    }
 }

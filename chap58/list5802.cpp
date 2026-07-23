@@ -22,14 +22,15 @@ void
 test(char c, std::locale loc)
 {
     ioflags save { std::cout };
-    if (std::isalnum(c, loc))
+    if (std::isalnum(c, loc)) {
         print(c, "alphanumeric", loc);
-    else if (std::iscntrl(c, loc))
+    } else if (std::iscntrl(c, loc)) {
         print(c, "control", loc);
-    else if (std::ispunct(c, loc))
+    } else if (std::ispunct(c, loc)) {
         print(c, "punctuation", loc);
-    else
+    } else {
         print(c, "none of the above", loc);
+    }
 }
 
 int

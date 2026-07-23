@@ -7,128 +7,135 @@
 
 namespace numeric {
 
-class zero_denominator : public std::logic_error
-{
+class zero_denominator : public std::logic_error {
 public:
     using logic_error::logic_error;
 };
 
-template<class T>
-class rational
-{
+template <class T> class rational {
 public:
-  using value_type = T;
-  constexpr rational() : rational{0} {}
-  constexpr rational(value_type num) : numerator_{num}, denominator_{1} {}
-  rational(double d) : rational{ static_cast<T>(d * 100'000), static_cast<T>(100'000) } {}
-  rational(value_type num, value_type den);
+    using value_type = T;
+    constexpr rational()
+        : rational { 0 }
+    {
+    }
+    constexpr rational(value_type num)
+        : numerator_ { num }
+        , denominator_ { 1 }
+    {
+    }
+    rational(double d)
+        : rational { static_cast<T>(d * 100'000), static_cast<T>(100'000) }
+    {
+    }
+    rational(value_type num, value_type den);
 
-  void assign(value_type num, value_type den);
+    void assign(value_type num, value_type den);
 
-  template<class U>
-  U convert()
-  const
-  {
-    return static_cast<U>(numerator()) / static_cast<U>(denominator());
-  }
+    template <class U> U convert() const { return static_cast<U>(numerator()) / static_cast<U>(denominator()); }
 
-  operator double() const { return convert<double>(); }
+    operator double() const { return convert<double>(); }
 
-  constexpr value_type const& numerator() const { return numerator_; }
-  constexpr value_type const& denominator() const { return denominator_; }
+    constexpr value_type const &numerator() const { return numerator_; }
+    constexpr value_type const &denominator() const { return denominator_; }
+
 private:
-  void reduce();
-  value_type numerator_;
-  value_type denominator_;
+    void reduce();
+    value_type numerator_;
+    value_type denominator_;
 };
 
-template<class T>
+template <class T>
 rational<T>::rational(value_type num, value_type den)
-: numerator_{num}, denominator_{den}
+    : numerator_ { num }
+    , denominator_ { den }
 {
-  reduce();
+    reduce();
 }
 
-template<class T>
-void rational<T>::assign(value_type num, value_type den)
+template <class T>
+void
+rational<T>::assign(value_type num, value_type den)
 {
-  numerator_ = num;
-  denominator_ = den;
-  reduce();
+    numerator_ = num;
+    denominator_ = den;
+    reduce();
 }
 
-template<class T, class U>
-bool operator==(rational<T> const& a, rational<U> const& b)
+template <class T, class U>
+bool
+operator==(rational<T> const &a, rational<U> const &b)
 {
-  return a.numerator() == b.numerator() and
-         a.denominator() == b.denominator();
+    return a.numerator() == b.numerator() and a.denominator() == b.denominator();
 }
 
-template<class T, class U>
-inline bool operator!=(rational<T> const& a, rational<U> const& b)
+template <class T, class U>
+inline bool
+operator!=(rational<T> const &a, rational<U> const &b)
 {
-  return not (a == b);
+    return not(a == b);
 }
 
-template<class T>
-rational<T> operator*(rational<T> const& lhs, rational<T> const& rhs)
+template <class T>
+rational<T>
+operator*(rational<T> const &lhs, rational<T> const &rhs)
 {
-	return rational<T>{
-		lhs.numerator() * rhs.numerator(),
-		lhs.denominator() * rhs.denominator()
-	};
+    return rational<T> { lhs.numerator() * rhs.numerator(), lhs.denominator() * rhs.denominator() };
 }
 
-template<class T>
-std::ostream& operator<<(std::ostream& stream, rational<T> const& r)
+template <class T>
+std::ostream &
+operator<<(std::ostream &stream, rational<T> const &r)
 {
-  std::cout << r.numerator() << '/' << r.denominator();
-  return stream;
+    std::cout << r.numerator() << '/' << r.denominator();
+    return stream;
 }
 
-template<class T>
-std::istream& operator>>(std::istream& in, rational<T>& rat)
+template <class T>
+std::istream &
+operator>>(std::istream &in, rational<T> &rat)
 {
-  T n{}, d{};
-  char sep{};
-  if (not (in >> n >> sep))
-    // Error reading the numerator or the separator character.
-    in.setstate(in.failbit);
-  else if (sep != '/')
-  {
-    // Push sep back into the input stream, so the next input operation
-    // will read it.
-    in.unget();
-    rat.assign(n, 1);
-  }
-  else if (in >> d)
-    // Successfully read numerator, separator, and denominator.
-    rat.assign(n, d);
-  else
-    // Error reading denominator.
-    in.setstate(in.failbit);
+    T n {}, d {};
+    char sep {};
+    if (not(in >> n >> sep))
+        // Error reading the numerator or the separator character.
+        in.setstate(in.failbit);
+    else if (sep != '/') {
+        // Push sep back into the input stream, so the next input operation
+        // will read it.
+        in.unget();
+        rat.assign(n, 1);
+    } else if (in >> d)
+        // Successfully read numerator, separator, and denominator.
+        rat.assign(n, d);
+    else
+        // Error reading denominator.
+        in.setstate(in.failbit);
 
-  return in;
+    return in;
 }
 
-template<class T>
-  void rational<T>::reduce()
-  {
-    if (denominator() == value_type{}) throw zero_denominator("divide by zero in rational");
-    if (denominator() < value_type{})
-    {
-      denominator_ = -denominator();
-      numerator_ = -numerator();
+template <class T>
+void
+rational<T>::reduce()
+{
+    if (denominator() == value_type {}) {
+        throw zero_denominator("divide by zero in rational");
     }
-    int div{std::gcd(numerator(), denominator())};
+    if (denominator() < value_type {}) {
+        denominator_ = -denominator();
+        numerator_ = -numerator();
+    }
+    int div { std::gcd(numerator(), denominator()) };
     numerator_ = numerator() / div;
     denominator_ = denominator() / div;
-  }
+}
 
-template<class T>
-rational<T> operator-(rational<T> const& r)
+template <class T>
+rational<T>
+operator-(rational<T> const &r)
 {
-  return rational<T>{-r.numerator(), r.denominator()};
+    return rational<T> { -r.numerator(), r.denominator() };
 }
 
 } // namespace numeric

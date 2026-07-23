@@ -68,8 +68,9 @@ main()
     rational pi1 { 355, 113 };
     rational pi2 { 1420, 452 };
 
-    if (pi1 == pi2)
+    if (pi1 == pi2) {
         std::cout << "success\n";
-    else
+    } else {
         std::cout << "failure\n";
+    }
 }

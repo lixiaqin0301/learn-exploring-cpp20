@@ -11,6 +11,7 @@ main()
     read_data(data);
     intvector::const_iterator iter { data.begin() };
     std::advance(iter, data.size() / 2); // move to middle of vector
-    if (not data.empty())
+    if (not data.empty()) {
         std::cout << "middle item = " << *iter << '\n';
+    }
 }

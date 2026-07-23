@@ -27,10 +27,12 @@ main()
         T zero { 0 };
         T one { 1 };
         T inf { std::numeric_limits<T>::infinity() };
-        if (std::isinf(one / zero))
+        if (std::isinf(one / zero)) {
             std::cout << "1.0/0.0 = infinity\n";
-        if (inf + inf == inf)
+        }
+        if (inf + inf == inf) {
             std::cout << "infinity + infinity = infinity\n";
+        }
     }
     if (std::numeric_limits<T>::has_quiet_NaN) {
         // There's no guarantee that your environment produces quiet NaNs for

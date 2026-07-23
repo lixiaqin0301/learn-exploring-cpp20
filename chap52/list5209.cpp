@@ -73,8 +73,9 @@ template <class T>
 void
 rational<T>::reduce()
 {
-    if (denominator() == value_type {})
+    if (denominator() == value_type {}) {
         throw std::logic_error("divide by zero in rational");
+    }
     if (denominator() < value_type {}) {
         denominator_ = -denominator();
         numerator_ = -numerator();

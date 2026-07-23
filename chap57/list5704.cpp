@@ -29,8 +29,9 @@ test(std::initializer_list<int> numbers)
 {
     std::vector<int> data { numbers };
     erase_unsorted(data);
-    if (not std::is_sorted(data.begin(), data.end()))
+    if (not std::is_sorted(data.begin(), data.end())) {
         print("FAILED", data);
+    }
 }
 
 int

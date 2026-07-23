@@ -7,10 +7,11 @@ template <class T>
 T
 absval(T x)
 {
-    if (x < 0)
+    if (x < 0) {
         return -x;
-    else
+    } else {
         return x;
+    }
 }
 
 int

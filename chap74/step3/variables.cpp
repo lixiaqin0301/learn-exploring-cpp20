@@ -12,9 +12,9 @@ std::map<std::string, double, std::less<>> variables { { "pi", 3.141592653589793
 double
 get_variable(std::string_view name)
 {
-    if (auto iterator { variables.find(name) }; iterator != variables.end())
+    if (auto iterator { variables.find(name) }; iterator != variables.end()) {
         return iterator->second;
-    else {
+    } else {
         set_variable(std::string { name }, 0.0);
         return 0.0;
     }

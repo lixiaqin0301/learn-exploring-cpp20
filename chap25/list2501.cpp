@@ -24,10 +24,11 @@ print(std::vector<int> const &vec, int width, std::string_view prefix, std::stri
 
     bool print_separator { false };
     for (auto x : vec) {
-        if (print_separator)
+        if (print_separator) {
             std::cout << separator;
-        else
+        } else {
             print_separator = true;
+        }
         print(x, width);
     }
 

@@ -47,9 +47,9 @@ main()
     while (std::getline(std::cin, line)) {
         std::string target {}, dependency {};
         std::istringstream stream { line };
-        if (stream >> target >> dependency)
+        if (stream >> target >> dependency) {
             graph.store_dependency(target, dependency);
-        else if (not target.empty())
+        } else if (not target.empty())
             // Input line has a target with no dependency,
             // so report an error.
             std::cerr << "malformed input: target, " << target << ", must be followed by a dependency name\n";
@@ -61,8 +61,9 @@ main()
         std::vector<artifact> sorted {};
         graph.sort(std::back_inserter(sorted));
         // Print in build order, which is reverse of dependency order.
-        for (auto const &artifact : sorted | std::ranges::views::reverse)
+        for (auto const &artifact : sorted | std::ranges::views::reverse) {
             std::cout << artifact << '\n';
+        }
     } catch (std::runtime_error const &ex) {
         std::cerr << ex.what() << '\n';
         return EXIT_FAILURE;

@@ -19,6 +19,7 @@ main()
     while (std::cin >> std::get_money(digits)) {
         std::cout << std::put_money(digits) << '\n';
     }
-    if (not std::cin.eof())
+    if (not std::cin.eof()) {
         std::cout << "Invalid input.\n";
+    }
 }

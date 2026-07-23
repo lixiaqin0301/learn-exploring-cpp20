@@ -44,9 +44,9 @@ artifact *
 lookup_artifact(std::string const &name)
 {
     auto a(artifacts.find(name));
-    if (a != artifacts.end())
+    if (a != artifacts.end()) {
         return &a->second;
-    else {
+    } else {
         auto [iterator, inserted] { artifacts.emplace(name, name) };
         return &iterator->second;
     }

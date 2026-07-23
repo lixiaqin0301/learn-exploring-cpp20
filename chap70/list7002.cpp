@@ -26,11 +26,13 @@ advance(Iterator &iterator, Distance distance)
     } else {
         trace("input+ iterator");
         if constexpr (std::is_base_of<std::bidirectional_iterator_tag, tag>::value) {
-            while (distance++ < 0)
+            while (distance++ < 0) {
                 --iterator;
+            }
         }
-        while (distance-- > 0)
+        while (distance-- > 0) {
             ++iterator;
+        }
     }
 }
 

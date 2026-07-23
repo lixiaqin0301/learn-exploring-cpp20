@@ -16,22 +16,24 @@ print_file_type(std::ostream &stream, fsys::path const &path, fsys::file_status 
     if (fsys::is_symlink(status)) {
         std::error_code ec;
         auto link { fsys::read_symlink(path, ec) };
-        if (ec)
+        if (ec) {
             stream << ": " << ec.message();
-        else
+        } else {
             stream << " -> " << link.generic_string();
+        }
     } else if (fsys::is_directory(status))
         stream << '/';
-    else if (fsys::is_fifo(status))
+    else if (fsys::is_fifo(status)) {
         stream << '|';
-    else if (fsys::is_socket(status))
+    } else if (fsys::is_socket(status)) {
         stream << '=';
-    else if (fsys::is_character_file(status))
+    } else if (fsys::is_character_file(status)) {
         stream << "(c)";
-    else if (fsys::is_block_file(status))
+    } else if (fsys::is_block_file(status)) {
         stream << "(b)";
-    else if (fsys::is_other(status))
+    } else if (fsys::is_other(status)) {
         stream << "?";
+    }
 }
 
 // There may be many reasons why a file has no size, e.g., it is
@@ -41,10 +43,11 @@ get_file_size(fsys::path const &path)
 {
     std::error_code ec;
     auto size { fsys::file_size(path, ec) };
-    if (ec.value() != 0)
+    if (ec.value() != 0) {
         return 0;
-    else
+    } else {
         return size;
+    }
 }
 
 // Similarly, return a false timestamp for any error.
@@ -53,10 +56,11 @@ get_last_write_time(fsys::path const &path)
 {
     std::error_code ec;
     auto time { fsys::last_write_time(path, ec) };
-    if (ec)
+    if (ec) {
         return fsys::file_time_type {};
-    else
+    } else {
         return time;
+    }
 }
 
 void
@@ -64,9 +68,9 @@ print_file_info(std::ostream &stream, fsys::path const &path)
 {
     std::error_code ec;
     auto status { fsys::symlink_status(path, ec) };
-    if (ec)
+    if (ec) {
         stream << path.generic_string() << ": " << ec.message();
-    else {
+    } else {
         std::format_to(std::ostreambuf_iterator<char>(stream), "{0:>16} {1:%F %T} {2}", get_file_size(path), std::chrono::time_point_cast<std::chrono::seconds>(std::chrono::clock_cast<std::chrono::system_clock>(get_last_write_time(path))), path.generic_string());
         print_file_type(stream, path, status);
     }

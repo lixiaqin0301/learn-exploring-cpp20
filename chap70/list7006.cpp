@@ -10,6 +10,7 @@ main()
 {
     using string = mystring<char, array_storage<char, 256>>;
     string s;
-    while (std::cin >> s)
+    while (std::cin >> s) {
         std::cout << '"' << s << "\"\n";
+    }
 }

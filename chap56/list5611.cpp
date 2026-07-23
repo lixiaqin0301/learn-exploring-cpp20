@@ -34,8 +34,9 @@ std::istream &
 operator>>(std::istream &in, parser::token &tok)
 {
     std::string str {};
-    if (in >> str)
+    if (in >> str) {
         tok = str;
+    }
     return in;
 }
 

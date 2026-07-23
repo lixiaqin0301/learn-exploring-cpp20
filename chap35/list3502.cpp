@@ -12,8 +12,9 @@ main()
     int threshold {};
 
     std::cout << "Enter threshold BMI: ";
-    if (not(std::cin >> threshold))
+    if (not(std::cin >> threshold)) {
         return EXIT_FAILURE;
+    }
     skip_line(std::cin);
 
     std::cout << "Enter name, height (in cm),"

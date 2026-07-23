@@ -5,32 +5,46 @@
 int
 main()
 {
-    if (true)
+    if (true) {
         std::cout << "true\n";
-    if (false)
+    }
+    if (false) {
         std::cout << "false\n";
-    if (42)
+    }
+    if (42) {
         std::cout << "42\n";
-    if (0)
+    }
+    if (0) {
         std::cout << "0\n";
-    if (42.4242)
+    }
+    if (42.4242) {
         std::cout << "42.4242\n";
-    if (0.0)
+    }
+    if (0.0) {
         std::cout << "0.0\n";
-    if (-0.0)
+    }
+    if (-0.0) {
         std::cout << "-0.0\n";
-    if (-1)
+    }
+    if (-1) {
         std::cout << "-1\n";
-    if ('\0')
+    }
+    if ('\0') {
         std::cout << "'\\0'\n";
-    if ('\1')
+    }
+    if ('\1') {
         std::cout << "'\\1'\n";
-    if ("1")
+    }
+    if ("1") {
         std::cout << "\"1\"\n";
-    if ("false")
+    }
+    if ("false") {
         std::cout << "\"false\"\n";
-    if (std::cout)
+    }
+    if (std::cout) {
         std::cout << "std::cout\n";
-    if (std::cin)
+    }
+    if (std::cin) {
         std::cout << "std::cin\n";
+    }
 }

@@ -14,12 +14,15 @@ main()
     int x;
     while (std::cin >> x) {
         any = true;
-        if (x < min)
+        if (x < min) {
             min = x;
-        if (x > max)
+        }
+        if (x > max) {
             max = x;
+        }
     }
 
-    if (any)
+    if (any) {
         std::cout << "min = " << min << "\nmax = " << max << '\n';
+    }
 }

@@ -10,7 +10,8 @@ main()
 
     int sum { 0 };
     int x {};
-    while (std::cin >> x)
+    while (std::cin >> x) {
         sum = sum + x;
+    }
     std::cout << "sum = " << sum << '\n';
 }

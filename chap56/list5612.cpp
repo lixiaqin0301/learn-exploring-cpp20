@@ -40,8 +40,9 @@ std::istream &
 operator>>(std::istream &in, parser::token &tok)
 {
     std::string str {};
-    if (in >> str)
+    if (in >> str) {
         tok = str;
+    }
     return in;
 }
 
@@ -68,7 +69,8 @@ main()
 
     map<token, long> tokens {};
     token tok {};
-    while (cin >> tok)
+    while (cin >> tok) {
         ++tokens[tok];
+    }
     ranges::copy(tokens, ostream_iterator<pair<const token, long>>(cout));
 }

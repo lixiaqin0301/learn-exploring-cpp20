@@ -26,9 +26,10 @@ main()
 
         std::cout << "You picked " << user_card << '\n';
 
-        if (acehigh_less(computer_card, user_card))
+        if (acehigh_less(computer_card, user_card)) {
             std::cout << "You win.\n";
-        else
+        } else {
             std::cout << "I win.\n";
+        }
     }
 }

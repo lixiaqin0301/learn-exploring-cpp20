@@ -8,8 +8,9 @@ input_sum(std::istream &in)
 {
     T x {};
     U sum { 0 };
-    while (in >> x)
+    while (in >> x) {
         sum += x;
+    }
     return sum;
 }
 

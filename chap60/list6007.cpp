@@ -16,8 +16,9 @@ main()
     while (std::getline(std::cin, line)) {
         ++linenum;
         std::string::size_type comment { line.find('#') };
-        if (comment != std::string::npos)
+        if (comment != std::string::npos) {
             line.erase(comment);
+        }
         std::istringstream input { line };
         double odometer {};
         if (input >> odometer) {
@@ -36,8 +37,9 @@ main()
     }
     if (total_fuel != 0) {
         std::cout << "Net MPG=" << total_distance / total_fuel;
-        if (error)
+        if (error) {
             std::cout << " (estimated, due to input error)";
+        }
         std::cout << '\n';
     }
 }

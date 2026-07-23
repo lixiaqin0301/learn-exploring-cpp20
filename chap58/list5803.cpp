@@ -23,14 +23,15 @@ test(char c, std::locale loc)
 
     std::ctype<char> const &ctype { std::use_facet<std::ctype<char>>(loc) };
 
-    if (ctype.is(std::ctype_base::alnum, c))
+    if (ctype.is(std::ctype_base::alnum, c)) {
         print(c, "alphanumeric", loc);
-    else if (ctype.is(std::ctype_base::cntrl, c))
+    } else if (ctype.is(std::ctype_base::cntrl, c)) {
         print(c, "control", loc);
-    else if (ctype.is(std::ctype_base::punct, c))
+    } else if (ctype.is(std::ctype_base::punct, c)) {
         print(c, "punctuation", loc);
-    else
+    } else {
         print(c, "none of the above", loc);
+    }
 }
 
 int

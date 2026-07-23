@@ -29,8 +29,9 @@ read_data()
 {
     std::vector<mystring> strings {};
     mystring line {};
-    while (std::getline(std::cin, line))
+    while (std::getline(std::cin, line)) {
         strings.emplace_back(std::move(line));
+    }
     return strings;
 }
 

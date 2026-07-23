@@ -10,8 +10,9 @@ main()
 {
     std::vector<int> data;
     int element;
-    while (std::cin >> element)
+    while (std::cin >> element) {
         data.emplace_back(element);
+    }
 
     std::ranges::sort(data);
 

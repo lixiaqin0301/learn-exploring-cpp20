@@ -16,22 +16,24 @@ print_file_type(std::ostream &stream, fsys::directory_entry const &entry)
     if (fsys::is_symlink(status)) {
         std::error_code ec;
         auto link { fsys::read_symlink(entry.path(), ec) };
-        if (ec)
+        if (ec) {
             stream << ": " << ec.message();
-        else
+        } else {
             stream << " -> " << link.generic_string();
+        }
     } else if (fsys::is_directory(status))
         stream << '/';
-    else if (fsys::is_fifo(status))
+    else if (fsys::is_fifo(status)) {
         stream << '|';
-    else if (fsys::is_socket(status))
+    } else if (fsys::is_socket(status)) {
         stream << '=';
-    else if (fsys::is_character_file(status))
+    } else if (fsys::is_character_file(status)) {
         stream << "(c)";
-    else if (fsys::is_block_file(status))
+    } else if (fsys::is_block_file(status)) {
         stream << "(b)";
-    else if (fsys::is_other(status))
+    } else if (fsys::is_other(status)) {
         stream << "?";
+    }
 }
 
 // There may be many reasons why a file has no size, e.g., it is
@@ -41,10 +43,11 @@ get_file_size(fsys::directory_entry const &entry)
 {
     std::error_code ec;
     auto size { entry.file_size(ec) };
-    if (ec)
+    if (ec) {
         return 0;
-    else
+    } else {
         return size;
+    }
 }
 
 // Similarly, return a false timestamp for any error.
@@ -53,10 +56,11 @@ get_last_write_time(fsys::directory_entry const &entry)
 {
     std::error_code ec;
     auto time { entry.last_write_time(ec) };
-    if (ec)
+    if (ec) {
         return fsys::file_time_type {};
-    else
+    } else {
         return time;
+    }
 }
 
 void
@@ -66,8 +70,9 @@ print_file_info(std::ostream &stream, fsys::directory_entry const &entry)
     print_file_type(stream, entry);
     stream << '\n';
     if (not entry.is_symlink() and entry.is_directory()) {
-        for (auto &&entry : fsys::directory_iterator { entry.path() })
+        for (auto &&entry : fsys::directory_iterator { entry.path() }) {
             print_file_info(stream, entry);
+        }
     }
 }
 
@@ -82,9 +87,10 @@ main(int, char **argv)
         fsys::path path { *argv };
         std::error_code ec;
         fsys::directory_entry entry { path, ec };
-        if (ec)
+        if (ec) {
             std::cout << *argv << ": " << ec.message() << '\n';
-        else
+        } else {
             print_file_info(std::cout, entry);
+        }
     }
 }

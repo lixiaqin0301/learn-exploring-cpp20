@@ -10,6 +10,7 @@ main()
     static const rational<int> zero {};
     rational<int> r {};
     while (std::cin >> r)
-        if (r != zero)
+        if (r != zero) {
             std::cout << r << '\n';
+        }
 }

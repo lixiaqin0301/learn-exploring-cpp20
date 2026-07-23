@@ -19,6 +19,7 @@ main()
             prev_odometer = odometer;
         }
     }
-    if (total_distance != 0)
+    if (total_distance != 0) {
         std::cout << "Net 100LPK=" << total_fuel / total_distance << '\n';
+    }
 }

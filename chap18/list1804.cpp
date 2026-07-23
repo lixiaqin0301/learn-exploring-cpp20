@@ -23,15 +23,18 @@ main()
         // Make a copy of word, keeping only alphabetic characters.
         std::string copy {};
         for (char ch : word)
-            if (std::isalnum(ch, native))
+            if (std::isalnum(ch, native)) {
                 copy.push_back(ch);
+            }
         // The "word" might be all punctuation, so the copy would be empty.
         // Don't count empty strings.
-        if (not copy.empty())
+        if (not copy.empty()) {
             ++counts[copy];
+        }
     }
 
     // For each word/count pair, print the word & count on one line.
-    for (auto pair : counts)
+    for (auto pair : counts) {
         std::cout << pair.first << '\t' << pair.second << '\n';
+    }
 }

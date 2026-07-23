@@ -30,6 +30,7 @@ main()
 
     std::string line {};
     while (std::getline(std::cin, line))
-        if (is_palindrome(line))
+        if (is_palindrome(line)) {
             std::cout << line << '\n';
+        }
 }

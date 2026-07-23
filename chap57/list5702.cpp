@@ -11,8 +11,9 @@ main()
 
     std::set<std::string>::iterator hint { words.begin() };
     std::string word {};
-    while (std::cin >> word)
+    while (std::cin >> word) {
         hint = words.emplace_hint(hint, std::move(word));
+    }
 
     std::cout << "stored " << words.size() << " unique words\n";
 }

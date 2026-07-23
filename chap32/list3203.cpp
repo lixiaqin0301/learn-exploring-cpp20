@@ -33,6 +33,7 @@ main()
         }
     }
 
-    if (std::cin.bad())
+    if (std::cin.bad()) {
         std::cerr << "Unrecoverable input failure\n";
+    }
 }

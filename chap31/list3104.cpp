@@ -8,8 +8,9 @@ main()
     rational pi1 { 355, 113 };
     rational pi2 { 1420, 452 };
 
-    if (pi1 >= pi2 and pi2 >= pi1)
+    if (pi1 >= pi2 and pi2 >= pi1) {
         std::cout << "success\n";
-    else
+    } else {
         std::cout << "failure\n";
+    }
 }

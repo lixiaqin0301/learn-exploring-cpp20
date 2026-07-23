@@ -9,11 +9,13 @@ bool
 get_movie(std::string &title, int &runtime)
 {
     std::cout << "Movie title: ";
-    if (not std::getline(std::cin, title))
+    if (not std::getline(std::cin, title)) {
         return false;
+    }
     std::cout << "Runtime (minutes): ";
-    if (not(std::cin >> runtime))
+    if (not(std::cin >> runtime)) {
         return false;
+    }
     return true;
 }
 

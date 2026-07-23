@@ -43,25 +43,29 @@ struct record {
     {
         std::cout << "Name " << num << ": ";
         std::string name {};
-        if (not std::getline(in, name))
+        if (not std::getline(in, name)) {
             return false;
+        }
 
         std::cout << "Height (cm): ";
         int height {};
-        if (not(in >> height))
+        if (not(in >> height)) {
             return false;
+        }
         skip_line(in);
 
         std::cout << "Weight (kg): ";
         int weight {};
-        if (not(in >> weight))
+        if (not(in >> weight)) {
             return false;
+        }
         skip_line(in);
 
         std::cout << "Sex (M or F): ";
         char sex {};
-        if (not(in >> sex))
+        if (not(in >> sex)) {
             return false;
+        }
         skip_line(in);
         sex = std::toupper(sex, std::locale());
 
@@ -79,10 +83,11 @@ struct record {
     void print(std::ostream &out, int threshold)
     {
         out << std::setw(6) << height_ << std::setw(7) << weight_ << std::setw(3) << sex_ << std::setw(6) << bmi_;
-        if (bmi_ >= threshold)
+        if (bmi_ >= threshold) {
             out << '*';
-        else
+        } else {
             out << ' ';
+        }
         out << ' ' << name_ << '\n';
     }
 
@@ -126,10 +131,11 @@ print_table(char sex, std::vector<record> &records, int threshold)
         std::cout << "Median BMI = ";
         // Index of median item.
         std::size_t i { tmpbmis.size() / 2 };
-        if (tmpbmis.size() % 2 == 0)
+        if (tmpbmis.size() % 2 == 0) {
             std::cout << (tmpbmis.at(i) + tmpbmis.at(i - 1)) / 2.0 << '\n';
-        else
+        } else {
             std::cout << tmpbmis.at(i) << '\n';
+        }
     }
 }
 
@@ -145,8 +151,9 @@ main()
     int threshold {};
 
     std::cout << "Enter threshold BMI: ";
-    if (not(std::cin >> threshold))
+    if (not(std::cin >> threshold)) {
         return EXIT_FAILURE;
+    }
     skip_line(std::cin);
 
     std::cout << "Enter name, height (in cm),"

@@ -31,12 +31,13 @@ node
 get_variable(std::string_view name)
 {
     node result {};
-    if (not find_symbol(name, result))
+    if (not find_symbol(name, result)) {
         return node();
-    else if (result.get_parameters().empty())
+    } else if (result.get_parameters().empty()) {
         return result;
-    else
+    } else {
         throw function_error { std::string { name }, result.get_parameters().size(), 0 };
+    }
 }
 
 void
@@ -49,10 +50,11 @@ node
 get_function(std::string_view name)
 {
     node result {};
-    if (not find_symbol(name, result))
+    if (not find_symbol(name, result)) {
         throw no_such_function { std::string { name } };
-    else
+    } else {
         return result;
+    }
 }
 
 void

@@ -15,7 +15,8 @@ main()
     std::cin >> age;
 
     std::cout << "Good-bye, " << name << ". You are " << age << " year";
-    if (age != 1)
+    if (age != 1) {
         std::cout << 's';
+    }
     std::cout << " old.\n";
 }

@@ -32,8 +32,9 @@ std::istream &
 operator>>(std::istream &stream, height &ht)
 {
     int tmp;
-    if (stream >> tmp)
+    if (stream >> tmp) {
         ht = height { tmp };
+    }
     return stream;
 }
 
@@ -41,8 +42,9 @@ std::istream &
 operator>>(std::istream &stream, weight &wt)
 {
     int tmp;
-    if (stream >> tmp)
+    if (stream >> tmp) {
         wt = weight { tmp };
+    }
     return stream;
 }
 

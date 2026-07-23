@@ -33,12 +33,13 @@ node
 get_variable(std::string_view name)
 {
     node result {};
-    if (not find_symbol(name, result))
+    if (not find_symbol(name, result)) {
         return node();
-    else if (result.get_parameters().empty())
+    } else if (result.get_parameters().empty()) {
         return result;
-    else
+    } else {
         throw function_error { std::string { name }, result.get_parameters().size(), 0 };
+    }
 }
 
 void
@@ -51,10 +52,11 @@ node
 get_function(std::string_view name)
 {
     node result {};
-    if (not find_symbol(name, result))
+    if (not find_symbol(name, result)) {
         throw no_such_function { std::string { name } };
-    else
+    } else {
         return result;
+    }
 }
 
 void
@@ -67,38 +69,45 @@ void
 save_library(std::string const &filename)
 {
     std::ofstream stream { filename };
-    if (not stream)
+    if (not stream) {
         throw file_error { filename };
+    }
     // Be sure to save numbers with maximum precision.
     stream.precision(std::numeric_limits<double>::digits10);
     stream << ":library:\n";
     for (auto const &symbol : symbol_tables.front()) {
         stream << symbol.first << ' ';
         symbol.second.save(stream);
-        if (stream.fail())
+        if (stream.fail()) {
             throw file_error { filename };
+        }
     }
     stream << "*\n";
     stream.close();
-    if (stream.fail())
+    if (stream.fail()) {
         throw file_error { filename };
+    }
 }
 
 void
 load_library(std::string const &filename)
 {
     std::ifstream stream { filename };
-    if (not stream)
+    if (not stream) {
         throw file_error { filename };
+    }
     std::string token {};
-    if (not std::getline(stream, token))
+    if (not std::getline(stream, token)) {
         throw calc_error { filename + ": is empty" };
-    if (token != ":library:")
+    }
+    if (token != ":library:") {
         throw calc_error { filename + ": is not a calculator library file" };
+    }
     while (stream >> token) {
-        if (token == "*")
+        if (token == "*") {
             return;
-        else
+        } else {
             set_variable(std::move(token), node { stream });
+        }
     }
 }

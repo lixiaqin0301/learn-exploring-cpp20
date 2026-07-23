@@ -7,6 +7,7 @@ main()
 {
     std::cin >> std::noskipws;
     char ch {};
-    while (std::cin >> ch)
+    while (std::cin >> ch) {
         std::cout << ch;
+    }
 }

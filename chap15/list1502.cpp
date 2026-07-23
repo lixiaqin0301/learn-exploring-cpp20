@@ -12,8 +12,9 @@ main()
     // Read words from the standard input and count the number of times
     // each word occurs.
     std::string word {};
-    while (std::cin >> word)
+    while (std::cin >> word) {
         ++counts[word];
+    }
 
     // For each word/count pair...
     for (auto element : counts)

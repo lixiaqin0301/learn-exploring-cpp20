@@ -12,8 +12,9 @@ main()
         if (ch >= '0' and ch <= '9') {
             value = ch - '0';
             have_value = true;
-            while (std::cin.get(ch) and ch >= '0' and ch <= '9')
+            while (std::cin.get(ch) and ch >= '0' and ch <= '9') {
                 value = value * 10 + ch - '0';
+            }
         }
 
         if (ch == '\n') {
@@ -25,8 +26,9 @@ main()
             std::cout << '\a';
             have_value = false;
 
-            while (std::cin.get(ch) and ch != '\n')
+            while (std::cin.get(ch) and ch != '\n') {
                 /*empty*/;
+            }
         }
     }
 }

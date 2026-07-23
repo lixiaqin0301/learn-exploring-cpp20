@@ -90,16 +90,18 @@ get_record(std::vector<std::string> &names, std::vector<int> &heights, std::vect
     char sex { '?' };
 
     std::cout << "Name " << names.size() + 1 << ": ";
-    if (not std::getline(std::cin, name))
+    if (not std::getline(std::cin, name)) {
         return false;
+    }
 
     // Enforce minimal sanity check on the height, which must be
     // between 10 and 300 cm, or baby- to giant-size.
     int const min_height { 10 };
     int const max_height { 300 };
     std::cout << "Height (cm): ";
-    if (not(std::cin >> height))
+    if (not(std::cin >> height)) {
         return false;
+    }
     skip_line();
     if (height < min_height or height > max_height) {
         std::cout << "Invalid height. Aborting.\n";
@@ -111,8 +113,9 @@ get_record(std::vector<std::string> &names, std::vector<int> &heights, std::vect
     const int min_weight { 1 };
     const int max_weight { 500 };
     std::cout << "Weight (kg): ";
-    if (not(std::cin >> weight))
+    if (not(std::cin >> weight)) {
         return false;
+    }
     skip_line();
     if (weight < min_weight or weight > max_weight) {
         std::cout << "Invalid weight. Aborting.\n";
@@ -120,8 +123,9 @@ get_record(std::vector<std::string> &names, std::vector<int> &heights, std::vect
     }
 
     std::cout << "Sex (M, F, etc.): ";
-    if (not(std::cin >> sex))
+    if (not(std::cin >> sex)) {
         return false;
+    }
     skip_line();
     sex = std::toupper(sex, std::locale {});
     if (not std::isalpha(sex, std::locale {})) {
@@ -167,10 +171,11 @@ print_table(char sex, std::vector<int> const &heights, std::vector<int> const &w
             ++bmi_count;
             tmpbmis.push_back(bmis.at(i));
             std::cout << std::format("{:6}{:7}{:3}{:6}\n", heights.at(i), weights.at(i), sexes.at(i), bmis.at(i));
-            if (bmis.at(i) >= threshold)
+            if (bmis.at(i) >= threshold) {
                 std::cout << '*';
-            else
+            } else {
                 std::cout << ' ';
+            }
             std::cout << ' ' << names.at(i) << '\n';
         }
 
@@ -186,10 +191,11 @@ print_table(char sex, std::vector<int> const &heights, std::vector<int> const &w
         std::cout << "Median BMI = ";
         // Index of median item.
         int i(tmpbmis.size() / 2);
-        if (tmpbmis.size() % 2 == 0)
+        if (tmpbmis.size() % 2 == 0) {
             std::cout << (tmpbmis.at(i) + tmpbmis.at(i - 1)) / 2.0 << '\n';
-        else
+        } else {
             std::cout << tmpbmis.at(i) << '\n';
+        }
     }
 }
 
@@ -209,8 +215,9 @@ main()
     int threshold;
 
     std::cout << "Enter threshold BMI: ";
-    if (not(std::cin >> threshold))
+    if (not(std::cin >> threshold)) {
         return EXIT_FAILURE;
+    }
     skip_line();
 
     std::cout << "Enter name, height (in cm),"

@@ -9,8 +9,9 @@ template <class T>
 void
 append(std::vector<T> &data, const T &value, int max_size)
 {
-    if (data.size() < max_size - 1)
+    if (data.size() < max_size - 1) {
         data.push_back(value);
+    }
 }
 
 int

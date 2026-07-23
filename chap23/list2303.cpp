@@ -33,8 +33,9 @@ get_longest_key(count_map const &map)
 {
     str_size result { 0 };
     for (auto pair : map)
-        if (pair.first.size() > result)
+        if (pair.first.size() > result) {
             result = pair.first.size();
+        }
     return result;
 }
 
@@ -61,8 +62,9 @@ print_counts(count_map const &counts)
     str_size longest { get_longest_key(counts) };
 
     // For each word/count pair...
-    for (count_pair pair : counts)
+    for (count_pair pair : counts) {
         print_pair(pair, longest);
+    }
 }
 
 #include "list2303.hh"
@@ -85,8 +87,9 @@ main()
 
         // The "word" might be all punctuation, so the copy would be empty.
         // Don't count empty strings.
-        if (not copy.empty())
+        if (not copy.empty()) {
             ++counts[copy];
+        }
     }
 
     print_counts(counts);

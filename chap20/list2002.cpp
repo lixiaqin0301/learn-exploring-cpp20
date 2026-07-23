@@ -42,8 +42,9 @@ void
 ignore_line()
 {
     char c {};
-    while (std::cin.get(c) and c != '\n')
+    while (std::cin.get(c) and c != '\n') {
         /*empty*/;
+    }
 }
 
 /** Print the statistics.

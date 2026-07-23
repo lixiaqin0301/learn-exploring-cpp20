@@ -17,8 +17,9 @@ main()
 
     // First print the header.
     cout << setw(colwidth) << '*' << '|';
-    for (int i { low }; i <= high; i = i + 1)
+    for (int i { low }; i <= high; i = i + 1) {
         cout << setw(colwidth) << i;
+    }
     cout << '\n';
 
     // Print the table rule by using the fill character.
@@ -34,8 +35,9 @@ main()
     for (int row { low }; row <= high; row = row + 1) {
         cout << setw(colwidth) << row << '|';
         // Print all the columns.
-        for (int col { low }; col <= high; col = col + 1)
+        for (int col { low }; col <= high; col = col + 1) {
             cout << setw(colwidth) << row * col;
+        }
         cout << '\n';
     }
 }

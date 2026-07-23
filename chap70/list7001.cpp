@@ -28,10 +28,12 @@ void
 advance(Iterator &iterator, Distance distance)
 {
     trace("bidirectional iterator");
-    for (; distance < 0; ++distance)
+    for (; distance < 0; ++distance) {
         --iterator;
-    for (; distance > 0; --distance)
+    }
+    for (; distance > 0; --distance) {
         ++iterator;
+    }
 }
 
 template <class Iterator, class Distance>
@@ -40,8 +42,9 @@ void
 advance(Iterator &iterator, Distance distance)
 {
     trace("forward or input iterator");
-    for (; distance > 0; --distance)
+    for (; distance > 0; --distance) {
         ++iterator;
+    }
 }
 
 template <class Iterator, class Distance>

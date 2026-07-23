@@ -9,16 +9,18 @@ find_pair(std::bitset<N> const &bitset, bool value)
 {
     if (bitset.size() >= 2)
         for (std::size_t i { bitset.size() }; i-- != 1;)
-            if (bitset[i] == value and bitset[i - 1] == value)
+            if (bitset[i] == value and bitset[i - 1] == value) {
                 return i;
+            }
     return std::size_t(-1);
 }
 
 void
 test(bool condition)
 {
-    if (not condition)
+    if (not condition) {
         throw std::logic_error("test failure");
+    }
 }
 
 int

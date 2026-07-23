@@ -19,6 +19,7 @@ main()
         ys.emplace_back(y);
     }
 
-    for (auto x { xs.begin() }, y { ys.begin() }; x != xs.end(); ++x, ++y)
+    for (auto x { xs.begin() }, y { ys.begin() }; x != xs.end(); ++x, ++y) {
         std::cout << *x << ',' << *y << '\n';
+    }
 }

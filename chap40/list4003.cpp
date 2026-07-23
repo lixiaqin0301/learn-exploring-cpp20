@@ -8,8 +8,9 @@ void
 print(std::vector<int> const &vector)
 {
     std::cout << "{ ";
-    for (int i : vector)
+    for (int i : vector) {
         std::cout << i << ' ';
+    }
     std::cout << "}\n";
 }
 

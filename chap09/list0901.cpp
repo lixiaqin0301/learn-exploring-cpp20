@@ -19,6 +19,7 @@ main()
     std::ranges::sort(data);
 
     // Print the vector, one number per line.
-    for (int element : data)
+    for (int element : data) {
         std::cout << element << '\n';
+    }
 }

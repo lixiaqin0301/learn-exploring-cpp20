@@ -10,12 +10,14 @@ std::size_t
 count_words(std::string const &filename)
 {
     std::ifstream file(filename);
-    if (not file)
+    if (not file) {
         throw std::system_error(errno, std::system_category(), filename);
+    }
     std::size_t count { 0 };
     std::string word;
-    while (file >> word)
+    while (file >> word) {
         ++count;
+    }
     return count;
 }
 

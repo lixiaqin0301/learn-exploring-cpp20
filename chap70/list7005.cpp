@@ -10,6 +10,7 @@ main()
 {
     using string = mystring<char, vector_storage<char>>;
     string s;
-    while (std::cin >> s)
+    while (std::cin >> s) {
         std::cout << '"' << s << "\"\n";
+    }
 }

@@ -22,9 +22,9 @@ main()
     while (i != data.end()) {
         v = *i;
         p = std::lower_bound(data.begin(), i, v);
-        if (i == p)
+        if (i == p) {
             ++i;
-        else {
+        } else {
             i = data.erase(i);
             data.insert(p, v);
         }
@@ -32,8 +32,9 @@ main()
 
     s = " ";
     for (p = i, i = data.begin(); i != data.end(); p = i, ++i) {
-        if (p != data.end())
+        if (p != data.end()) {
             assert(not(*i < *p));
+        }
     }
 
     std::cout << '{';

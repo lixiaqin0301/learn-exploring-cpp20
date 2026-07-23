@@ -17,16 +17,17 @@ print_file_type(std::ostream &stream, fsys::path const &path)
         stream << " -> " << link.generic_string();
     } else if (fsys::is_directory(status))
         stream << '/';
-    else if (fsys::is_fifo(status))
+    else if (fsys::is_fifo(status)) {
         stream << '|';
-    else if (fsys::is_socket(status))
+    } else if (fsys::is_socket(status)) {
         stream << '=';
-    else if (fsys::is_character_file(status))
+    } else if (fsys::is_character_file(status)) {
         stream << "(c)";
-    else if (fsys::is_block_file(status))
+    } else if (fsys::is_block_file(status)) {
         stream << "(b)";
-    else if (fsys::is_other(status))
+    } else if (fsys::is_other(status)) {
         stream << "?";
+    }
 }
 
 void

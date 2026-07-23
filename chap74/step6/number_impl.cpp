@@ -18,23 +18,27 @@ std::shared_ptr<number_impl>
 number_impl::read_library(std::istream &stream)
 {
     std::string type {};
-    if (not(stream >> type))
+    if (not(stream >> type)) {
         throw calc_error { "malformed library, missing number type" };
+    }
 
-    if (type == "void")
+    if (type == "void") {
         return std::make_shared<number_void>();
+    }
 
     if (type == "long") {
         long long x {};
-        if (not(stream >> x))
+        if (not(stream >> x)) {
             throw calc_error { "malformed library, missing long value" };
+        }
         return std::make_shared<number_long>(x);
     }
 
     if (type == "double") {
         double x {};
-        if (not(stream >> x))
+        if (not(stream >> x)) {
             throw calc_error { "malformed library, missing double value" };
+        }
         return std::make_shared<number_double>(x);
     }
 
@@ -227,8 +231,9 @@ std::shared_ptr<number_impl>
 number_long::do_divide(number_impl const &rhs)
 {
     long long right = dynamic_cast<number_long const &>(rhs).value();
-    if (right == 0)
+    if (right == 0) {
         throw calc_error { "division by zero" };
+    }
     return std::make_shared<number_rational>(value_, right);
 }
 
@@ -286,43 +291,48 @@ std::shared_ptr<number_impl>
 number_rational::do_add(number_impl const &rhs)
 {
     rational<long long> result { value_ + dynamic_cast<number_rational const &>(rhs).value() };
-    if (result.denominator() == 1)
+    if (result.denominator() == 1) {
         return std::make_shared<number_long>(result.numerator());
-    else
+    } else {
         return std::make_shared<number_rational>(result);
+    }
 }
 
 std::shared_ptr<number_impl>
 number_rational::do_subtract(number_impl const &rhs)
 {
     rational<long long> result { value_ - dynamic_cast<number_rational const &>(rhs).value() };
-    if (result.denominator() == 1)
+    if (result.denominator() == 1) {
         return std::make_shared<number_long>(result.numerator());
-    else
+    } else {
         return std::make_shared<number_rational>(result);
+    }
 }
 
 std::shared_ptr<number_impl>
 number_rational::do_multiply(number_impl const &rhs)
 {
     rational<long long> result { value_ * dynamic_cast<number_rational const &>(rhs).value() };
-    if (result.denominator() == 1)
+    if (result.denominator() == 1) {
         return std::make_shared<number_long>(result.numerator());
-    else
+    } else {
         return std::make_shared<number_rational>(result);
+    }
 }
 
 std::shared_ptr<number_impl>
 number_rational::do_divide(number_impl const &rhs)
 {
     rational<long long> right { dynamic_cast<number_rational const &>(rhs).value() };
-    if (right.numerator() == 0)
+    if (right.numerator() == 0) {
         throw calc_error { "division by zero" };
+    }
     rational<long long> result = value_ / right;
-    if (result.denominator() == 1)
+    if (result.denominator() == 1) {
         return std::make_shared<number_long>(result.numerator());
-    else
+    } else {
         return std::make_shared<number_rational>(result);
+    }
 }
 
 std::shared_ptr<number_impl>
@@ -391,8 +401,9 @@ std::shared_ptr<number_impl>
 number_double::do_divide(number_impl const &rhs)
 {
     double right { dynamic_cast<number_double const &>(rhs).value() };
-    if (right == 0.0)
+    if (right == 0.0) {
         throw calc_error { "division by zero" };
+    }
     return std::make_shared<number_double>(value_ / right);
 }
 

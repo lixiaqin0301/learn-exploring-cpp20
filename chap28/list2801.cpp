@@ -97,6 +97,7 @@ main()
     std::cout.imbue(std::locale {});
 
     for (std::string line {}; std::getline(std::cin, line); /*empty*/)
-        if (is_palindrome(line))
+        if (is_palindrome(line)) {
             std::cout << line << '\n';
+        }
 }

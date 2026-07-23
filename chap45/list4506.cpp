@@ -17,9 +17,9 @@ main()
     std::ranges::generate(data, randomint { 0, 9 });
 
     auto match { std::ranges::search(data, pi) };
-    if (not match)
+    if (not match) {
         std::cout << "The integer range does not contain the digits of pi.\n";
-    else {
+    } else {
         std::cout << "Easy as pi: ";
         std::ranges::copy(match, std::ostream_iterator<int>(std::cout, " "));
         std::cout << '\n';

@@ -13,14 +13,16 @@ main()
     // Read words from the standard input and count the number of times
     // each word occurs.
     std::string word {};
-    while (std::cin >> word)
+    while (std::cin >> word) {
         ++counts[word];
+    }
 
     // Determine the longest word.
     std::string::size_type longest {};
     for (auto element : counts)
-        if (element.first.size() > longest)
+        if (element.first.size() > longest) {
             longest = element.first.size();
+        }
 
     // For each word/count pair...
     constexpr int count_size { 10 }; // Number of places for printing the count

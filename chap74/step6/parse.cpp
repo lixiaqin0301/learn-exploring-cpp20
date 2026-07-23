@@ -19,28 +19,37 @@ parser::parser(std::istream &input)
 std::string
 parser::charify(char c)
 {
-    if (c == '\a')
+    if (c == '\a') {
         return R"('\a')";
-    if (c == '\b')
+    }
+    if (c == '\b') {
         return R"('\b')";
-    if (c == '\f')
+    }
+    if (c == '\f') {
         return R"('\f')";
-    if (c == '\n')
+    }
+    if (c == '\n') {
         return R"('\n')";
-    if (c == '\r')
+    }
+    if (c == '\r') {
         return R"('\r')";
-    if (c == '\t')
+    }
+    if (c == '\t') {
         return R"('\t')";
-    if (c == '\v')
+    }
+    if (c == '\v') {
         return R"('\v')";
-    if (c == '\'')
+    }
+    if (c == '\'') {
         return R"('\'')";
-    if (c == '\\')
+    }
+    if (c == '\\') {
         return R"('\\')";
+    }
 
-    if (isprint(c))
+    if (isprint(c)) {
         return std::string { "\'" } + std::string(1, c) + "\'";
-    else {
+    } else {
         std::ostringstream stream {};
         stream << "'\\x" << std::hex;
         stream.fill('0');
@@ -54,41 +63,47 @@ void
 parser::get_escape(std::string &str)
 {
     char c;
-    if (not input_.get(c))
+    if (not input_.get(c)) {
         throw syntax_error { "incomplete escape" };
-    if (c == '\n')
+    }
+    if (c == '\n') {
         return;
+    }
 
-    if (c == 'a')
+    if (c == 'a') {
         str += '\a';
-    else if (c == 'b')
+    } else if (c == 'b') {
         str += '\b';
-    else if (c == 'n')
+    } else if (c == 'n') {
         str += '\n';
-    else if (c == 'f')
+    } else if (c == 'f') {
         str += '\f';
-    else if (c == 'r')
+    } else if (c == 'r') {
         str += '\r';
-    else if (c == 't')
+    } else if (c == 't') {
         str += '\t';
-    else if (c == 'v')
+    } else if (c == 'v') {
         str += '\v';
-    else if (c == 'x') {
+    } else if (c == 'x') {
         // hexadecimal sequence
         std::string digits {};
-        while (input_.get(c) and ctype_.is(ctype_.xdigit, c))
+        while (input_.get(c) and ctype_.is(ctype_.xdigit, c)) {
             digits += c;
-        if (input_)
+        }
+        if (input_) {
             input_.unget();
+        }
         unsigned long value { std::stoul(digits, nullptr, 16) };
         str += static_cast<char>(static_cast<unsigned char>(value));
     } else if (c >= '0' and c <= '7') {
         // octal sequence
         std::string digits {};
-        for (int i = 0; i < 3 and input_.get(c) and c >= '0' and c <= '7'; ++i)
+        for (int i = 0; i < 3 and input_.get(c) and c >= '0' and c <= '7'; ++i) {
             digits += c;
-        if (input_ or c < '0' or c > '7')
+        }
+        if (input_ or c < '0' or c > '7') {
             input_.unget();
+        }
         int value { std::stoi(digits, nullptr, 8) };
         str += static_cast<char>(static_cast<unsigned char>(value));
     } else {
@@ -101,14 +116,15 @@ parser::get_string(std::string &result, char delimiter)
 {
     char c {};
     while (input_.get(c)) {
-        if (c == delimiter)
+        if (c == delimiter) {
             return;
-        else if (c == '\\')
+        } else if (c == '\\') {
             get_escape(result);
-        else if (c == '\n')
+        } else if (c == '\n') {
             throw syntax_error { "unterminated string" };
-        else
+        } else {
             result += c;
+        }
     }
     throw syntax_error { "unterminated string" };
 }
@@ -118,10 +134,12 @@ parser::get_identifier(std::string &identifier)
 {
     identifier.clear();
     char c {};
-    if (not input_.get(c))
+    if (not input_.get(c)) {
         return;
-    if (not isalpha(c))
+    }
+    if (not isalpha(c)) {
         throw syntax_error { "expected alphabetic, got " + charify(c) };
+    }
     identifier += c;
     while (input_.get(c)) {
         if (not isalnum(c)) {
@@ -137,10 +155,11 @@ void
 parser::push_back(std::string const &token, kind k)
 {
     kind_ = k;
-    if (kind_ == eof)
+    if (kind_ == eof) {
         token_ = "end of line";
-    else
+    } else {
         token_ = token;
+    }
 }
 
 parser::kind
@@ -190,33 +209,38 @@ parser::get_token(std::string &token)
 
     while (c >= '0' and c <= '9') {
         token += c;
-        if (not input_.get(c))
+        if (not input_.get(c)) {
             return k;
+        }
     }
     if (c == '.') {
         k = floating_point;
         token += c;
-        if (not input_.get(c))
+        if (not input_.get(c)) {
             throw syntax_error { "unterminated number: expected digit after the decimal point" };
+        }
         if (c < '0' or c > '9') {
             input_.unget();
             throw syntax_error { "expected digit after decimal point, got " + charify(c) };
         }
         while (c >= '0' and c <= '9') {
             token += c;
-            if (not input_.get(c))
+            if (not input_.get(c)) {
                 return k;
+            }
         }
     }
     if (c == 'e' or c == 'E') {
         k = floating_point;
         token += c;
-        if (not input_.get(c))
+        if (not input_.get(c)) {
             throw syntax_error { "unterminated number: expected digit in the exponent" };
+        }
         if (c == '-' or c == '+') {
             token += c;
-            if (not input_.get(c))
+            if (not input_.get(c)) {
                 throw syntax_error { "unterminated number: expected digit after sign in the exponent" };
+            }
         }
         if (c < '0' or c > '9') {
             input_.unget();
@@ -224,8 +248,9 @@ parser::get_token(std::string &token)
         }
         while (c >= '0' and c <= '9') {
             token += c;
-            if (not input_.get(c))
+            if (not input_.get(c)) {
                 return k;
+            }
         }
     }
     input_.unget();
@@ -238,8 +263,9 @@ parser::get_integer(std::string const &token, node &result)
     std::istringstream stream { token };
     // If the value overflows or is otherwise invalid, return false.
     long long value {};
-    if (not(stream >> value))
+    if (not(stream >> value)) {
         return false;
+    }
     result = node { number { value } };
     return true;
 }
@@ -250,8 +276,9 @@ parser::get_float(std::string const &token, node &result)
     std::istringstream stream { token };
     // If the value overflows or is otherwise invalid, return false.
     double value {};
-    if (not(stream >> value))
+    if (not(stream >> value)) {
         return false;
+    }
     result = node { number { value } };
     return true;
 }
@@ -261,8 +288,9 @@ parser::get_definition(std::string &name, identifier_list &parameters, node &def
 {
     // Define a variable.
     kind k = get_token(name);
-    if (k != identifier)
+    if (k != identifier) {
         throw syntax_error { "expected IDENTIFIER, got " + name };
+    }
 
     std::string token {};
     k = get_token(token);
@@ -271,11 +299,13 @@ parser::get_definition(std::string &name, identifier_list &parameters, node &def
         k = get_token(token);
     }
 
-    if (k != '=')
+    if (k != '=') {
         throw syntax_error { "expected = in definition, got " + token };
+    }
 
-    if (not get_expr(definition))
+    if (not get_expr(definition)) {
         throw syntax_error { "expected exprssion in assignment" };
+    }
 }
 
 bool
@@ -283,8 +313,9 @@ parser::get_statement(std::ostream &output)
 {
     std::string token {};
     kind k(get_token(token));
-    if (k == eof)
+    if (k == eof) {
         return false;
+    }
 
     if (k == identifier and token == "def") {
         node definition {};
@@ -294,30 +325,33 @@ parser::get_statement(std::ostream &output)
         return true;
     }
 
-    if (k == identifier and token == "quit")
+    if (k == identifier and token == "quit") {
         std::exit(0);
+    }
 
     if (k == identifier and token == "save") {
         std::string filename {};
-        if (get_token(filename) != string)
+        if (get_token(filename) != string) {
             throw syntax_error { "expected FILENAME after save, got " + token };
+        }
         save_library(filename);
         output << "Library saved to " << filename << '\n';
     }
 
     if (k == identifier and token == "load") {
         std::string filename {};
-        if (get_token(filename) != string)
+        if (get_token(filename) != string) {
             throw syntax_error { "expected FILENAME after load, got " + token };
+        }
         load_library(filename);
         output << "Library loaded from " << filename << '\n';
     }
     // Otherwise, the statement must be an expression.
     push_back(token, k);
     node n {};
-    if (not get_expr(n))
+    if (not get_expr(n)) {
         return false;
-    else {
+    } else {
         // Evaluate the expression and print the result.
         output << n.evaluate() << '\n';
         return true;
@@ -333,8 +367,9 @@ parser::get_expr(node &result)
 bool
 parser::get_add_expr(node &result)
 {
-    if (not get_mul_expr(result))
+    if (not get_mul_expr(result)) {
         return false;
+    }
     std::string token {};
     while (kind k = get_token(token)) {
         if (k != '+' and k != '-') {
@@ -342,8 +377,9 @@ parser::get_add_expr(node &result)
             return true;
         } else {
             node right {};
-            if (not get_mul_expr(right))
+            if (not get_mul_expr(right)) {
                 throw syntax_error { "unterminated expression. Expected a multiplicative-expression after " + token };
+            }
             result = node(result, k, right);
         }
     }
@@ -353,8 +389,9 @@ parser::get_add_expr(node &result)
 bool
 parser::get_mul_expr(node &result)
 {
-    if (not get_unary(result))
+    if (not get_unary(result)) {
         return false;
+    }
     std::string token {};
     while (kind k = get_token(token)) {
         if (k != '*' and k != '/') {
@@ -362,8 +399,9 @@ parser::get_mul_expr(node &result)
             return true;
         } else {
             node right {};
-            if (not get_unary(right))
+            if (not get_unary(right)) {
                 throw syntax_error { "unterminated expression. Expected a unary-expression after " + token };
+            }
             result = node(result, k, right);
         }
     }
@@ -375,16 +413,19 @@ parser::get_unary(node &result)
 {
     std::string token {};
     kind k = get_token(token);
-    if (k == eof)
+    if (k == eof) {
         return false;
+    }
     if (k == '-') {
-        if (not get_primary(result))
+        if (not get_primary(result)) {
             throw syntax_error { "expected primary after unary " + token + ", got end of line" };
+        }
         result = node(k, result);
         return true;
     } else if (k == '+') {
-        if (not get_primary(result))
+        if (not get_primary(result)) {
             throw syntax_error { "expected primary after unary +, got end of line" };
+        }
         return true;
     } else {
         push_back(token, k);
@@ -398,18 +439,21 @@ parser::get_expr_list(node_list &result)
     result.clear();
     std::string token {};
     while (kind k = get_token(token)) {
-        if (k == ')')
+        if (k == ')') {
             return;
+        }
         push_back(token, k);
         node expr {};
-        if (not get_expr(expr))
+        if (not get_expr(expr)) {
             throw syntax_error { "unexpected end of line in function argument" };
+        }
         result.push_back(expr);
         k = get_token(token);
-        if (k == ')')
+        if (k == ')') {
             return;
-        else if (k != ',')
+        } else if (k != ',') {
             throw syntax_error { "expected comma in argument list, got " + token };
+        }
     }
     throw syntax_error { "unexpected end of line in function argument list" };
 }
@@ -419,31 +463,36 @@ parser::get_primary(node &result)
 {
     std::string token {};
     kind k = get_token(token);
-    if (k == eof)
+    if (k == eof) {
         return false;
+    }
 
     if (k == '(') {
         // Parenthesized expression
-        if (not get_expr(result))
+        if (not get_expr(result)) {
             throw syntax_error { "expected expression, got end of line" };
+        }
         k = get_token(token);
-        if (k != ')')
+        if (k != ')') {
             throw syntax_error { "expected ')', got " + token };
-        else
+        } else {
             return true;
+        }
     }
 
     if (k == integer) {
         // Integer literal
-        if (not get_integer(token, result))
+        if (not get_integer(token, result)) {
             throw syntax_error { "Invalid integer literal: " + token };
+        }
         return true;
     }
 
     if (k == floating_point) {
         // Integer literal
-        if (not get_float(token, result))
+        if (not get_float(token, result)) {
             throw syntax_error { "Invalid integer literal: " + token };
+        }
         return true;
     }
 

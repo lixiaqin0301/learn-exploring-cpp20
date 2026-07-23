@@ -26,19 +26,22 @@ main()
         // Make a copy of word, keeping only the characters that appear in okay.
         std::string copy {};
         for (char ch : word)
-            if (okay.find(ch) != std::string::npos)
+            if (okay.find(ch) != std::string::npos) {
                 copy.push_back(ch);
+            }
         // The "word" might be all punctuation, so the copy would be empty.
         // Don't count empty strings.
-        if (not copy.empty())
+        if (not copy.empty()) {
             ++counts[copy];
+        }
     }
 
     // Determine the longest word.
     str_size longest { 0 };
     for (auto pair : counts)
-        if (pair.first.size() > longest)
+        if (pair.first.size() > longest) {
             longest = pair.first.size();
+        }
 
     // For each word/count pair...
     constexpr int count_size { 10 }; // Number of places for printing the count

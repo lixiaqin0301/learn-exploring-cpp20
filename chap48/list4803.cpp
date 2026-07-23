@@ -13,8 +13,10 @@ main()
     while (std::getline(std::cin, line)) {
         try {
             line.at(10) = ' '; // can throw out_of_range
-            if (line.size() < 20)
-                line.append(line.max_size(), '*'); // can throw length_error
+            if (line.size() < 20) {
+                line.append(line.max_size(), '*');
+                ; // can throw length_error
+            }
             for (std::string::size_type size(line.size()); size < line.max_size(); size = size * 2) {
                 line.resize(size); // can throw bad_alloc
             }

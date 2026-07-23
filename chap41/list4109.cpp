@@ -21,10 +21,11 @@ short generate_id::prefix_ { 1 };
 long
 generate_id::next()
 {
-    if (counter_ == max_counter_)
+    if (counter_ == max_counter_) {
         counter_ = 0;
-    else
+    } else {
         ++counter_;
+    }
     return static_cast<long>(prefix_) * (max_counter_ + 1) + counter_;
 }
 
@@ -32,6 +33,7 @@ int
 main()
 {
     generate_id gen; // Create an ID generator
-    for (int i { 0 }; i != 10; ++i)
+    for (int i { 0 }; i != 10; ++i) {
         std::cout << gen.next() << '\n';
+    }
 }

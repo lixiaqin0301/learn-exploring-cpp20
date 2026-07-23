@@ -8,16 +8,17 @@
 std::shared_ptr<node_impl>
 node::make_binary_operator(node left, char op, node right)
 {
-    if (op == '+')
+    if (op == '+') {
         return std::make_shared<node_add>(left, right);
-    else if (op == '-')
+    } else if (op == '-') {
         return std::make_shared<node_subtract>(left, right);
-    else if (op == '*')
+    } else if (op == '*') {
         return std::make_shared<node_multiply>(left, right);
-    else if (op == '/')
+    } else if (op == '/') {
         return std::make_shared<node_divide>(left, right);
-    else
+    } else {
         throw std::logic_error { "fatal error in make_binary_opreator: unknown operator: " + std::string(1, op) };
+    }
 }
 
 node::node()

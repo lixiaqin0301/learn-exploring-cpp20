@@ -28,8 +28,9 @@ print_vector(std::vector<int> v)
 void
 add(std::vector<int> v, int a)
 {
-    for (auto iter(v.begin()), end(v.end()); iter != end; ++iter)
+    for (auto iter(v.begin()), end(v.end()); iter != end; ++iter) {
         *iter = *iter + a;
+    }
 }
 
 int

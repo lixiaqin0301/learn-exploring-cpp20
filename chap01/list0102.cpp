@@ -44,8 +44,9 @@ read(std::basic_istream<Ch> &in) -> std::vector<text<Ch>>
     std::vector<text<Ch>> result;
 
     text<Ch> line;
-    while (std::getline(in, line))
+    while (std::getline(in, line)) {
         result.emplace_back(std::move(line));
+    }
 
     return result;
 }
@@ -61,9 +62,9 @@ try {
     // Part 1. Read the entire input into text. If the command line names a file,
     // read that file. Otherwise, read the standard input.
     std::vector<text<char>> text; ///< Store the lines of text here
-    if (argc < 2)
+    if (argc < 2) {
         text = read(std::cin);
-    else {
+    } else {
         std::ifstream in { argv[1] };
         if (not in) {
             std::cout << argv[1] << ": " << std::system_category().message(errno) << '\n';
@@ -80,8 +81,9 @@ try {
     std::ranges::sort(text, [&collate](auto const &a, auto const &b) { return collate.compare(to_address(cbegin(a)), to_address(cend(a)), to_address(cbegin(b)), to_address(cend(b))) < 0; });
 
     // Part 3. Print the sorted text.
-    for (auto const &line : text)
+    for (auto const &line : text) {
         std::cout << line << '\n';
+    }
 } catch (std::exception &ex) {
     std::cerr << "Caught exception: " << ex.what() << '\n';
     std::cerr << "Terminating program.\n";

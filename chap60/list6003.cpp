@@ -18,6 +18,7 @@ main()
             prev_odometer = odometer;
         }
     }
-    if (total_fuel != 0)
+    if (total_fuel != 0) {
         std::cout << "Net MPG=" << total_distance / total_fuel << '\n';
+    }
 }
