@@ -1,0 +1,11 @@
+add_executable(list5601 list5601.cpp list5601.hh)
+add_executable(list5602 list5602.cpp list5602.hh)
+add_executable(list5603 list5603.cpp list5603.hh)
+add_executable(list5604 list5604.cpp list5604.hh)
+add_executable(list5605 list5605.cpp list5605.hh)
+add_executable(list5607 list5607.cpp)
+add_executable(list5608 list5608.cpp list5608.hh)
+add_executable(list5609 list5609.cpp)
+add_executable(list5611 list5611.cpp)
+add_executable(list5612 list5612.cpp)
+

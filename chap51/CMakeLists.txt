@@ -1,0 +1,12 @@
+add_executable(list5101 list5101.cpp list5101.hh)
+add_executable(list5102 list5102.cpp list5102.hh)
+add_executable(list5103 list5103.cpp)
+add_executable(list5104 list5104.cpp)
+add_executable(list5105 list5105.cpp list5105.hh)
+add_executable(list5106 list5106.cpp list5106.hh)
+add_executable(list5107 list5107.cpp list5107.hh)
+add_executable(list5108 list5108.cpp)
+add_executable(list5109 list5109.cpp list5109.hh)
+add_executable(list5110 list5110.cpp list5110.hh)
+
+include_directories(. ../chap49)

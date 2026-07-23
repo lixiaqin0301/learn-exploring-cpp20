@@ -1,0 +1,12 @@
+add_executable(list4501 list4501.cpp)
+add_executable(list4504 list4504.cpp data.hpp list4502.hpp intrange.hpp list4503.hpp)
+add_executable(list4506 list4506.cpp data.hpp list4502.hpp randomint.hpp list4505.hpp)
+add_executable(list4507 list4507.cpp data.hpp list4502.hpp)
+add_executable(list4508 list4508.cpp data.hpp list4502.hpp)
+add_executable(list4509 list4509.cpp data.hpp list4502.hpp)
+add_executable(list4510 list4510.cpp data.hpp list4502.hpp intrange.hpp list4503.hpp)
+add_executable(list4511 list4511.cpp data.hpp list4502.hpp)
+add_executable(list4512 list4512.cpp data.hpp list4502.hpp ../chap44/sequence.hpp)
+add_executable(list4513 list4513.cpp data.hpp list4502.hpp intrange.hpp list4503.hpp)
+
+include_directories(. ../chap44)

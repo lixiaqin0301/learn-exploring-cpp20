@@ -1,0 +1,10 @@
+add_executable(list4801 list4801.cpp)
+add_executable(list4802 list4802.cpp)
+add_executable(list4803 list4803.cpp)
+add_executable(list4804 list4804.cpp)
+add_executable(list4805 list4805.cpp)
+add_executable(list4806 list4806.cpp)
+add_executable(list4807 list4807.cpp list4807.hh)
+add_executable(list4808 list4808.cpp list4808.hh)
+add_executable(list4810 list4810.cpp)
+

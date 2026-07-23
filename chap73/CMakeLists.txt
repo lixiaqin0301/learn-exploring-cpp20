@@ -1,0 +1,11 @@
+add_executable(list7301 list7301.cpp list7301.hh)
+add_executable(list7302 list7302.cpp)
+add_executable(list7303 list7303.cpp)
+add_executable(list7304 list7304.cpp list7304.hh)
+add_executable(list7305 list7305.cpp list7305.hh)
+add_executable(list7306 list7306.cpp list7306.hh)
+add_executable(list7308 list7308.cpp list7308.hh list7307.hpp)
+add_executable(list7309 list7309.cpp list7309.hh)
+add_executable(list7310 list7310.cpp list7310.hh)
+add_executable(list7311 list7311.cpp)
+

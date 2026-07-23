@@ -1,0 +1,10 @@
+add_executable(list6301 list6301.cpp list6301.hh)
+add_executable(list6302 list6302.cpp list6302.hh)
+add_executable(list6303 list6303.cpp list6303.hh)
+add_executable(list6304 list6304.cpp list6304.hh)
+add_executable(list6305 list6305.cpp list6305.hh)
+add_executable(list6306 list6306.cpp list6306.hh)
+add_executable(list6307 list6307.cpp list6307.hh)
+add_executable(list6308 list6308.cpp list6308.hh)
+
+include_directories(../chap62)

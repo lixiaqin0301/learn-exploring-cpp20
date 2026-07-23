@@ -1,0 +1,6 @@
+add_executable(list4202 list4202.cpp)
+add_executable(list4203 list4203.cpp)
+add_executable(list4204 list4204.cpp)
+add_executable(list4206 list4206.cpp list4206.cc list4205.cc)
+add_executable(list4207 list4207.cpp stats.cc)
+add_executable(list4211 list4211.cpp)

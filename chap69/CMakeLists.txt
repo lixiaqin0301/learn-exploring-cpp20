@@ -1,0 +1,11 @@
+add_executable(list6901 list6901.cpp)
+target_compile_options(list6901 PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wno-reorder>)
+add_executable(list6902 list6902.cpp list6902.hh)
+target_compile_options(list6902 PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wno-reorder>)
+add_executable(list6903 list6903.cpp list6903.hh)
+add_executable(list6904 list6904.cpp list6904.hh)
+add_executable(list6905 list6905.cpp list6905.hh)
+add_executable(list6906 list6906.cpp list6906.hh)
+add_executable(list6907 list6907.cpp list6907.hh)
+add_executable(list6908 list6908.cpp list6908.hh)
+

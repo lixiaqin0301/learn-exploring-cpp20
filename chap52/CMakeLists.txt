@@ -1,0 +1,10 @@
+add_executable(list5201 list5201.cpp list5201.hh)
+add_executable(list5202 list5202.cpp list5202.hh)
+add_executable(list5203 list5203.cpp list5203.hh)
+add_executable(list5204 list5204.cpp)
+add_executable(list5205 list5205.cpp)
+add_executable(list5206 list5206.cpp list5206.hh)
+add_executable(list5208 list5208.cpp list5208.hh)
+add_executable(list5209 list5209.cpp list5209.hh)
+add_executable(list5210 list5210.cpp list5210.hh)
+

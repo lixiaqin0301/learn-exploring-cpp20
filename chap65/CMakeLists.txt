@@ -1,0 +1,10 @@
+add_executable(list6501 list6501.cpp)
+add_executable(list6502 list6502.cpp list6502.hh)
+add_executable(list6503 list6503.cpp list6503.hh)
+add_executable(list6504 list6504.cpp list6504.hh)
+add_executable(list6505 list6505.cpp list6505.hh)
+add_executable(list6506 list6506.cpp list6506.hh)
+add_executable(list6507 list6507.cpp)
+add_executable(list6508 list6508.cpp)
+
+include_directories(. ../chap64 ../chap63 ../chap62)

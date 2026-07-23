@@ -1,0 +1,10 @@
+add_executable(list4101 list4101.cpp list4101.hh)
+add_executable(list4102 list4102.cpp list4102.hh)
+add_executable(list4103 list4103.cpp)
+add_executable(list4104 list4104.cpp)
+add_executable(list4105 list4105.cpp list4105.hh)
+add_executable(list4106 list4106.cpp)
+add_executable(list4107 list4107.cpp)
+add_executable(list4108 list4108.cpp)
+add_executable(list4109 list4109.cpp)
+

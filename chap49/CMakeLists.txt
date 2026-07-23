@@ -1,0 +1,11 @@
+add_executable(list4901 list4901.cpp list4901.hh)
+add_executable(list4902 list4902.cpp list4902.hh)
+add_executable(list4903 list4903.cpp list4903.hh)
+add_executable(list4904 list4904.cpp list4904.hh)
+add_executable(list4905 list4905.cpp list4905.hh)
+add_executable(list4906 list4906.cpp list4906.hh)
+add_executable(list4907 list4907.cpp list4907.hh)
+add_executable(list4908 list4908.cpp list4908.hh)
+add_executable(list4909 list4909.cpp list4909.hh)
+add_executable(list4910 list4910.cpp list4910.hh)
+

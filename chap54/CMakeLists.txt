@@ -1,0 +1,8 @@
+add_executable(list5401 list5401.cpp list5401.hh)
+add_executable(list5402 list5402.cpp list5402.hh)
+add_executable(list5403 list5403.cpp list5403.hh)
+add_executable(list5404 list5404.cpp list5404.hh)
+add_executable(list5405 list5405.cpp list5405.hh)
+add_executable(list5406 list5406.cpp list5406.hh)
+add_executable(list5407 list5407.cpp list5407.hh)
+add_executable(list5408 list5408.cpp list5408.hh)
