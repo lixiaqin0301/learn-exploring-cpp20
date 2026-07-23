@@ -8,4 +8,5 @@ main()
 {
     // Note that "digits" means binary digits, i.e., bits.
     std::cout << "bits per bool: " << std::numeric_limits<bool>::digits << '\n';
+    return 0;
 }

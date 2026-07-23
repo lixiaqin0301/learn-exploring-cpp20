@@ -10,4 +10,5 @@ main()
               << "Circle\t\t?\n"
                  "Triangle\t"
               << 3 << '\n';
+    return 0;
 }

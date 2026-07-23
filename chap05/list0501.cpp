@@ -16,12 +16,14 @@ main(int argc, char *argv[])
     }
 
     std::cout << "Enter a number: ";
-    int x;
+    int x = 0;
     std::cin >> x;
     std::cout << "Enter another number: ";
-    int y;
+    int y = 0;
     std::cin >> y;
 
     int z { x + y };
     std::cout << "The sum of " << x << " and " << y << " is " << z << "\n";
+
+    return 0;
 }

@@ -28,4 +28,6 @@ main(int argc, char *argv[])
         std::cout << 's';
     }
     std::cout << " old.\n";
+
+    return 0;
 }

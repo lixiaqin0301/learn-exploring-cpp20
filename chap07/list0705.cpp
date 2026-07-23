@@ -10,4 +10,5 @@ main()
         sum = sum + i;
     }
     std::cout << "Sum of 10 to 20 = " << sum << '\n';
+    return 0;
 }

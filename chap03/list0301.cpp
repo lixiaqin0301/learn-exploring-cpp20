@@ -20,11 +20,13 @@ main(int argc, char *argv[])
     int sum { 0 };
     int count {};
 
-    int x;
+    int x = 0;
     while (std::cin >> x) {
         sum = sum + x;
         count = count + 1;
     }
 
     std::cout << "average = " << sum / count << '\n';
+
+    return 0;
 }

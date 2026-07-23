@@ -22,4 +22,6 @@ main(int argc, char *argv[])
     std::string response {};
     std::cin >> response;
     std::cout << "Good-bye, " << name << ". I'm glad you feel " << response << "\n";
+
+    return 0;
 }

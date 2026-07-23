@@ -21,7 +21,7 @@ main(int argc, char *argv[])
     int sum { 0 };
     int count {};
 
-    int x;
+    int x = 0;
     while (std::cin >> x) {
         sum = sum + x;
         count = count + 1;
@@ -30,4 +30,6 @@ main(int argc, char *argv[])
     if (count != 0) {
         std::cout << "average = " << sum / count << '\n';
     }
+
+    return 0;
 }
