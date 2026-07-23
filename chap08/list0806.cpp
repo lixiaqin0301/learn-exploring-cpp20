@@ -17,4 +17,6 @@ main()
     cout.fill('-');
     cout.width(4);
     cout << -42 << '\n';
+
+    return 0;
 }

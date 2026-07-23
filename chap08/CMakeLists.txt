@@ -1,3 +1,4 @@
+add_executable(list0801 list0801.cxx)
 add_executable(list0802 list0802.cpp)
 add_executable(list0803 list0803.cpp)
 add_executable(list0804 list0804.cpp)

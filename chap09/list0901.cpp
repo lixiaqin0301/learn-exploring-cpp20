@@ -21,9 +21,10 @@ main(int argc, char *argv[])
     int x {};
 
     // Read integers one at a time.
-    while (std::cin >> x)
+    while (std::cin >> x) {
         // Store each integer in the vector.
         data.emplace_back(x);
+    }
 
     // Sort the vector.
     std::ranges::sort(data);
@@ -32,4 +33,6 @@ main(int argc, char *argv[])
     for (int element : data) {
         std::cout << element << '\n';
     }
+
+    return 0;
 }

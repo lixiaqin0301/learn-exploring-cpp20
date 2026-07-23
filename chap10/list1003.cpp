@@ -23,4 +23,6 @@ main(int argc, char *argv[])
     std::ranges::copy(std::ranges::istream_view<int>(std::cin), std::back_inserter(data));
     std::ranges::sort(data);
     std::ranges::copy(data, std::ostream_iterator<int> { std::cout, "\n" });
+
+    return 0;
 }

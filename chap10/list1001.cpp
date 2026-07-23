@@ -13,4 +13,5 @@ main()
     std::ranges::copy(input, output.begin());
     // Now output has a complete copy of input.
     assert(input == output);
+    return 0;
 }

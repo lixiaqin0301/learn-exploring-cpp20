@@ -10,4 +10,5 @@ main()
     for (int i { 1 }; i != 21; ++i) {
         std::cout << std::setw(2) << i << std::setw(6) << i * i << std::setw(7) << i * i * i << '\n';
     }
+    return 0;
 }

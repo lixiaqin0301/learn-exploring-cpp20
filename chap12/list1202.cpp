@@ -57,4 +57,5 @@ main(int argc, char *argv[])
     if (std::cin) {
         std::cout << "std::cin\n";
     }
+    return 0;
 }

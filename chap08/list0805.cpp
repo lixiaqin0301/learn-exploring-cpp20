@@ -12,4 +12,6 @@ main()
     cout << left << setw(6) << 42 << '\n';
     cout << 42 << '\n';
     cout << setfill('-') << setw(4) << -42 << '\n';
+
+    return 0;
 }

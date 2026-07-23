@@ -66,4 +66,6 @@ main()
     if (a <= b) {
         std::cout << "okay: a <= b\n";
     }
+
+    return 0;
 }

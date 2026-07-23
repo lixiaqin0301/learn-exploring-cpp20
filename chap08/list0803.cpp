@@ -19,4 +19,6 @@ main()
     cout << "Date: " << setfill('0') << setw(2) << month << '/' << setw(2) << day << '/' << setw(2) << year << '\n';
     cout << "Pay to the order of: CASH\n";
     cout << "The amount of $" << setfill('*') << setw(8) << dollars << '.' << setfill('0') << setw(2) << cents << '\n';
+
+    return 0;
 }

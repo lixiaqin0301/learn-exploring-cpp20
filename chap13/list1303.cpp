@@ -36,4 +36,6 @@ main(int argc, char *argv[])
         std::cout << " }\n";
     }
     // Cannot use separator out here.
+
+    return 0;
 }

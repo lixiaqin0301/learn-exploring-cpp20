@@ -31,4 +31,6 @@ main(int argc, char *argv[])
     }
 
     std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+
+    return 0;
 }

@@ -31,4 +31,6 @@ main(int argc, char *argv[])
     } else {
         std::cout << "data does not contain all zeroes\n";
     }
+
+    return 0;
 }

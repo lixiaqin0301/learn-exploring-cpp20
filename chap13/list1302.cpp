@@ -63,4 +63,6 @@ main(int argc, char *argv[])
         separator = ", ";
     }
     std::cout << " }\n";
+
+    return 0;
 }
