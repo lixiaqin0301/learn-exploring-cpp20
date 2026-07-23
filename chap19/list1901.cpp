@@ -1,13 +1,22 @@
 /** @file list1901.cpp */
 /** Listing 19-1. Folding Uppercase to Lowercase Prior to Counting Words */
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <map>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     using count_map = std::map<std::string, int>;
 
     std::locale native { "" }; // get the native locale

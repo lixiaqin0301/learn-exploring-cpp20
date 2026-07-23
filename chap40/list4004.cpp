@@ -1,8 +1,10 @@
 /** @file list4004.cpp */
 /** Listing 40-4. The color Class */
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <string>
 
 class color {
 public:
@@ -113,8 +115,16 @@ operator>>(std::istream &in, color &c)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     color c;
     while (std::cin >> c) {
         if (c == color {}) {

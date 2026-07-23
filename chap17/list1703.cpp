@@ -1,13 +1,23 @@
 /** @file list1703.cpp */
 /** Listing 17-3. Reading and Writing Points */
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <limits>
+#include <string>
 #include <vector>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     using intvec = std::vector<int>;
     intvec xs {}, ys {}; // store the x's and y's
 

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <format>
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <map>
@@ -71,8 +72,16 @@ print_counts(count_map const &counts)
 
 /** Main program to count unique words in the standard input. */
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     // Set the global locale to the native locale.
     std::locale::global(std::locale { "" });
     initialize_streams();

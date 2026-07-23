@@ -26,6 +26,7 @@
  * @version 3.0
  */
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <ranges>
@@ -90,8 +91,16 @@ is_palindrome(std::string_view str)
  * Then imbues the I/O streams with the native locale.
  */
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::locale::global(std::locale { "" });
     std::cin.imbue(std::locale {});
     std::cout.imbue(std::locale {});

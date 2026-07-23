@@ -1,11 +1,20 @@
 /** @file list0502.cpp */
 /** Listing 5-2. Reading Strings */
+#include <fstream>
 #include <iostream>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::cout << "What is your name? ";
     std::string name {};
     std::cin >> name;

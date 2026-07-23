@@ -1,6 +1,7 @@
 /** @file list2502.cpp */
 /** Listing 25-2. Overloading Functions in the Manner of a Library-Writer */
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <ranges>
@@ -48,8 +49,16 @@ to_upper(std::string str)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::string str {};
     while (std::cin >> str) {
         if (is_alpha(str)) {

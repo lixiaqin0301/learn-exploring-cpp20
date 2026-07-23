@@ -1,6 +1,7 @@
 /** @file list2003.cpp */
 /** Listing 20-3. Using Functions to Clarify the Word-Counting Program */
 #include <format>
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <map>
@@ -84,8 +85,16 @@ sanitize(std::string str, std::locale loc)
 
 /** Main program to count unique words in the standard input. */
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::locale native { "" }; // get the native locale
     initialize_streams(native);
 

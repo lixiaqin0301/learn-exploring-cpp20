@@ -1,4 +1,6 @@
+#include <fstream>
 #include <iostream>
+#include <string>
 
 #include "parse.hpp"
 
@@ -10,7 +12,15 @@
  * parser and immediately evaluates expressions using @c double for all values.
  */
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     parse_loop(std::cin, std::cout);
 }

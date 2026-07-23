@@ -2,12 +2,22 @@
 /** Listing 2-1. Reading Test */
 /// Read the program and determine what the program does.
 
+#include <fstream>
 #include <iostream>
 #include <limits>
+#include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     int min { std::numeric_limits<int>::max() };
     int max { std::numeric_limits<int>::min() };
     bool any { false };

@@ -2,6 +2,7 @@
 /** Listing 35-1. New BMI Program */
 #include <algorithm>
 #include <cstdlib>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -141,8 +142,16 @@ print_table(char sex, std::vector<record> &records, int threshold)
 
 /** Main program to compute BMI. */
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::locale::global(std::locale { "" });
     std::cout.imbue(std::locale {});
     std::cin.imbue(std::locale {});

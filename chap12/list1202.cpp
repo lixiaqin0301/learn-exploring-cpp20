@@ -1,10 +1,20 @@
 /** @file list1202.cpp */
 /** Listing 12-2. Automatic Type Conversion to bool */
+#include <fstream>
 #include <iostream>
+#include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     if (true) {
         std::cout << "true\n";
     }

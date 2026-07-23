@@ -1,6 +1,8 @@
 /** @file list4403.cpp */
 /** Listing 44-3. Using a generate_id Object’s Function Call Operator */
+#include <fstream>
 #include <iostream>
+#include <string>
 
 #include "generate_id.hpp"
 #include "library.hpp"
@@ -20,8 +22,16 @@ get_movie(std::string &title, int &runtime)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     generate_id gen {}; // Create an ID generator
     std::string title {};
     int runtime {};

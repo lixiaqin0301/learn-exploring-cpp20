@@ -1,12 +1,22 @@
 /** @file list0901.cpp */
 /** Listing 9-1. Sorting Integers */
 #include <algorithm>
+#include <fstream>
 #include <iostream>
+#include <string>
 #include <vector>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::vector<int> data {}; // initialized to be empty
     int x {};
 

@@ -1,10 +1,20 @@
 /** @file list1701.cpp */
 /** Listing 17-1. Working and Playing with Characters */
+#include <fstream>
 #include <iostream>
+#include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     int value {};
     bool have_value { false };
     char ch {};

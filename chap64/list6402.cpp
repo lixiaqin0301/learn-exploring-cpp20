@@ -1,5 +1,6 @@
 /** @file list6402.cpp */
 /** Listing 64-2. Moving Strings Instead of Copying Them */
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <utility>
@@ -36,8 +37,16 @@ read_data()
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::vector<mystring> strings;
     strings = read_data();
 }

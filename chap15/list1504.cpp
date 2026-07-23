@@ -1,12 +1,21 @@
 /** @file list1504.cpp */
 /** Listing 15-4. Searching for a Word in a Map */
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::map<std::string, int> counts {};
 
     // Read words from the standard input and count the number of times

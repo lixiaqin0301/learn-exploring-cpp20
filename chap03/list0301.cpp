@@ -2,11 +2,21 @@
 /** Listing 3-1. Integer Arithmetic */
 /// Read the program and determine what the program does.
 
+#include <fstream>
 #include <iostream>
+#include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     int sum { 0 };
     int count {};
 

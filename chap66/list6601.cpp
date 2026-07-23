@@ -1,13 +1,23 @@
 /** @file list6601.cpp */
 /** Listing 66-1. Demonstrating the path Class */
 #include <filesystem>
+#include <fstream>
 #include <iostream>
+#include <string>
 
 namespace fsys = std::filesystem;
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::string line;
     while (std::getline(std::cin, line)) {
         fsys::path path { line };

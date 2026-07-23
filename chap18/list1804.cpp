@@ -1,13 +1,22 @@
 /** @file list1804.cpp */
 /** Listing 18-4. Creating and Sharing a Single Locale Object */
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <map>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     using count_map = std::map<std::string, int>;
 
     std::locale native { "" }; // Get the native locale.

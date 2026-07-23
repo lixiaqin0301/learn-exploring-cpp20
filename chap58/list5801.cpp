@@ -1,13 +1,22 @@
 /** @file list5801.cpp */
 /** Listing 58-1. Reading and Writing Currency Using the Money I/O Manipulators */
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <locale>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::locale native { "" };
     std::cin.imbue(native);
     std::cout.imbue(native);

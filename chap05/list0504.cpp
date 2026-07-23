@@ -1,11 +1,20 @@
 /** @file list0504.cpp */
 /** Listing 5-4. Getting the User’s Age and Then Name */
+#include <fstream>
 #include <iostream>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::cout << "How old are you? ";
     int age {};
     std::cin >> age;

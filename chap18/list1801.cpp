@@ -1,13 +1,22 @@
 /** @file list1801.cpp */
 /** Listing 18-1. Counting Words: Restricting Words to Letters and Letter-Like Characters */
 #include <format>
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     using count_map = std::map<std::string, int>;
     using str_size = std::string::size_type;
 

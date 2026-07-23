@@ -1,5 +1,6 @@
 /** @file list2002.cpp */
 /** Listing 20-2. Separating Function Declarations from Definitions */
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -11,8 +12,16 @@ void print_result(int count, int sum);
  * Read integers from the standard input and print statistics about them.
  */
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     int sum { 0 }, count { 0 };
     while (std::cin) {
         if (int x { prompted_read("Value: ") }; std::cin) {

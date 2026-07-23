@@ -1,6 +1,7 @@
 /** @file list2406.cpp */
 /** Listing 24-6. Testing for Palindromes */
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <ranges>
@@ -22,8 +23,16 @@ is_palindrome(std::string_view str)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::locale::global(std::locale { "" });
     std::cin.imbue(std::locale {});
     std::cout.imbue(std::locale {});

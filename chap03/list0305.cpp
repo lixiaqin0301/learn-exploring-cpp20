@@ -3,11 +3,21 @@
 /// Read integers and print their average.
 /// Print nothing if the input is empty.
 
+#include <fstream>
 #include <iostream>
+#include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     int sum { 0 };
     int count {};
 

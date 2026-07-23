@@ -1,15 +1,25 @@
 /** @file list4405.cpp */
 /** Listing 44-5. Another Program for Generating Successive Integers */
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <iterator>
+#include <string>
 #include <vector>
 
 #include "sequence.hpp"
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     int size {};
     std::cout << "How many integers do you want? ";
     std::cin >> size;

@@ -1,12 +1,21 @@
 /** @file list1602.cpp */
 /** Listing 16-2. Counting Words, Moving a Definition Inside an if Statement */
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     using count_map = std::map<std::string, int>;
     using count_iterator = count_map::iterator;
 

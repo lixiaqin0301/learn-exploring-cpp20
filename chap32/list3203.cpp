@@ -1,9 +1,11 @@
 /** @file list3203.cpp */
 /** Listing 32-3. Testing the I/O Operators */
 #include <cassert>
+#include <fstream>
 #include <iostream>
 #include <numeric>
 #include <sstream>
+#include <string>
 
 // ... omitted for brevity ...
 
@@ -17,8 +19,16 @@ iofailure(std::istream &in)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     rational r { 0 };
 
     while (std::cin) {

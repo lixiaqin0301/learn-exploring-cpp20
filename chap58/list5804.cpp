@@ -1,6 +1,7 @@
 /** @file list5804.cpp */
 /** Listing 58-4. Counting Words Again, This Time with Cached Facets */
 #include <format>
+#include <fstream>
 #include <iostream>
 #include <locale>
 #include <map>
@@ -69,8 +70,16 @@ print_counts(count_map const &counts)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     // Set the global locale to the native locale.
     std::locale::global(std::locale { "" });
     initialize_streams();

@@ -2,6 +2,7 @@
 /** Listing 62-5. Storing Pointers in the Dependency Graph */
 #include <algorithm>
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <map>
@@ -53,8 +54,16 @@ lookup_artifact(std::string const &name)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     dependency_graph graph {};
 
     std::string line {};

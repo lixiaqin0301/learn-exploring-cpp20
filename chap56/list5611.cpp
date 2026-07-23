@@ -1,6 +1,7 @@
 /** @file list5611.cpp */
 /** Listing 56-11. Move the I/O Operators into the parser Namespace */
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <iterator>
 #include <ranges>
@@ -49,8 +50,16 @@ operator<<(std::ostream &out, parser::token const &tok)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     using namespace parser;
     using namespace std;
 

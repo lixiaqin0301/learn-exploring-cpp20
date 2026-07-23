@@ -55,6 +55,14 @@ read(std::basic_istream<Ch> &in) -> std::vector<text<Ch>>
 int
 main(int argc, char *argv[])
 try {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     // Throw an exception if an unrecoverable input error occurs, e.g.,
     // disk failure.
     std::cin.exceptions(std::ios_base::badbit);

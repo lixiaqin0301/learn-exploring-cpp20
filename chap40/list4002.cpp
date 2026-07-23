@@ -1,6 +1,8 @@
 /** @file list4002.cpp */
 /** Listing 40-2. Defining Classes for height and weight */
+#include <fstream>
 #include <iostream>
+#include <string>
 
 /// Height in centimeters
 class height {
@@ -72,8 +74,16 @@ operator<<(std::ostream &out, bmi x)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     std::cout << "Height in centimeters: ";
     height h { 0 };
     std::cin >> h;

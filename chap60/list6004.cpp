@@ -1,10 +1,20 @@
 /** @file list6004.cpp */
 /** Listing 60-4. Computing Liters per Kilometer */
+#include <fstream>
 #include <iostream>
+#include <string>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
+
     double total_fuel { 0.0 };
     double total_distance { 0.0 };
     double prev_odometer { 0.0 };
