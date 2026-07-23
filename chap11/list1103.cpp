@@ -6,21 +6,19 @@
 #include <ranges>
 #include <vector>
 
-int main()
+int
+main()
 {
-  std::vector<int> data{};
-  std::ranges::copy(std::ranges::istream_view<int>(std::cin),
-                    std::back_inserter(data));
+    std::vector<int> data {};
+    std::ranges::copy(std::ranges::istream_view<int>(std::cin), std::back_inserter(data));
 
-  for (auto start{data.begin()}, end{data.end()}; start != end; /*empty*/)
-  {
-    --end;
-    if (start != end)
-    {
-      std::iter_swap(start, end);
-      ++start;
+    for (auto start { data.begin() }, end { data.end() }; start != end; /*empty*/) {
+        --end;
+        if (start != end) {
+            std::iter_swap(start, end);
+            ++start;
+        }
     }
-  }
 
-  std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+    std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
 }

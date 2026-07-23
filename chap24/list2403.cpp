@@ -5,17 +5,18 @@
 #include <ranges>
 #include <vector>
 
-int main()
+int
+main()
 {
-   std::vector<int> data{ 1, 2, 3 };
+    std::vector<int> data { 1, 2, 3 };
 
-   int multiplier{3};
-   auto times = [multiplier](int i) { return i * multiplier; };
+    int multiplier { 3 };
+    auto times = [multiplier](int i) { return i * multiplier; };
 
-   std::ranges::transform(data, data.begin(), times);
+    std::ranges::transform(data, data.begin(), times);
 
-   multiplier = 20;
-   std::ranges::transform(data, data.begin(), times);
+    multiplier = 20;
+    std::ranges::transform(data, data.begin(), times);
 
-   std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+    std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
 }

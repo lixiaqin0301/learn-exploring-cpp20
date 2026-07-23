@@ -2,25 +2,23 @@
 /** Listing 38-2. Printing Messages from Constructors to Illustrate Order of Construction */
 #include <iostream>
 
-class base
-{
+class base {
 public:
-  base() { std::cout << "base\n"; }
+    base() { std::cout << "base\n"; }
 };
 
-class middle : public base
-{
+class middle : public base {
 public:
-  middle() { std::cout << "middle\n"; }
+    middle() { std::cout << "middle\n"; }
 };
 
-class derived : public middle
-{
+class derived : public middle {
 public:
-  derived() { std::cout << "derived\n"; }
+    derived() { std::cout << "derived\n"; }
 };
 
-int main()
+int
+main()
 {
-  derived d;
+    derived d;
 }

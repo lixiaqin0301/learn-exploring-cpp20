@@ -9,7 +9,7 @@
  */
 
 /** @mainpage Palindromes
- * Tests input strings to see whether they are palindromes. 
+ * Tests input strings to see whether they are palindromes.
  *
  * A _palindrome_ is a string that reads the same forward and backward.
  * To test for palindromes, this program needs to strip punctuation and
@@ -27,7 +27,6 @@
  */
 #include <algorithm>
 #include <iostream>
-#include <ranges>
 #include <locale>
 #include <ranges>
 #include <string>
@@ -39,9 +38,10 @@
  * @param ch the character to test
  * @return true if @p ch is not a letter
  */
-bool non_letter(char ch)
+bool
+non_letter(char ch)
 {
-  return not std::isalnum(ch, std::locale{});
+    return not std::isalnum(ch, std::locale {});
 }
 
 /** @brief Converts to lowercase.
@@ -51,9 +51,10 @@ bool non_letter(char ch)
  * @param ch the character to test
  * @return the character converted to lowercase
  */
-char lowercase(char ch)
+char
+lowercase(char ch)
 {
-  return std::tolower(ch, std::locale{});
+    return std::tolower(ch, std::locale {});
 }
 
 /** @brief Compares two characters without regard to case.
@@ -63,9 +64,10 @@ char lowercase(char ch)
  * @return `true` if the characters are the same in lowercase,
  *         `false` if they are different.
  */
-bool is_same_char(char a, char b)
+bool
+is_same_char(char a, char b)
 {
-  return lowercase(a) == lowercase(b);
+    return lowercase(a) == lowercase(b);
 }
 
 /** @brief Determines whether @p str is a palindrome.
@@ -76,24 +78,25 @@ bool is_same_char(char a, char b)
  * @return `true` if @p str is the same forward and backward and
  *     `not str.empty()`
  */
-bool is_palindrome(std::string_view str)
+bool
+is_palindrome(std::string_view str)
 {
-  auto filtered_str{ str | std::views::filter(lowercase) };
-  return std::ranges::equal(filtered_str, filtered_str|std::views::reverse,
-      is_same_char);
+    auto filtered_str { str | std::views::filter(lowercase) };
+    return std::ranges::equal(filtered_str, filtered_str | std::views::reverse, is_same_char);
 }
 
 /** @brief Main program.
  * Sets the global locale to the user's native locale.
  * Then imbues the I/O streams with the native locale.
  */
-int main()
+int
+main()
 {
-  std::locale::global(std::locale{""});
-  std::cin.imbue(std::locale{});
-  std::cout.imbue(std::locale{});
+    std::locale::global(std::locale { "" });
+    std::cin.imbue(std::locale {});
+    std::cout.imbue(std::locale {});
 
-  for (std::string line{}; std::getline(std::cin, line); /*empty*/)
-    if (is_palindrome(line))
-      std::cout << line << '\n';
+    for (std::string line {}; std::getline(std::cin, line); /*empty*/)
+        if (is_palindrome(line))
+            std::cout << line << '\n';
 }

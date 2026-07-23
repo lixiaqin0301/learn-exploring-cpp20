@@ -3,7 +3,8 @@
 #include <format>
 #include <iostream>
 
-int main()
+int
+main()
 {
-  std::cout << std::format("{0:x}\n{1:.10e}\n{2}\n", 42, 42.0, true);
+    std::cout << std::format("{0:x}\n{1:.10e}\n{2}\n", 42, 42.0, true);
 }

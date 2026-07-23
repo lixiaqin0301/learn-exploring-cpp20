@@ -7,22 +7,23 @@
 
 #include "sequence.hpp"
 
-int main()
+int
+main()
 {
-  int size{};
-  std::cout << "How many integers do you want? ";
-  std::cin >> size;
-  int first{};
-  std::cout << "What is the first integer? ";
-  std::cin >> first;
-  int step{};
-  std::cout << "What is the interval between successive integers? ";
-  std::cin >> step;
- 
-  std::vector<int> data(size);
-  // Generate the integers to fill the vector.
-  std::ranges::generate(data, sequence(first, step));
+    int size {};
+    std::cout << "How many integers do you want? ";
+    std::cin >> size;
+    int first {};
+    std::cout << "What is the first integer? ";
+    std::cin >> first;
+    int step {};
+    std::cout << "What is the interval between successive integers? ";
+    std::cin >> step;
 
-  // Print the resulting integers, one per line.
-  std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+    std::vector<int> data(size);
+    // Generate the integers to fill the vector.
+    std::ranges::generate(data, sequence(first, step));
+
+    // Print the resulting integers, one per line.
+    std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
 }

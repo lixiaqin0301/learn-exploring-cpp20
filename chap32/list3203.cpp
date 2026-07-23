@@ -10,29 +10,29 @@
 #include "list3203.inc0"
 
 /// Tests for failbit only
-bool iofailure(std::istream& in)
+bool
+iofailure(std::istream &in)
 {
-  return in.fail() and not in.bad();
+    return in.fail() and not in.bad();
 }
 
-int main()
+int
+main()
 {
-  rational r{0};
+    rational r { 0 };
 
-  while (std::cin)
-  {
-    if (std::cin >> r)
-      // Read succeeded, so no failure state is set in the stream.
-      std::cout << r << '\n';
-    else if (not std::cin.eof())
-    {
-      // Only failbit is set, meaning invalid input. Clear the state, 
-      // and then skip the rest of the input line.
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+    while (std::cin) {
+        if (std::cin >> r)
+            // Read succeeded, so no failure state is set in the stream.
+            std::cout << r << '\n';
+        else if (not std::cin.eof()) {
+            // Only failbit is set, meaning invalid input. Clear the state,
+            // and then skip the rest of the input line.
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+        }
     }
-  }
 
-  if (std::cin.bad()) 
-    std::cerr << "Unrecoverable input failure\n";
+    if (std::cin.bad())
+        std::cerr << "Unrecoverable input failure\n";
 }

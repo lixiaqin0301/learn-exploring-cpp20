@@ -1,7 +1,8 @@
-#include <iostream>
 #include "list5102.hh"
-int main()
+#include <iostream>
+int
+main()
 {
-   std::cout << absval(-1) << '\n';
-   std::cout << absval(-1.5) << '\n';
+    std::cout << absval(-1) << '\n';
+    std::cout << absval(-1.5) << '\n';
 }

@@ -6,11 +6,12 @@
 #include "data.hpp"
 #include "sequence.hpp"
 
-int main()
+int
+main()
 {
-  intvector data(100);
-  std::ranges::generate(data, sequence{1, 1});
-  write_data(data);
-  std::ranges::shuffle(data, std::default_random_engine{});
-  write_data(data);
+    intvector data(100);
+    std::ranges::generate(data, sequence { 1, 1 });
+    write_data(data);
+    std::ranges::shuffle(data, std::default_random_engine {});
+    write_data(data);
 }

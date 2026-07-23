@@ -5,14 +5,14 @@
 
 #include <iostream>
 
-int main()
+int
+main()
 {
-     int sum{0};
-     int count{};
-   
+    int sum { 0 };
+    int count {};
+
     int x;
-    while (std::cin >> x)
-    {
+    while (std::cin >> x) {
         sum = sum + x;
         count = count + 1;
     }

@@ -5,11 +5,12 @@
 #include "data.hpp"
 #include "intrange.hpp"
 
-int main()
+int
+main()
 {
-  intvector data{};
-  read_data(data);
-  write_data(data);
-  std::ranges::replace_if(data, intrange{10, 20}, 0);
-  write_data(data);
+    intvector data {};
+    read_data(data);
+    write_data(data);
+    std::ranges::replace_if(data, intrange { 10, 20 }, 0);
+    write_data(data);
 }

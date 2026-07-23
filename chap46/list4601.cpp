@@ -5,20 +5,15 @@
 #include <iterator>
 #include <vector>
 
-int main()
+int
+main()
 {
-  std::vector<int> data{
-    std::istream_iterator<int>(std::cin),
-    std::istream_iterator<int>()
-  };
+    std::vector<int> data { std::istream_iterator<int>(std::cin), std::istream_iterator<int>() };
 
-  for (auto start{data.begin()}, end{data.end()}; start < end; ++start)
-  {
-    --end; // now end points to a real position, possibly start
-    std::iter_swap(start, end); // swap contents of two iterators
+    for (auto start { data.begin() }, end { data.end() }; start < end; ++start) {
+        --end; // now end points to a real position, possibly start
+        std::iter_swap(start, end); // swap contents of two iterators
+    }
 
-  }
-
-  std::copy(data.begin(), data.end(),
-            std::ostream_iterator<int>(std::cout, "\n"));
+    std::copy(data.begin(), data.end(), std::ostream_iterator<int>(std::cout, "\n"));
 }

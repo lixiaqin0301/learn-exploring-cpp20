@@ -5,11 +5,12 @@
 #include <iterator>
 #include <vector>
 
-int main()
+int
+main()
 {
-  std::vector<int> vec(10);
-  int state;
-  std::ranges::generate(vec, [&state]() { return ++state; });
-  // Print the resulting integers, one per line.
-  std::ranges::copy(vec, std::ostream_iterator<int>(std::cout, "\n"));
+    std::vector<int> vec(10);
+    int state;
+    std::ranges::generate(vec, [&state]() { return ++state; });
+    // Print the resulting integers, one per line.
+    std::ranges::copy(vec, std::ostream_iterator<int>(std::cout, "\n"));
 }

@@ -6,17 +6,15 @@
 #include <ranges>
 #include <vector>
 
-int main()
+int
+main()
 {
-   std::cout << "Multiplier: ";
-   int multiplier{};
-   std::cin >> multiplier;
- 
-   auto data{
-      std::ranges::istream_view<int>(std::cin)
-      | std::views::transform([multiplier](int i) { return i * multiplier; })
-   };
+    std::cout << "Multiplier: ";
+    int multiplier {};
+    std::cin >> multiplier;
 
-   std::cout << "Data:\n";
-   std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+    auto data { std::ranges::istream_view<int>(std::cin) | std::views::transform([multiplier](int i) { return i * multiplier; }) };
+
+    std::cout << "Data:\n";
+    std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
 }

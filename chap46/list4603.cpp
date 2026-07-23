@@ -4,15 +4,16 @@
 #include <string>
 #include <vector>
 
-int main()
+int
+main()
 {
-  std::vector<std::string> lines{2, "hello"};
+    std::vector<std::string> lines { 2, "hello" };
 
-  std::vector<std::string>::iterator iter{lines.begin()};
-  *iter = "good-bye";               // dereference and modify the first item
-  std::size_t size{iter->size()};   // dereference and call a member function
+    std::vector<std::string>::iterator iter { lines.begin() };
+    *iter = "good-bye"; // dereference and modify the first item
+    std::size_t size { iter->size() }; // dereference and call a member function
 
-  std::vector<std::string>::const_iterator citer{lines.cbegin()};
-  std::cout << *citer << '\n';
-  std::cout << size << '\n';
+    std::vector<std::string>::const_iterator citer { lines.cbegin() };
+    std::cout << *citer << '\n';
+    std::cout << size << '\n';
 }

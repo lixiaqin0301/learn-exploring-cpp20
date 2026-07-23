@@ -4,14 +4,16 @@
 
 int counter;
 
-int generate_id()
+int
+generate_id()
 {
-  ++counter;
-  return counter;
+    ++counter;
+    return counter;
 }
 
-int main()
+int
+main()
 {
-  for (int i{0}; i != 10; ++i)
-    std::cout << generate_id() << '\n';
+    for (int i { 0 }; i != 10; ++i)
+        std::cout << generate_id() << '\n';
 }

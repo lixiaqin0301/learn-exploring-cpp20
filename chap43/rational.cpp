@@ -4,31 +4,34 @@
 #include <cassert>
 #include <numeric>
 #include <ostream>
-void rational::assign(int num, int den)
+void
+rational::assign(int num, int den)
 {
-  numerator_ = num;
-  denominator_ = den;
-  reduce();
+    numerator_ = num;
+    denominator_ = den;
+    reduce();
 }
-void rational::reduce()
+void
+rational::reduce()
 {
-  assert(denominator_ != 0);
-  if (denominator_ < 0)
-  {
-    denominator_ = -denominator_;
-    numerator_ = -numerator_;
-  }
-  int div{std::gcd(numerator_, denominator_)};
-  numerator_ = numerator_ / div;
-  denominator_ = denominator_ / div;
+    assert(denominator_ != 0);
+    if (denominator_ < 0) {
+        denominator_ = -denominator_;
+        numerator_ = -numerator_;
+    }
+    int div { std::gcd(numerator_, denominator_) };
+    numerator_ = numerator_ / div;
+    denominator_ = denominator_ / div;
 }
-rational& rational::operator=(int num)
+rational &
+rational::operator=(int num)
 {
-  numerator_ = num;
-  denominator_ = 1;
-  return *this;
+    numerator_ = num;
+    denominator_ = 1;
+    return *this;
 }
-std::ostream& operator<<(std::ostream& stream, rational const& r)
+std::ostream &
+operator<<(std::ostream &stream, rational const &r)
 {
     return stream << r.numerator() << '/' << r.denominator();
 }

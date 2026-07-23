@@ -1,7 +1,8 @@
 #include <iostream>
 using T = int;
 #include "list5101.hh"
-int main()
+int
+main()
 {
-   std::cout << absval(-1) << '\n';
+    std::cout << absval(-1) << '\n';
 }

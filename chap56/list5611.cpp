@@ -8,40 +8,52 @@
 #include <string_view>
 #include <vector>
 
-namespace parser
-{
-  class token
-  {
-  public:
-    token() : text_{} {}
-    token(std::string_view s) : text_{s} {}
-    token& operator=(std::string_view s) { text_ = s; return *this; }
+namespace parser {
+class token {
+public:
+    token()
+        : text_ {}
+    {
+    }
+    token(std::string_view s)
+        : text_ { s }
+    {
+    }
+    token &operator=(std::string_view s)
+    {
+        text_ = s;
+        return *this;
+    }
     std::string text() const { return text_; }
-  private:
+
+private:
     std::string text_;
-  };
+};
 
-  std::istream& operator>>(std::istream& in, parser::token& tok)
-  {
-    std::string str{};
+std::istream &
+operator>>(std::istream &in, parser::token &tok)
+{
+    std::string str {};
     if (in >> str)
-      tok = str;
+        tok = str;
     return in;
-  }
-
-  std::ostream& operator<<(std::ostream& out, parser::token const& tok)
-  {
-    out << tok.text();
-    return out;
-  }
 }
 
-int main()
+std::ostream &
+operator<<(std::ostream &out, parser::token const &tok)
 {
-  using namespace parser;
-  using namespace std;
+    out << tok.text();
+    return out;
+}
+}
 
-  vector<token> tokens{};
-  ranges::copy(ranges::istream_view<token>(std::cin), back_inserter(tokens));
-  ranges::copy(tokens, ostream_iterator<token>(cout, "\n"));
+int
+main()
+{
+    using namespace parser;
+    using namespace std;
+
+    vector<token> tokens {};
+    ranges::copy(ranges::istream_view<token>(std::cin), back_inserter(tokens));
+    ranges::copy(tokens, ostream_iterator<token>(cout, "\n"));
 }

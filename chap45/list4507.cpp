@@ -6,18 +6,18 @@
 
 #include "data.hpp"
 
-int main()
+int
+main()
 {
-  intvector data{};
-  int value;
-  while (std::cin >> value)
-  {
-    auto lb{std::lower_bound(data.begin(), data.end(), value)};
-    auto ub{std::upper_bound(data.begin(), data.end(), value)};
-    if (lb == ub)
-        // Not in data, so insert.
-        data.insert(ub, value);
-    // else value is already in the vector
-  }
-  write_data(data);
+    intvector data {};
+    int value;
+    while (std::cin >> value) {
+        auto lb { std::lower_bound(data.begin(), data.end(), value) };
+        auto ub { std::upper_bound(data.begin(), data.end(), value) };
+        if (lb == ub)
+            // Not in data, so insert.
+            data.insert(ub, value);
+        // else value is already in the vector
+    }
+    write_data(data);
 }

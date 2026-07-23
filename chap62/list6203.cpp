@@ -1,5 +1,6 @@
-#include <iostream>
 #include "list6203.hh"
-int main() {
-
+#include <iostream>
+int
+main()
+{
 }

@@ -4,12 +4,10 @@
 #include <iterator>
 #include <ranges>
 
-int main()
+int
+main()
 {
-   auto data{ std::ranges::istream_view<int>(std::cin)
-              | std::views::transform([](int i) { return i * 2; })
-              | std::views::transform([](int i) { return i + 3; })
-   };
-   for (auto element : data)
-      std::cout << element << '\n';
+    auto data { std::ranges::istream_view<int>(std::cin) | std::views::transform([](int i) { return i * 2; }) | std::views::transform([](int i) { return i + 3; }) };
+    for (auto element : data)
+        std::cout << element << '\n';
 }

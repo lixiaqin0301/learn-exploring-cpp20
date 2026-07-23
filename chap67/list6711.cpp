@@ -14,16 +14,16 @@
  * @param value The value to search for
  * @return [0, size), such that size == last-first, or -1
  */
-template<class Range>
+template <class Range>
     requires std::ranges::forward_range<Range>
 std::ranges::range_difference_t<Range>
-index_of(Range const& range, std::ranges::range_value_t<Range> const& value)
+index_of(Range const &range, std::ranges::range_value_t<Range> const &value)
 {
-   auto iter{std::ranges::find(range, value)};
-   if (iter == std::ranges::end(range))
-      return -1;
-   else
-      return std::distance(std::ranges::begin(range), iter);
+    auto iter { std::ranges::find(range, value) };
+    if (iter == std::ranges::end(range))
+        return -1;
+    else
+        return std::distance(std::ranges::begin(range), iter);
 }
 
 /** Determine whether the first occurrence of a value in a container is
@@ -33,15 +33,17 @@ index_of(Range const& range, std::ranges::range_value_t<Range> const& value)
  * @return true if @p value is at the last position,
  *         or false if @p value is not found or at any other position.
  */
-template<class T>
-bool is_last(T const& container, typename T::value_type const& value)
+template <class T>
+bool
+is_last(T const &container, typename T::value_type const &value)
 {
     return index_of(container, value) == container.size() - 1;
 }
 
-int main()
+int
+main()
 {
-   std::vector<int> data{};
-   if (is_last(data, 10))
-      std::cout << "10 is the last item in data\n";
+    std::vector<int> data {};
+    if (is_last(data, 10))
+        std::cout << "10 is the last item in data\n";
 }

@@ -4,24 +4,27 @@
 #include <string>
 #include <utility>
 
-void print(std::string&& move)
+void
+print(std::string &&move)
 {
-   std::cout << "move: " << std::move(move) << '\n';
+    std::cout << "move: " << std::move(move) << '\n';
 }
 
-void print(std::string const& copy)
+void
+print(std::string const &copy)
 {
-   std::cout << "copy: " << copy << '\n';
+    std::cout << "copy: " << copy << '\n';
 }
 
-int main()
+int
+main()
 {
-   std::string a{"a"}, b{"b"}, c{"c"};
+    std::string a { "a" }, b { "b" }, c { "c" };
 
-  print(a);
-  print(a + b);
-  print(a + b + c);
-  print(std::move(a + b));
-  print(a + std::move(b));
-  print(std::move(a));
-} 
+    print(a);
+    print(a + b);
+    print(a + b + c);
+    print(std::move(a + b));
+    print(a + std::move(b));
+    print(std::move(a));
+}

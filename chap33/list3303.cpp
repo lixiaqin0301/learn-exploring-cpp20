@@ -1,7 +1,8 @@
 class rational {
 #include "list3303.hh"
-int numerator, denominator;
+    int numerator, denominator;
 };
-int main() {
-
+int
+main()
+{
 }

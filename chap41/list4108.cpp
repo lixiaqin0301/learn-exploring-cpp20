@@ -5,45 +5,56 @@
 
 class rational {
 public:
-  rational();
-  rational(int num);
-  rational(int num, int den);
-  int numerator() const { return numerator_; }
-  int denominator() const { return denominator_; }
-  // Some useful constants
-  static const rational zero;
-  static const rational one;
-  static const rational pi;
-private:
-  void reduce()
-  {
-    int div{std::gcd(numerator_, denominator_)};
-    numerator_ = numerator_ / div;
-    denominator_ = denominator_ / div;
-  }
+    rational();
+    rational(int num);
+    rational(int num, int den);
+    int numerator() const { return numerator_; }
+    int denominator() const { return denominator_; }
+    // Some useful constants
+    static const rational zero;
+    static const rational one;
+    static const rational pi;
 
-  int numerator_;
-  int denominator_;
+private:
+    void reduce()
+    {
+        int div { std::gcd(numerator_, denominator_) };
+        numerator_ = numerator_ / div;
+        denominator_ = denominator_ / div;
+    }
+
+    int numerator_;
+    int denominator_;
 };
 
-rational::rational() : rational{0, 1} {}
-rational::rational(int num) : numerator_{num}, denominator_{1} {}
+rational::rational()
+    : rational { 0, 1 }
+{
+}
+rational::rational(int num)
+    : numerator_ { num }
+    , denominator_ { 1 }
+{
+}
 rational::rational(int num, int den)
-: numerator_{num}, denominator_{den}
+    : numerator_ { num }
+    , denominator_ { den }
 {
-  reduce();
+    reduce();
 }
 
-std::ostream& operator<<(std::ostream& out, rational const& r)
+std::ostream &
+operator<<(std::ostream &out, rational const &r)
 {
-  return out << r.numerator() << '/' << r.denominator();
+    return out << r.numerator() << '/' << r.denominator();
 }
 
-const rational rational::zero{};
-const rational rational::one{1};
-const rational rational::pi{355, 113};
+const rational rational::zero {};
+const rational rational::one { 1 };
+const rational rational::pi { 355, 113 };
 
-int main()
+int
+main()
 {
-  std::cout << "pi = " << rational::pi << '\n';
+    std::cout << "pi = " << rational::pi << '\n';
 }

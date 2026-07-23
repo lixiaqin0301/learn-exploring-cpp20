@@ -4,22 +4,22 @@
 #include <iterator>
 #include <ranges>
 
-int times_two(int i)
+int
+times_two(int i)
 {
-  return i * 2;
+    return i * 2;
 }
 
-int plus_three(int i)
+int
+plus_three(int i)
 {
-  return i + 3;
+    return i + 3;
 }
 
-int main()
+int
+main()
 {
-   auto data{ std::ranges::istream_view<int>(std::cin)
-              | std::ranges::views::transform(times_two)
-              | std::ranges::views::transform(plus_three)
-   };
-   for (auto element : data)
-      std::cout << element << '\n';
+    auto data { std::ranges::istream_view<int>(std::cin) | std::ranges::views::transform(times_two) | std::ranges::views::transform(plus_three) };
+    for (auto element : data)
+        std::cout << element << '\n';
 }

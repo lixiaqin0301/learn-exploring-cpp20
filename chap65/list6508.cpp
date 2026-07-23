@@ -3,10 +3,11 @@
 #include <iostream>
 #include <string_view>
 
-int main(int, char **argv)
+int
+main(int, char **argv)
 {
     if (argv[1] != nullptr) {
-        if (std::string_view{argv[1]} == "--help")
+        if (std::string_view { argv[1] } == "--help")
             std::cout << "usage: " << argv[0] << " [ARGS...]";
         else {
             std::cout << *++argv;
@@ -14,5 +15,5 @@ int main(int, char **argv)
                 std::cout << ' ' << *argv;
         }
     }
-    std::cout << '\n';        
+    std::cout << '\n';
 }

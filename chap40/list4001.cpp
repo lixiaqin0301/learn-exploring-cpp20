@@ -6,20 +6,22 @@ using height = int;
 using weight = int;
 using bmi = int;
 
-bmi compute_bmi(height h, weight w)
+bmi
+compute_bmi(height h, weight w)
 {
-  return w * 10000 / (h * h);
+    return w * 10000 / (h * h);
 }
 
-int main()
+int
+main()
 {
-  std::cout << "Height in centimeters: ";
-  height h{};
-  std::cin >> h;
+    std::cout << "Height in centimeters: ";
+    height h {};
+    std::cin >> h;
 
-  std::cout << "Weight in kilograms: ";
-  weight w{};
-  std::cin >> w;
+    std::cout << "Weight in kilograms: ";
+    weight w {};
+    std::cin >> w;
 
-  std::cout << "Bogus Metabolic Index = " << compute_bmi(w, h) << '\n';
+    std::cout << "Bogus Metabolic Index = " << compute_bmi(w, h) << '\n';
 }

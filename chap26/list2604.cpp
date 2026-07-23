@@ -5,54 +5,61 @@
 
 using byte = signed char;
 
-void print(byte value)
+void
+print(byte value)
 {
-  // The << operator treats signed char as a mutant char, and tries to
-  // print a character. In order to print the value as an integer, you
-  // must cast it to an integer type.
-  std::cout << "byte=" << static_cast<int>(value) << '\n';
+    // The << operator treats signed char as a mutant char, and tries to
+    // print a character. In order to print the value as an integer, you
+    // must cast it to an integer type.
+    std::cout << "byte=" << static_cast<int>(value) << '\n';
 }
 
-void print(short value)
+void
+print(short value)
 {
-  std::cout << "short=" << value << '\n';
+    std::cout << "short=" << value << '\n';
 }
 
-void print(int value)
+void
+print(int value)
 {
-  std::cout << "int=" << value << '\n';
+    std::cout << "int=" << value << '\n';
 }
 
-void print(long value)
+void
+print(long value)
 {
-  std::cout << "long=" << value << '\n';
+    std::cout << "long=" << value << '\n';
 }
 
-void print(unsigned long value)
+void
+print(unsigned long value)
 {
-  std::cout << "unsigned long=" << value << '\n';
+    std::cout << "unsigned long=" << value << '\n';
 }
 
-void print(long long value)
+void
+print(long long value)
 {
-  std::cout << "long long=" << value << '\n';
+    std::cout << "long long=" << value << '\n';
 }
 
-int main()
+int
+main()
 {
-  std::cout.imbue(std::locale{""});
-  print(0);
-  print(0L);
-  print(static_cast<short>(0));
-  print(static_cast<byte>(0));
-  print(static_cast<byte>(255));
-  print(static_cast<short>(65535));
-  print(32768);
-  print(32768L);
-  print(-32768);
-  print(2147483647);
-  print(-2147483647);
-  print(2147483648);
-  print(9223372036854775807);
-  print(-9223372036854775807);
+    std::cout.imbue(std::locale { "" });
+    print(0);
+    print(0L);
+    print(static_cast<short>(0));
+    print(static_cast<byte>(0));
+    print(static_cast<byte>(255));
+    print(static_cast<short>(65535));
+    print(32768);
+    print(32768L);
+    print(-32768);
+    print(2147483647);
+    print(-2147483647);
+    print(2147483648);
+    print(9223372036854775807);
+    print(-9223372036854775807);
 }

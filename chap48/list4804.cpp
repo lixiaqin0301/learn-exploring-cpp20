@@ -6,32 +6,31 @@
 #include <iostream>
 #include <stdexcept>
 
-void print_exception(const std::exception& e, int level =  0)
+void
+print_exception(const std::exception &e, int level = 0)
 {
-  std::cerr << std::setw(level) << ' ' << "exception: " << e.what() << '\n';
-  try {
-    std::rethrow_if_nested(e);
-  } catch(const std::exception& e) {
-    // caught a nested exception
-    print_exception(e, level+1);
-  } catch(...) {}
+    std::cerr << std::setw(level) << ' ' << "exception: " << e.what() << '\n';
+    try {
+        std::rethrow_if_nested(e);
+    } catch (const std::exception &e) {
+        // caught a nested exception
+        print_exception(e, level + 1);
+    } catch (...) {
+    }
 }
 
-int main()
+int
+main()
 {
-  std::string const filename{ "nonexistent file" };
-  std::ifstream file;
-  file.exceptions(std::ios_base::failbit);
-  try
-  {
-    file.open(filename);
-  }
-  catch (std::ios_base::failure const&)  {
-    std::throw_with_nested(std::runtime_error{"Cannot open: " + filename});
-  }
-  catch (...)
-  {
-    file.close();
-    throw;
-  }
+    std::string const filename { "nonexistent file" };
+    std::ifstream file;
+    file.exceptions(std::ios_base::failbit);
+    try {
+        file.open(filename);
+    } catch (std::ios_base::failure const &) {
+        std::throw_with_nested(std::runtime_error { "Cannot open: " + filename });
+    } catch (...) {
+        file.close();
+        throw;
+    }
 }

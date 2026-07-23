@@ -5,14 +5,15 @@
 #include <iterator>
 #include <vector>
 
-int main()
+int
+main()
 {
-  std::vector<int> data;
-  int element;
-  while (std::cin >> element)
-    data.emplace_back(element);
+    std::vector<int> data;
+    int element;
+    while (std::cin >> element)
+        data.emplace_back(element);
 
-  std::ranges::sort(data);
+    std::ranges::sort(data);
 
-  std::ranges::copy(data, std::ostream_iterator<int>{std::cout, "\n"});
+    std::ranges::copy(data, std::ostream_iterator<int> { std::cout, "\n" });
 }

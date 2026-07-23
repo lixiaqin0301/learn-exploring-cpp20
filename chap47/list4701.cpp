@@ -5,19 +5,18 @@
 #include <ranges>
 #include <vector>
 
-int main()
+int
+main()
 {
-   std::vector<int> data;
-   std::cout << "Enter some numbers:\n";
-   std::ranges::copy(std::ranges::istream_view<int>(std::cin),
-       std::back_inserter(data));
+    std::vector<int> data;
+    std::cout << "Enter some numbers:\n";
+    std::ranges::copy(std::ranges::istream_view<int>(std::cin), std::back_inserter(data));
 
     std::cout << "You entered " << std::ranges::size(data) << " values\n";
-    if (not std::ranges::empty(data))
-    {
-       std::ranges::sort(data);
-       auto start{ std::ranges::cbegin(data) };
-       auto middle{ start + std::ranges::size(data) / 2 };
-       std::cout << "The median value is " << *middle << '\n';
+    if (not std::ranges::empty(data)) {
+        std::ranges::sort(data);
+        auto start { std::ranges::cbegin(data) };
+        auto middle { start + std::ranges::size(data) / 2 };
+        std::cout << "The median value is " << *middle << '\n';
     }
 }

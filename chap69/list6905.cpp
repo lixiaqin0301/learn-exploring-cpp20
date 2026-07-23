@@ -1,5 +1,8 @@
 #include <iostream>
-#include "list6905.hh"
-int main() {
 
+#include "list6905.hh"
+
+int
+main()
+{
 }

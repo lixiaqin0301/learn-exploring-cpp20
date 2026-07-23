@@ -5,24 +5,25 @@
 #include <iterator>
 #include <vector>
 
-int times_two(int i)
+int
+times_two(int i)
 {
-  return i * 2;
+    return i * 2;
 }
 
-int plus_three(int i)
+int
+plus_three(int i)
 {
-  return i + 3;
+    return i + 3;
 }
 
-int main()
+int
+main()
 {
-   std::vector<int> data{std::istream_iterator<int>(std::cin),
-                         std::istream_iterator<int>()};
+    std::vector<int> data { std::istream_iterator<int>(std::cin), std::istream_iterator<int>() };
 
-   std::transform(data.begin(), data.end(), data.begin(), times_two);
-   std::transform(data.begin(), data.end(), data.begin(), plus_three);
+    std::transform(data.begin(), data.end(), data.begin(), times_two);
+    std::transform(data.begin(), data.end(), data.begin(), plus_three);
 
-   std::copy(data.begin(), data.end(),
-             std::ostream_iterator<int>(std::cout, "\n"));
+    std::copy(data.begin(), data.end(), std::ostream_iterator<int>(std::cout, "\n"));
 }

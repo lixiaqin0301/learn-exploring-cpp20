@@ -6,17 +6,17 @@
 #include <ranges>
 #include <vector>
 
-int main()
+int
+main()
 {
-  std::vector<int> data{};
-  std::ranges::copy(std::ranges::istream_view<int>(std::cin),
-              std::back_inserter(data));
+    std::vector<int> data {};
+    std::ranges::copy(std::ranges::istream_view<int>(std::cin), std::back_inserter(data));
 
-  auto iter{data.begin()}, end{data.end()};
-  for (; iter != end and *iter == 0; ++iter)
-    /*empty*/;
-  if (iter == end)
-    std::cout << "data contains all zeroes\n";
-  else
-    std::cout << "data does not contain all zeroes\n";
+    auto iter { data.begin() }, end { data.end() };
+    for (; iter != end and *iter == 0; ++iter)
+        /*empty*/;
+    if (iter == end)
+        std::cout << "data contains all zeroes\n";
+    else
+        std::cout << "data does not contain all zeroes\n";
 }

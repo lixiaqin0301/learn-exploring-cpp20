@@ -11,31 +11,33 @@
  * @param ch the character to test
  * @return true if @p ch is a letter
  */
-bool letter(char ch)
+bool
+letter(char ch)
 {
-  return std::isalpha(ch, std::locale{});
+    return std::isalpha(ch, std::locale {});
 }
 
 /** Convert to lowercase.
  * @param ch the character to test
  * @return the character converted to lowercase
  */
-char lowercase(char ch)
+char
+lowercase(char ch)
 {
-  return std::tolower(ch, std::locale{});
+    return std::tolower(ch, std::locale {});
 }
 
 #include "list2305.hh"
 
-int main()
+int
+main()
 {
-  std::locale::global(std::locale{""});
-  std::cin.imbue(std::locale{});
-  std::cout.imbue(std::locale{});
+    std::locale::global(std::locale { "" });
+    std::cin.imbue(std::locale {});
+    std::cout.imbue(std::locale {});
 
-  std::string line{};
-  while (std::getline(std::cin, line))
-    if (is_palindrome(line))
-      std::cout << line << '\n';
+    std::string line {};
+    while (std::getline(std::cin, line))
+        if (is_palindrome(line))
+            std::cout << line << '\n';
 }
-

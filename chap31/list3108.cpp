@@ -8,8 +8,9 @@
 
 #include "list3108.inc0"
 
-int main()
+int
+main()
 {
-  rational result{3 * rational{1, 3}};
-  std::cout << result.numerator << '/' << result.denominator << '\n';
+    rational result { 3 * rational { 1, 3 } };
+    std::cout << result.numerator << '/' << result.denominator << '\n';
 }

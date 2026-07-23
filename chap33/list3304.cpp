@@ -1,7 +1,8 @@
 class rational {
 #include "list3304.hh"
-rational(int,int) {}
+    rational(int, int) { }
 };
-int main() {
-
+int
+main()
+{
 }

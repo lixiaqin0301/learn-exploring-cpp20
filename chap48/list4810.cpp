@@ -6,26 +6,25 @@
 #include <string>
 #include <system_error>
 
-std::size_t count_words(std::string const& filename)
+std::size_t
+count_words(std::string const &filename)
 {
-  std::ifstream file(filename);
-  if (not file)
-    throw std::system_error(errno, std::system_category(), filename);
-  std::size_t count{0};
-  std::string word;
-  while (file >> word)
-    ++count;
-  return count;
+    std::ifstream file(filename);
+    if (not file)
+        throw std::system_error(errno, std::system_category(), filename);
+    std::size_t count { 0 };
+    std::string word;
+    while (file >> word)
+        ++count;
+    return count;
 }
 
-int main()
+int
+main()
 {
-  try
-  {
-    std::cout << count_words("Not a Real File Name") << '\n';
-  }
-  catch (std::exception const& ex)
-  {
-    std::cerr << ex.what() << '\n';
-  }
+    try {
+        std::cout << count_words("Not a Real File Name") << '\n';
+    } catch (std::exception const &ex) {
+        std::cerr << ex.what() << '\n';
+    }
 }

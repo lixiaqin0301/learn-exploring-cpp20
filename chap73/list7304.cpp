@@ -1,5 +1,8 @@
 #include <limits>
-#include "list7304.hh"
-int main() {
 
+#include "list7304.hh"
+
+int
+main()
+{
 }

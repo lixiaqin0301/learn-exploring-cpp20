@@ -1,8 +1,10 @@
 #include <iostream>
+
 #include "list5302.hh"
 
-int main()
+int
+main()
 {
-   rational<void> r;
-   std::cout << r << '\n';
+    rational<void> r;
+    std::cout << r << '\n';
 }

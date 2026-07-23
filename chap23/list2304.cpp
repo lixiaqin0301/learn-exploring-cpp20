@@ -6,17 +6,18 @@
 #include <vector>
 
 /** Predicate for sorting into descending order. */
-int descending(int a, int b)
+int
+descending(int a, int b)
 {
-  return a > b;
+    return a > b;
 }
 
-int main()
+int
+main()
 {
-  std::vector<int> data{ std::istream_iterator<int>(std::cin),
-                         std::istream_iterator<int>() };
+    std::vector<int> data { std::istream_iterator<int>(std::cin), std::istream_iterator<int>() };
 
-  std::sort(data.begin(), data.end(), descending);
+    std::sort(data.begin(), data.end(), descending);
 
-  std::copy(data.begin(), data.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    std::copy(data.begin(), data.end(), std::ostream_iterator<int>(std::cout, "\n"));
 }
