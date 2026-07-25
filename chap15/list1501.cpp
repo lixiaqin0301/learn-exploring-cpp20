@@ -22,4 +22,5 @@ main(int argc, char *argv[])
         ++counts[word];
     }
     // TODO: Print the results.
+    return 0;
 }
