@@ -23,4 +23,5 @@ main()
             std::cerr << "list1403.out: " << std::generic_category().message(errno) << '\n';
         }
     }
+    return 0;
 }

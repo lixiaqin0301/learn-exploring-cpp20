@@ -18,4 +18,5 @@ main()
         std::ranges::copy(std::ranges::istream_view<int>(in), std::ostream_iterator<int> { std::cout, "\n" });
         in.close();
     }
+    return 0;
 }
