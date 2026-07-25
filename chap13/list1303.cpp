@@ -24,9 +24,9 @@ main(int argc, char *argv[])
     std::ranges::sort(data);
 
     {
-        // Print the sorted vector all on one line. Start the line with "{" and
-        // end it with "}". Separate elements with commas. An empty vector prints
-        // as "{ }".
+        // Print the sorted vector all on one line. Start the line with "{" and end it with "}".
+        // Separate elements with commas.
+        // An empty vector prints as "{ }".
         std::cout << '{';
         std::string separator { " " };
         for (int element : data) {
