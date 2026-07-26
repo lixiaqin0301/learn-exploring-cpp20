@@ -21,8 +21,7 @@ main(int argc, char *argv[])
 
     count_map counts {};
 
-    // Read words from the standard input and count the number of times
-    // each word occurs.
+    // Read words from the standard input and count the number of times each word occurs.
     std::string word {};
     while (std::cin >> word) {
         ++counts[word];
@@ -37,4 +36,6 @@ main(int argc, char *argv[])
     } else {
         std::cout << "\"the\": occurs " << the->second << " times\n";
     }
+
+    return 0;
 }
