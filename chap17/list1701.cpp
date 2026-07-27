@@ -14,7 +14,6 @@ main(int argc, char *argv[])
             std::cin.rdbuf(input.rdbuf());
         }
     }
-
     int value {};
     bool have_value { false };
     char ch {};
@@ -41,4 +40,5 @@ main(int argc, char *argv[])
             }
         }
     }
+    return 0;
 }
