@@ -29,8 +29,7 @@ main(int argc, char *argv[])
                        "abcdefghijklmnopqrstuvwxyz"
                        "0123456789-_" };
 
-    // Read words from the standard input and count the number of times
-    // each word occurs.
+    // Read words from the standard input and count the number of times each word occurs.
     while (std::cin >> word) {
         // Make a copy of word, keeping only the characters that appear in okay.
         std::string copy {};
@@ -47,14 +46,18 @@ main(int argc, char *argv[])
 
     // Determine the longest word.
     str_size longest { 0 };
-    for (auto pair : counts)
+    for (auto pair : counts) {
         if (pair.first.size() > longest) {
             longest = pair.first.size();
         }
+    }
 
     // For each word/count pair...
     constexpr int count_size { 10 }; // Number of places for printing the count
-    for (auto pair : counts)
+    for (auto pair : counts) {
         // Print the word, count, newline. Keep the columns neatly aligned.
         std::cout << std::format("{1:{0}}{3:{2}}\n", longest, pair.first, count_size, pair.second);
+    }
+
+    return 0;
 }

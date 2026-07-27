@@ -26,8 +26,7 @@ main(int argc, char *argv[])
     count_map counts {};
     std::string word {};
 
-    // Read words from the standard input and count the number of times
-    // each word occurs.
+    // Read words from the standard input and count the number of times each word occurs.
     while (std::cin >> word) {
         // Make a copy of word, keeping only alphabetic characters.
         std::string copy {};
@@ -46,4 +45,6 @@ main(int argc, char *argv[])
     for (auto pair : counts) {
         std::cout << pair.first << '\t' << pair.second << '\n';
     }
+
+    return 0;
 }

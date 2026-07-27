@@ -24,4 +24,6 @@ main(int argc, char *argv[])
         sum = sum + x;
     }
     std::cout << "sum = " << sum << '\n';
+
+    return 0;
 }
