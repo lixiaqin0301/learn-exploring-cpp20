@@ -46,4 +46,6 @@ main(int argc, char *argv[])
     for (auto pair : counts) {
         std::cout << pair.first << '\t' << pair.second << '\n';
     }
+
+    return 0;
 }
