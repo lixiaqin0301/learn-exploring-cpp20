@@ -9,6 +9,7 @@ void
 modify(int x)
 {
     x = 10;
+    return;
 }
 
 int
@@ -23,6 +24,7 @@ print_vector(std::vector<int> v)
     std::cout << "{ ";
     std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "}\n";
+    return;
 }
 
 void
@@ -31,6 +33,7 @@ add(std::vector<int> v, int a)
     for (auto iter(v.begin()), end(v.end()); iter != end; ++iter) {
         *iter = *iter + a;
     }
+    return;
 }
 
 int
@@ -48,4 +51,6 @@ main()
     print_vector(data);
     add(data, 42);
     print_vector(data);
+
+    return 0;
 }
