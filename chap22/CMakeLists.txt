@@ -1,5 +1,5 @@
 add_executable(list2201 list2201.cpp)
 add_executable(list2202 list2202.cpp)
-add_executable(list2203 list2203.cpp list2203.hh)
+add_executable(list2203 list2203.cpp)
 add_executable(list2204 list2204.cpp)
-add_executable(list2205 list2205.cpp list2205.hh)
+add_executable(list2205 list2205.cpp)

@@ -2,7 +2,6 @@
 /** Listing 22-1. Calling transform to Apply a Function to Each Element of a Range */
 #include <fstream>
 #include <iostream>
-#include <iterator>
 #include <ranges>
 #include <string>
 
@@ -28,9 +27,11 @@ main(int argc, char *argv[])
             std::cin.rdbuf(input.rdbuf());
         }
     }
-
-    auto data { std::ranges::istream_view<int>(std::cin) | std::ranges::views::transform(times_two) | std::ranges::views::transform(plus_three) };
+    auto data { std::ranges::istream_view<int>(std::cin)
+        | std::ranges::views::transform(times_two)
+        | std::ranges::views::transform(plus_three) };
     for (auto element : data) {
         std::cout << element << '\n';
     }
+    return 0;
 }
