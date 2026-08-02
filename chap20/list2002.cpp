@@ -21,7 +21,6 @@ main(int argc, char *argv[])
             std::cin.rdbuf(input.rdbuf());
         }
     }
-
     int sum { 0 }, count { 0 };
     while (std::cin) {
         if (int x { prompted_read("Value: ") }; std::cin) {
@@ -30,6 +29,7 @@ main(int argc, char *argv[])
         }
     }
     print_result(count, sum);
+    return 0;
 }
 
 /** Prompt the user, then read a number, and ignore the rest of the line.
@@ -54,6 +54,7 @@ ignore_line()
     while (std::cin.get(c) and c != '\n') {
         /*empty*/;
     }
+    return;
 }
 
 /** Print the statistics.
@@ -71,4 +72,6 @@ print_result(int count, int sum)
     std::cout << "\ncount = " << count;
     std::cout << "\nsum   = " << sum;
     std::cout << "\nmean  = " << sum / count << '\n';
+
+    return;
 }
