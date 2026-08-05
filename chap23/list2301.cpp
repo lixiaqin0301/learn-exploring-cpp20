@@ -36,4 +36,6 @@ main(int argc, char *argv[])
     std::transform(data.begin(), data.end(), data.begin(), plus_three);
 
     std::copy(data.begin(), data.end(), std::ostream_iterator<int>(std::cout, "\n"));
+
+    return 0;
 }

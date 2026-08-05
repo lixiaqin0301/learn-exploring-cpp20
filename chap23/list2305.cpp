@@ -1,10 +1,8 @@
-// Copied from list2205.cpp but is_palindrome() replaced by #include
+/** Listing 23-5. Testing for Palindromes */
 
-#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <locale>
-#include <ranges>
 #include <string>
 #include <string_view>
 
@@ -28,7 +26,31 @@ lowercase(char ch)
     return std::tolower(ch, std::locale {});
 }
 
-#include "list2305.hh"
+/** Determine whether @p str is a palindrome.
+ * Only letter characters are tested. Spaces and punctuation don't count.
+ * @param str the string to test
+ * @return true if @p str is the same forward and backward
+ */
+bool
+is_palindrome(std::string_view str)
+{
+    if (str.empty()) {
+        return true;
+    }
+    for (auto left { str.begin() }, right { str.end() - 1 }; left < right;) {
+        if (not letter(*left)) {
+            ++left;
+        } else if (not letter(*right)) {
+            --right;
+        } else if (lowercase(*left) != lowercase(*right)) {
+            return false;
+        } else {
+            ++left;
+            --right;
+        }
+    }
+    return true;
+}
 
 int
 main(int argc, char *argv[])
@@ -46,8 +68,11 @@ main(int argc, char *argv[])
     std::cout.imbue(std::locale {});
 
     std::string line {};
-    while (std::getline(std::cin, line))
+    while (std::getline(std::cin, line)) {
         if (is_palindrome(line)) {
             std::cout << line << '\n';
         }
+    }
+
+    return 0;
 }

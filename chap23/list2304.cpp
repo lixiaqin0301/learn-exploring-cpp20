@@ -30,4 +30,6 @@ main(int argc, char *argv[])
     std::sort(data.begin(), data.end(), descending);
 
     std::copy(data.begin(), data.end(), std::ostream_iterator<int>(std::cout, "\n"));
+
+    return 0;
 }
