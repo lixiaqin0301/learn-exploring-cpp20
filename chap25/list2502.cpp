@@ -58,7 +58,6 @@ main(int argc, char *argv[])
             std::cin.rdbuf(input.rdbuf());
         }
     }
-
     std::string str {};
     while (std::cin >> str) {
         if (is_alpha(str)) {
@@ -71,4 +70,5 @@ main(int argc, char *argv[])
                      "upper: "
                   << to_upper(str) << '\n';
     }
+    return 0;
 }

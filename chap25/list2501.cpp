@@ -8,6 +8,7 @@ void
 print(int i)
 {
     std::cout << i;
+    return;
 }
 
 void
@@ -15,6 +16,7 @@ print(int i, int width)
 {
     std::cout.width(width);
     std::cout << i;
+    return;
 }
 
 void
@@ -33,12 +35,15 @@ print(std::vector<int> const &vec, int width, std::string_view prefix, std::stri
     }
 
     std::cout << postfix;
+
+    return;
 }
 
 void
 print(std::vector<int> const &vec, std::string_view prefix, std::string_view separator, std::string_view postfix)
 {
     print(vec, 0, prefix, separator, postfix);
+    return;
 }
 
 int
@@ -57,4 +62,6 @@ main()
     print(data, 10, "", "\n", "\n");
     std::cout << "row data:\n";
     print(data, "{", ", ", "}\n");
+
+    return 0;
 }
