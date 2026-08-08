@@ -17,7 +17,9 @@
 bool
 is_palindrome(std::string_view str)
 {
-    auto letters_only { str | std::views::filter([](char c) { return std::isalnum(c, std::locale {}); }) | std::views::transform([](char c) { return std::tolower(c, std::locale {}); }) };
+    auto letters_only { str
+        | std::views::filter([](char c) { return std::isalnum(c, std::locale {}); })
+        | std::views::transform([](char c) { return std::tolower(c, std::locale {}); }) };
     auto reversed { letters_only | std::views::reverse };
     return std::ranges::equal(letters_only, reversed);
 }
@@ -38,8 +40,11 @@ main(int argc, char *argv[])
     std::cout.imbue(std::locale {});
 
     std::string line {};
-    while (std::getline(std::cin, line))
+    while (std::getline(std::cin, line)) {
         if (is_palindrome(line)) {
             std::cout << line << '\n';
         }
+    }
+
+    return 0;
 }

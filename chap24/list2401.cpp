@@ -2,7 +2,6 @@
 /** Listing 24-1. Calling transform to Apply a Lambda to Each Element of an Array */
 #include <fstream>
 #include <iostream>
-#include <iterator>
 #include <ranges>
 #include <string>
 
@@ -16,9 +15,12 @@ main(int argc, char *argv[])
             std::cin.rdbuf(input.rdbuf());
         }
     }
-
-    auto data { std::ranges::istream_view<int>(std::cin) | std::views::transform([](int i) { return i * 2; }) | std::views::transform([](int i) { return i + 3; }) };
+    auto data { std::ranges::istream_view<int>(std::cin)
+        | std::views::transform([](int i) { return i * 2; })
+        | std::views::transform([](int i) { return i + 3; })
+    };
     for (auto element : data) {
         std::cout << element << '\n';
     }
+    return 0;
 }

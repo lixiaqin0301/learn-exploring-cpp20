@@ -13,4 +13,5 @@ main()
     };
     int local { 0 };
     std::cout << lambda(local) << ", " << x << ", " << local << '\n';
+    return 0;
 }

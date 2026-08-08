@@ -6,7 +6,6 @@
 #include <iterator>
 #include <ranges>
 #include <string>
-#include <vector>
 
 int
 main(int argc, char *argv[])
@@ -23,8 +22,11 @@ main(int argc, char *argv[])
     int multiplier {};
     std::cin >> multiplier;
 
-    auto data { std::ranges::istream_view<int>(std::cin) | std::views::transform([multiplier](int i) { return i * multiplier; }) };
+    auto data { std::ranges::istream_view<int>(std::cin)
+        | std::views::transform([multiplier](int i) { return i * multiplier; }) };
 
     std::cout << "Data:\n";
     std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+
+    return 0;
 }

@@ -19,4 +19,6 @@ main()
     std::ranges::transform(data, data.begin(), times);
 
     std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+
+    return 0;
 }
