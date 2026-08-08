@@ -9,7 +9,8 @@
 #include <string_view>
 
 /** Determine whether @p str is a palindrome.
- * Only letter characters are tested. Spaces and punctuation don't count.
+ * Only letter characters are tested.
+ * Spaces and punctuation don't count.
  * Empty strings are not palindromes because that's just too easy.
  * @param str the string to test
  * @return true if @p str is the same forward and backward
