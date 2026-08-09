@@ -19,4 +19,6 @@ main()
     } else {
         std::cout << std::numeric_limits<bool>::digits << '\n';
     }
+
+    return 0;
 }

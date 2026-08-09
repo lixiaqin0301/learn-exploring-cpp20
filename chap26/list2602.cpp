@@ -40,4 +40,6 @@ main()
     } else {
         std::cout << std::numeric_limits<long long>::digits << '\n';
     }
+
+    return 0;
 }

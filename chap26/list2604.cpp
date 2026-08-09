@@ -8,40 +8,45 @@ using byte = signed char;
 void
 print(byte value)
 {
-    // The << operator treats signed char as a mutant char, and tries to
-    // print a character. In order to print the value as an integer, you
-    // must cast it to an integer type.
+    // The << operator treats signed char as a mutant char, and tries to print a character.
+    // In order to print the value as an integer, you must cast it to an integer type.
     std::cout << "byte=" << static_cast<int>(value) << '\n';
+    return;
 }
 
 void
 print(short value)
 {
     std::cout << "short=" << value << '\n';
+    return;
 }
 
 void
 print(int value)
 {
     std::cout << "int=" << value << '\n';
+    return;
 }
 
 void
 print(long value)
 {
     std::cout << "long=" << value << '\n';
+    return;
 }
 
 void
 print(unsigned long value)
 {
     std::cout << "unsigned long=" << value << '\n';
+    return;
 }
 
 void
 print(long long value)
 {
     std::cout << "long long=" << value << '\n';
+    return;
 }
 
 int
@@ -62,4 +67,5 @@ main()
     print(2147483648);
     print(9223372036854775807);
     print(-9223372036854775807);
+    return 0;
 }

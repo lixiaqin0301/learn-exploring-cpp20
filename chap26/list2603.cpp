@@ -7,24 +7,28 @@ void
 print(int value)
 {
     std::cout << "int=" << value << '\n';
+    return;
 }
 
 void
 print(long value)
 {
     std::cout << "long=" << value << '\n';
+    return;
 }
 
 void
 print(unsigned long value)
 {
     std::cout << "unsigned long=" << value << '\n';
+    return;
 }
 
 void
 print(long long value)
 {
     std::cout << "long long=" << value << '\n';
+    return;
 }
 
 int
@@ -40,4 +44,5 @@ main()
     print(2147483648);
     print(9223372036854775807);
     print(-9223372036854775807);
+    return 0;
 }

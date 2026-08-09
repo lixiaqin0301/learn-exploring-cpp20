@@ -25,4 +25,5 @@ main()
 {
     print(42);
     print(42_S);
+    return 0;
 }
