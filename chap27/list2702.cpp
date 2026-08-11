@@ -35,13 +35,12 @@ main()
         }
     }
     if (std::numeric_limits<T>::has_quiet_NaN) {
-        // There's no guarantee that your environment produces quiet NaNs for
-        // these illegal arithmetic operations. It's possible that your compiler's
-        // default is to produce signaling NaNs, or to terminate the program
-        // in some other way.
+        // There's no guarantee that your environment produces quiet NaNs for these illegal arithmetic operations.
+        // It's possible that your compiler's default is to produce signaling NaNs, or to terminate the program in some other way.
         T zero {};
         T inf { std::numeric_limits<T>::infinity() };
         std::cout << "zero/zero = " << zero / zero << '\n';
         std::cout << "inf/inf = " << inf / inf << '\n';
     }
+    return 0;
 }

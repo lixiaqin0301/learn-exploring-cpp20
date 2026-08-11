@@ -1,1 +1,0 @@
-list2701: SOURCE/list2701.cpp:9: int main(): Assertion `a * b == c' failed.

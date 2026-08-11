@@ -17,6 +17,8 @@ print(int precision, float value)
     std::cout << value << '\n';
 
     std::cout << std::format("{0:.{1}e}\n{0:.{1}f}\n{0:.{1}a}\n{0:.{1}g}\n", value, precision);
+
+    return;
 }
 
 /// Main program.
@@ -27,4 +29,5 @@ main()
     print(4, 1.23456789F);
     print(2, 123456789.F);
     print(5, -1234.5678e9F);
+    return 0;
 }
