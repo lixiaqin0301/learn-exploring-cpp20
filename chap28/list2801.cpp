@@ -3,8 +3,8 @@
 /** @file
  * @brief Tests strings to see whether they are palindromes.
  *
- * Reads lines from the input, strip non-letters, and checks whether
- * the result is a palindrome. Ignores case differences when checking.
+ * Reads lines from the input, strip non-letters, and checks whether the result is a palindrome.
+ * Ignores case differences when checking.
  * Echoes palindromes to the standard output.
  */
 
@@ -12,12 +12,10 @@
  * Tests input strings to see whether they are palindromes.
  *
  * A _palindrome_ is a string that reads the same forward and backward.
- * To test for palindromes, this program needs to strip punctuation and
- * other non-essential characters from the string, and compare letters without
- * regard to case differences.
+ * To test for palindromes, this program needs to strip punctuation and other non-essential characters from the string,
+ * and compare letters without regard to case differences.
  *
- * This program reads lines of text from the standard input and echoes
- * to the standard output those lines that are palindromes.
+ * This program reads lines of text from the standard input and echoes to the standard output those lines that are palindromes.
  *
  * Source file: list2801.cpp
  *
@@ -105,8 +103,11 @@ main(int argc, char *argv[])
     std::cin.imbue(std::locale {});
     std::cout.imbue(std::locale {});
 
-    for (std::string line {}; std::getline(std::cin, line); /*empty*/)
+    for (std::string line {}; std::getline(std::cin, line); /*empty*/) {
         if (is_palindrome(line)) {
             std::cout << line << '\n';
         }
+    }
+
+    return 0;
 }
