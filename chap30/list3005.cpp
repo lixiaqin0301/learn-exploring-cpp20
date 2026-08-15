@@ -47,4 +47,5 @@ main()
 {
     rational pi { 1420, 452 };
     std::cout << "pi is about " << pi.numerator << "/" << pi.denominator << '\n';
+    return 0;
 }

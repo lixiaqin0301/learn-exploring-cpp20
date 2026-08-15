@@ -36,4 +36,5 @@ main()
     rational pi {};
     pi.assign(1420, 452);
     std::cout << "pi is approximately " << pi.numerator << "/" << pi.denominator << '\n';
+    return 0;
 }

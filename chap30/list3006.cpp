@@ -19,7 +19,18 @@ struct rational {
     }
 
     /// Reduces the numerator and denominator by their GCD.
-#include "list3006.hh"
+    /// Reduces the numerator and denominator by their GCD.
+    void reduce()
+    {
+        assert(denominator != 0);
+        if (denominator < 0) {
+            denominator = -denominator;
+            numerator = -numerator;
+        }
+        int div { std::gcd(numerator, denominator) };
+        numerator = numerator / div;
+        denominator = denominator / div;
+    }
 
     int numerator; ///< numerator gets the sign of the rational value
     int denominator; ///< denominator is always positive
@@ -31,4 +42,5 @@ main()
     rational pi {};
     pi.assign(-1420, -452);
     std::cout << "pi is approximately " << pi.numerator << "/" << pi.denominator << '\n';
+    return 0;
 }

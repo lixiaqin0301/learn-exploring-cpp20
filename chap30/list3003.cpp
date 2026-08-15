@@ -1,7 +1,6 @@
 /** @file list3003.cpp */
 /** Listing 30-3. Adding the reduce Member Function */
 #include <cassert>
-
 #include <iostream>
 #include <numeric>
 
@@ -27,4 +26,5 @@ main()
     pi.denominator = 452;
     pi.reduce();
     std::cout << "pi is approximately " << pi.numerator << "/" << pi.denominator << '\n';
+    return 0;
 }
