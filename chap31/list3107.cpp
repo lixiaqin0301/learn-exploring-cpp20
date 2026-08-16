@@ -1,8 +1,7 @@
-#include "rational.hpp"
-
-#include "list3106.hh"
-#include "list3107.hh"
+/** Listing 31-7. Arithmetic Operators for the rational Type */
+#include "rational_class.hpp"
 #include "test.hpp"
+
 int
 main()
 {
@@ -21,4 +20,6 @@ main()
     TEST(c * f == a);
     TEST(e / g == b);
     TEST(f / g == b + b);
+
+    return 0;
 }

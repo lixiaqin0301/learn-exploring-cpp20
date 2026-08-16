@@ -1,7 +1,6 @@
+/** Listing 31-4. Implementing the > and >= Operators in Terms of < */
 #include "rational_class.hpp"
 
-#include "list3103.hh"
-#include "list3104.hh"
 int
 main()
 {
@@ -13,4 +12,6 @@ main()
     } else {
         std::cout << "failure\n";
     }
+
+    return 0;
 }

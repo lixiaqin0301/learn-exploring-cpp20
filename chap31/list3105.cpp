@@ -1,14 +1,7 @@
 /** @file list3105.cpp */
 /** Listing 31-5. Testing the rational Comparison Operators */
-#include <cassert>
-
+#include "rational_class.hpp"
 #include "test.hpp"
-#include <iostream>
-#include <numeric>
-
-// ... struct rational omitted for brevity ...
-
-#include "list3105.inc0"
 
 int
 main()
@@ -43,4 +36,6 @@ main()
     TEST(a < e);
     TEST(a <= e);
     TEST(a != e);
+
+    return 0;
 }

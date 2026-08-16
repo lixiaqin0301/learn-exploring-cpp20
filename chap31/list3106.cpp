@@ -1,7 +1,7 @@
-#include "rational.hpp"
-
-#include "list3106.hh"
+/** Listing 31-6. Addition Operator for the rational Type */
+#include "rational_class.hpp"
 #include "test.hpp"
+
 int
 main()
 {
@@ -12,4 +12,6 @@ main()
     TEST(a + a == b);
     TEST(-a == c);
     TEST(a == -(-a));
+
+    return 0;
 }

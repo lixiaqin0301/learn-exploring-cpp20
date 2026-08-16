@@ -1,6 +1,5 @@
-#include "rational.hpp"
-
-#include "list3110.hh"
+/** Listing 31-10. Optimizing Operators for a Specific Operand Type */
+#include "rational_class.hpp"
 int
 main()
 {
@@ -9,4 +8,5 @@ main()
     rational pi4 { 4 * pi };
     std::cout << pi2.numerator << '/' << pi2.denominator << '\n';
     std::cout << pi4.numerator << '/' << pi4.denominator << '\n';
+    return 0;
 }

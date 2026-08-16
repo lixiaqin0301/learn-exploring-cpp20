@@ -11,12 +11,7 @@ struct rational {
     /// @param num numerator
     /// @param den denominator
     /// @pre denominator > 0
-    rational(int num, int den)
-        : numerator { num }
-        , denominator { den }
-    {
-        reduce();
-    }
+    rational(int num, int den): numerator { num }, denominator { den } { reduce(); }
 
     /// Assigns a numerator and a denominator, then reduces to normal form.
     /// @param num numerator
@@ -73,4 +68,6 @@ main()
     } else {
         std::cout << "failure\n";
     }
+
+    return 0;
 }

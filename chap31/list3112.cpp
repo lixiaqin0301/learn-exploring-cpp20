@@ -12,8 +12,39 @@ struct rational {
     long double as_long_double() { return static_cast<long double>(numerator) / static_cast<long double>(denominator); }
 
     // ... omitted for brevity ...
+    /// Constructs a rational object, given a numerator and a denominator.
+    /// Always reduces to normal form.
+    /// @param num numerator
+    /// @param den denominator
+    /// @pre denominator > 0
+    rational(int num, int den): numerator { num }, denominator { den } { reduce(); }
 
-#include "list3112.inc0"
+    /// Assigns a numerator and a denominator, then reduces to normal form.
+    /// @param num numerator
+    /// @param den denominator
+    /// @pre denominator > 0
+    void assign(int num, int den)
+    {
+        numerator = num;
+        denominator = den;
+        reduce();
+    }
+
+    /// Reduces the numerator and denominator by their GCD.
+    void reduce()
+    {
+        assert(denominator != 0);
+        if (denominator < 0) {
+            denominator = -denominator;
+            numerator = -numerator;
+        }
+        int div { std::gcd(numerator, denominator) };
+        numerator = numerator / div;
+        denominator = denominator / div;
+    }
+
+    int numerator; ///< numerator gets the sign of the rational value
+    int denominator; ///< denominator is always positive
 };
 
 int
@@ -26,4 +57,5 @@ main()
     circumference = 2 * pi.as_double() * radius;
     std::cout << "circumference of circle with radius " << radius << " is about " << circumference << '\n';
     std::cout << "bmi = " << bmi.as_float() << '\n';
+    return 0;
 }

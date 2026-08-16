@@ -1,6 +1,6 @@
+/** Listing 31-3. Implementing the < Operator for rational */
 #include "rational_class.hpp"
 
-#include "list3103.hh"
 int
 main()
 {
@@ -12,4 +12,6 @@ main()
     } else {
         std::cout << "failure\n";
     }
+
+    return 0;
 }

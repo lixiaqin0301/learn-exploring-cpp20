@@ -1,6 +1,6 @@
+/** Listing 31-2. Using inline for Trivial Functions */
 #include "rational_class.hpp"
 
-#include "list3102.hh"
 int
 main()
 {
@@ -12,4 +12,6 @@ main()
     } else {
         std::cout << "failure\n";
     }
+
+    return 0;
 }
