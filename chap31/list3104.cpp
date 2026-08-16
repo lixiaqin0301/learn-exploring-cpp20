@@ -1,5 +1,6 @@
 /** Listing 31-4. Implementing the > and >= Operators in Terms of < */
 #include "rational_class.hpp"
+#include <iostream>
 
 int
 main()

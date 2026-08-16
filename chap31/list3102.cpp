@@ -1,5 +1,6 @@
 /** Listing 31-2. Using inline for Trivial Functions */
 #include "rational_class.hpp"
+#include <iostream>
 
 int
 main()

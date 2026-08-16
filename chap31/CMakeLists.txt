@@ -10,5 +10,3 @@ add_executable(list3109 list3109.cpp)
 add_executable(list3110 list3110.cpp)
 add_executable(list3111 list3111.cpp)
 add_executable(list3112 list3112.cpp)
-
-include_directories(..)

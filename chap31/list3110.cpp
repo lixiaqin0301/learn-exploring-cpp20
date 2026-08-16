@@ -1,5 +1,7 @@
 /** Listing 31-10. Optimizing Operators for a Specific Operand Type */
 #include "rational_class.hpp"
+#include <iostream>
+
 int
 main()
 {

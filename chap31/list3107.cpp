@@ -1,6 +1,6 @@
 /** Listing 31-7. Arithmetic Operators for the rational Type */
 #include "rational_class.hpp"
-#include "test.hpp"
+#include <iostream>
 
 int
 main()
@@ -13,13 +13,27 @@ main()
     rational f { 2 };
     rational g { 3 };
 
-    TEST(e - a == a);
-    TEST(g - e == f);
-    TEST(a * b == d);
-    TEST(a * f == e);
-    TEST(c * f == a);
-    TEST(e / g == b);
-    TEST(f / g == b + b);
+    if (not(e - a == a)) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(e - a == a)" << "\n";
+    }
+    if (not(g - e == f)) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(g - e == f)" << "\n";
+    }
+    if (not(a * b == d)) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(a * b == d)" << "\n";
+    }
+    if (not(a * f == e)) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(a * f == e)" << "\n";
+    }
+    if (not(c * f == a)) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(c * f == a)" << "\n";
+    }
+    if (not(e / g == b)) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(e / g == b)" << "\n";
+    }
+    if (not(f / g == b + b)) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(f / g == b + b)" << "\n";
+    }
 
     return 0;
 }

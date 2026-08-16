@@ -1,5 +1,6 @@
 /** Listing 31-3. Implementing the < Operator for rational */
 #include "rational_class.hpp"
+#include <iostream>
 
 int
 main()

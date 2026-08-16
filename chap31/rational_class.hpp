@@ -3,7 +3,6 @@
 
 #include <cassert>
 #include <cmath>
-#include <iostream>
 #include <numeric>
 
 /// Represents a rational number.
@@ -14,7 +13,7 @@ struct rational { /// Constructs a rational object, given a numerator and a deno
     /// @pre denominator > 0
     rational(int num, int den): numerator { num }, denominator { den } { reduce(); }
 
-    rational(int num): numerator { num }, denominator { 1 } { }
+    explicit rational(int num): numerator { num }, denominator { 1 } { }
 
     /// Assigns a numerator and a denominator, then reduces to normal form.
     /// @param num numerator
