@@ -1,15 +1,10 @@
 /** @file list3203.cpp */
 /** Listing 32-3. Testing the I/O Operators */
+#include "rational_class.hpp"
 #include <cassert>
 #include <fstream>
 #include <iostream>
-#include <numeric>
-#include <sstream>
 #include <string>
-
-// ... omitted for brevity ...
-
-#include "list3203.inc0"
 
 /// Tests for failbit only
 bool
@@ -32,12 +27,11 @@ main(int argc, char *argv[])
     rational r { 0 };
 
     while (std::cin) {
-        if (std::cin >> r)
+        if (std::cin >> r) {
             // Read succeeded, so no failure state is set in the stream.
             std::cout << r << '\n';
-        else if (not std::cin.eof()) {
-            // Only failbit is set, meaning invalid input. Clear the state,
-            // and then skip the rest of the input line.
+        } else if (not std::cin.eof()) {
+            // Only failbit is set, meaning invalid input. Clear the state, and then skip the rest of the input line.
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<int>::max(), '\n');
         }
@@ -46,4 +40,6 @@ main(int argc, char *argv[])
     if (std::cin.bad()) {
         std::cerr << "Unrecoverable input failure\n";
     }
+
+    return 0;
 }
