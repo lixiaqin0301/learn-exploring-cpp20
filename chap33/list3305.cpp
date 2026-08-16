@@ -9,28 +9,13 @@
 
 /// Represent a rational number (fraction) as a numerator and denominator.
 struct rational {
-    rational()
-        : rational { 0 }
-    { /*empty*/
-    }
+    rational(): rational { 0 } { /*empty*/ }
 
-    rational(int num)
-        : numerator { num }
-        , denominator { 1 }
-    { /*empty*/
-    }
+    rational(int num): numerator { num }, denominator { 1 } { /*empty*/ }
 
-    rational(int num, int den)
-        : numerator { num }
-        , denominator { den }
-    {
-        reduce();
-    }
+    rational(int num, int den): numerator { num }, denominator { den } { reduce(); }
 
-    rational(double r)
-        : rational { static_cast<int>(r * 10000), 10000 }
-    { /*empty*/
-    }
+    rational(double r): rational { static_cast<int>(r * 10000), 10000 } { /*empty*/ }
 
     rational &operator=(rational const &that)
     {
@@ -194,7 +179,13 @@ int
 main()
 {
     TEST(rational { 1 } == rational { 2, 2 });
-    //     ... Add tests, lots of tests
-
-#include "list3305.inc0"
+    TEST(rational { 0, 1 } == rational {});
+    TEST(rational { 2, 1 } == rational { 2 });
+    TEST(rational { 1, 2 } * rational { 2, 1 } == rational { 1 });
+    TEST(rational { 1, 2 } + rational { 1, 2 } == rational { 1 });
+    TEST(rational { 1, 2 } + rational { 2, 3 } == rational { 7, 6 });
+    TEST(rational { 1, 2 } - rational { 1, 3 } == rational { 1, 6 });
+    TEST(rational { 1 } / rational { 2 } == rational { 1, 2 });
+    TEST(rational { 1, 3 } / rational { 2, 3 } == rational { 1, 2 });
+    return 0;
 }
