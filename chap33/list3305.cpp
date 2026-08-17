@@ -178,14 +178,32 @@ operator<<(std::ostream &out, rational const &rat)
 int
 main()
 {
-    TEST(rational { 1 } == rational { 2, 2 });
-    TEST(rational { 0, 1 } == rational {});
-    TEST(rational { 2, 1 } == rational { 2 });
-    TEST(rational { 1, 2 } * rational { 2, 1 } == rational { 1 });
-    TEST(rational { 1, 2 } + rational { 1, 2 } == rational { 1 });
-    TEST(rational { 1, 2 } + rational { 2, 3 } == rational { 7, 6 });
-    TEST(rational { 1, 2 } - rational { 1, 3 } == rational { 1, 6 });
-    TEST(rational { 1 } / rational { 2 } == rational { 1, 2 });
-    TEST(rational { 1, 3 } / rational { 2, 3 } == rational { 1, 2 });
+    if (not(rational { 1 } == rational { 2, 2 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 1 } == rational { 2, 2 })" << "\n";
+    }
+    if (not(rational { 0, 1 } == rational {})) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 0, 1 } == rational {})" << "\n";
+    }
+    if (not(rational { 2, 1 } == rational { 2 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 2, 1 } == rational { 2 })" << "\n";
+    }
+    if (not(rational { 1, 2 } * rational { 2, 1 } == rational { 1 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 1, 2 } * rational { 2, 1 } == rational { 1 })" << "\n";
+    }
+    if (not(rational { 1, 2 } + rational { 1, 2 } == rational { 1 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 1, 2 } + rational { 1, 2 } == rational { 1 })" << "\n";
+    }
+    if (not(rational { 1, 2 } + rational { 2, 3 } == rational { 7, 6 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 1, 2 } + rational { 2, 3 } == rational { 7, 6 })" << "\n";
+    }
+    if (not(rational { 1, 2 } - rational { 1, 3 } == rational { 1, 6 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 1, 2 } - rational { 1, 3 } == rational { 1, 6 })" << "\n";
+    }
+    if (not(rational { 1 } / rational { 2 } == rational { 1, 2 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 1 } / rational { 2 } == rational { 1, 2 })" << "\n";
+    }
+    if (not(rational { 1, 3 } / rational { 2, 3 } == rational { 1, 2 })) {
+        std::cerr << "FAIL in " << __FILE_NAME__ << " in line " << __LINE__ << " " << "(rational { 1, 3 } / rational { 2, 3 } == rational { 1, 2 })" << "\n";
+    }
     return 0;
 }
