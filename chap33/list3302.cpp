@@ -4,6 +4,7 @@
 #include <numeric>
 
 class rational {
+public:
     rational &operator=(rational const &that)
     {
         this->numerator = that.numerator;
@@ -29,6 +30,10 @@ class rational {
 int
 main()
 {
-    rational r;
+    rational a;
+    a.numerator = 1;
+    a.denominator = 1;
+    rational b;
+    b = a;
     return 0;
 }
