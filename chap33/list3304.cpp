@@ -1,5 +1,6 @@
 /** Listing 33-4. Overloaded Constructors for rational */
 class rational {
+public:
     rational(): rational { 0, 1 } { }
     rational(int, int) { }
 };

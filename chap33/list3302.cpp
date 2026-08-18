@@ -5,6 +5,7 @@
 
 class rational {
 public:
+    rational(int num, int den): numerator { num }, denominator { den } { }
     rational &operator=(rational const &that)
     {
         this->numerator = that.numerator;
@@ -12,8 +13,8 @@ public:
         reduce();
         return *this;
     }
-    int numerator;
-    int denominator;
+
+private:
     void reduce()
     {
         assert(denominator != 0);
@@ -25,15 +26,15 @@ public:
         numerator = numerator / div;
         denominator = denominator / div;
     }
+    int numerator;
+    int denominator;
 };
 
 int
 main()
 {
-    rational a;
-    a.numerator = 1;
-    a.denominator = 1;
-    rational b;
+    rational a { 1, 1 };
+    rational b { 2, 1 };
     b = a;
     return 0;
 }

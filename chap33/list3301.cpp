@@ -4,7 +4,21 @@
 #include <numeric>
 
 struct rational {
+    rational() = default;
+    rational(rational const &rhs) { assign(rhs); }
+    rational(rational &&rhs) { assign(rhs); }
+    rational &operator=(rational const &rhs) { return assign(rhs); }
+    rational &operator=(rational &&rhs) { return assign(rhs); };
     rational(int num, int den): numerator { num }, denominator { den } { reduce(); }
+
+private:
+    rational &assign(rational const &rhs)
+    {
+        numerator = rhs.numerator;
+        denominator = rhs.denominator;
+        reduce();
+        return *this;
+    }
     void reduce()
     {
         assert(denominator != 0);
@@ -16,16 +30,8 @@ struct rational {
         numerator = numerator / div;
         denominator = denominator / div;
     }
-
-    rational &operator=(rational const &rhs)
-    {
-        numerator = rhs.numerator;
-        denominator = rhs.denominator;
-        reduce();
-        return *this;
-    }
-    int numerator;
-    int denominator;
+    int numerator = 0;
+    int denominator = 1;
 };
 
 int
