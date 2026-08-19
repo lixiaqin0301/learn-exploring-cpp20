@@ -3,21 +3,9 @@
 #include <iostream>
 
 struct demo {
-    demo()
-        : demo { 0 }
-    {
-        std::cout << "default constructor\n";
-    }
-    demo(int x)
-        : x_ { x }
-    {
-        std::cout << "constructor(" << x << ")\n";
-    }
-    demo(demo const &that)
-        : x_ { that.x_ }
-    {
-        std::cout << "copy constructor(" << x_ << ")\n";
-    }
+    demo(): demo { 0 } { std::cout << "default constructor\n"; }
+    demo(int x): x_ { x } { std::cout << "constructor(" << x << ")\n"; }
+    demo(demo const &that): x_ { that.x_ } { std::cout << "copy constructor(" << x_ << ")\n"; }
     int x_;
 };
 
@@ -35,4 +23,5 @@ main()
     demo d2 { d1 };
     demo d3 { 42 };
     demo d4 { addone(d3) };
+    return 0;
 }

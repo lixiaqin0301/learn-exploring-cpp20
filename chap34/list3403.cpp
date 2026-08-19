@@ -17,4 +17,5 @@ main()
     unity.y = 1;
     std::cout << "origin = (" << origin.x << ", " << origin.y << ")\n";
     std::cout << "unity  = (" << unity.x << ", " << unity.y << ")\n";
+    return 0;
 }
