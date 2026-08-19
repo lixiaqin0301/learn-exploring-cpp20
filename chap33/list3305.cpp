@@ -1,6 +1,5 @@
 /** @file list3305.cpp */
 /** Listing 33-5. Complete Definition of rational and Its Operators */
-#include "test.hpp"
 #include <cassert>
 #include <cmath>
 #include <iostream>
@@ -9,25 +8,20 @@
 
 /// Represent a rational number (fraction) as a numerator and denominator.
 struct rational {
-    rational(): rational { 0 } { /*empty*/ }
+public:
+    rational() = default;
+    rational(rational const &rhs) = default;
+    rational(rational &&rhs) noexcept = default;
+    rational &operator=(rational const &rhs) = default;
+    rational &operator=(rational &&rhs) noexcept = default;
+    ~rational() = default;
 
-    rational(int num): numerator { num }, denominator { 1 } { /*empty*/ }
-
+    explicit rational(int num): numerator { num }, denominator { 1 } { }
     rational(int num, int den): numerator { num }, denominator { den } { reduce(); }
-
-    rational(double r): rational { static_cast<int>(r * 10000), 10000 } { /*empty*/ }
-
-    rational &operator=(rational const &that)
-    {
-        this->numerator = that.numerator;
-        this->denominator = that.denominator;
-        return *this;
-    }
+    explicit rational(double r): rational { static_cast<int>(r * 10000), 10000 } { }
 
     float as_float() { return static_cast<float>(numerator) / denominator; }
-
     double as_double() { return static_cast<double>(numerator) / denominator; }
-
     long double as_long_double() { return static_cast<long double>(numerator) / denominator; }
 
     /// Assign a numerator and a denominator, then reduce to normal form.
@@ -38,6 +32,7 @@ struct rational {
         reduce();
     }
 
+private:
     /// Reduce the numerator and denominator by their GCD.
     void reduce()
     {
@@ -51,8 +46,9 @@ struct rational {
         denominator = denominator / div;
     }
 
-    int numerator;
-    int denominator;
+public:
+    int numerator = 0;
+    int denominator = 1;
 };
 
 /// Absolute value of a rational number.
@@ -145,20 +141,20 @@ operator>>(std::istream &in, rational &rat)
 {
     int n { 0 }, d { 0 };
     char sep { '\0' };
-    if (not(in >> n >> sep))
+    if (not(in >> n >> sep)) {
         // Error reading the numerator or the separator character.
         in.setstate(in.failbit);
-    else if (sep != '/') {
-        // Push sep back into the input stream, so the next input operation
-        // will read it.
+    } else if (sep != '/') {
+        // Push sep back into the input stream, so the next input operation will read it.
         in.unget();
         rat.assign(n, 1);
-    } else if (in >> d)
+    } else if (in >> d) {
         // Successfully read numerator, separator, and denominator.
         rat.assign(n, d);
-    else
+    } else {
         // Error reading denominator.
         in.setstate(in.failbit);
+    }
 
     return in;
 }

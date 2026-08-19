@@ -1,18 +1,22 @@
 /** Listing 33-2. Assignment Operator with Explicit Use of this-> */
-
 #include <cassert>
 #include <numeric>
 
 class rational {
 public:
-    rational(int num, int den): numerator { num }, denominator { den } { }
-    rational &operator=(rational const &that)
+    rational() = default;
+    rational(rational const &rhs) = default;
+    rational(rational &&rhs) noexcept = default;
+    rational &operator=(rational const &rhs)
     {
-        this->numerator = that.numerator;
-        this->denominator = that.denominator;
+        this->numerator = rhs.numerator;
+        this->denominator = rhs.denominator;
         reduce();
         return *this;
     }
+    rational &operator=(rational &&rhs) noexcept = default;
+    ~rational() = default;
+    rational(int num, int den): numerator { num }, denominator { den } { reduce(); }
 
 private:
     void reduce()
@@ -26,15 +30,15 @@ private:
         numerator = numerator / div;
         denominator = denominator / div;
     }
-    int numerator;
-    int denominator;
+    int numerator = 0;
+    int denominator = 1;
 };
 
 int
 main()
 {
-    rational a { 1, 1 };
-    rational b { 2, 1 };
+    rational a { 3, 3 };
+    rational b;
     b = a;
     return 0;
 }
