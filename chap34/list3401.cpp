@@ -10,6 +10,6 @@ int
 main()
 {
     point p { 1.0, 2.0 };
-    std::cout << "p={" << p.x << "," << p.y << "\n";
+    std::cout << "p = {x:" << p.x << ", y:" << p.y << "}\n";
     return 0;
 }

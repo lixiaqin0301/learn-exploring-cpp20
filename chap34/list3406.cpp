@@ -4,8 +4,22 @@
 
 struct demo {
     demo(): demo { 0 } { std::cout << "default constructor\n"; }
-    demo(int x): x_ { x } { std::cout << "constructor(" << x << ")\n"; }
     demo(demo const &that): x_ { that.x_ } { std::cout << "copy constructor(" << x_ << ")\n"; }
+    demo(demo &&that) noexcept: x_ { that.x_ } { std::cout << "move constructor(" << x_ << ")\n"; }
+    demo &operator=(demo const &that)
+    {
+        x_ = that.x_;
+        std::cout << "copy operator=(" << x_ << ")\n";
+        return *this;
+    }
+    demo &operator=(demo &&that) noexcept
+    {
+        x_ = that.x_;
+        std::cout << "move operator=(" << x_ << ")\n";
+        return *this;
+    }
+    ~demo() { std::cout << "deconstructor(" << x_ << ")\n"; }
+    explicit demo(int x): x_ { x } { std::cout << "constructor(" << x << ")\n"; }
     int x_;
 };
 

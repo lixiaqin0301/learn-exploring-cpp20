@@ -15,7 +15,7 @@ main()
     origin.y = 0;
     unity.x = 1;
     unity.y = 1;
-    std::cout << "origin = (" << origin.x << ", " << origin.y << ")\n";
-    std::cout << "unity  = (" << unity.x << ", " << unity.y << ")\n";
+    std::cout << "origin = {x:" << origin.x << ", y:" << origin.y << "}\n";
+    std::cout << "unity  = {x:" << unity.x << ", y:" << unity.y << "}\n";
     return 0;
 }
