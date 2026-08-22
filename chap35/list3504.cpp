@@ -1,12 +1,34 @@
 /** @file list3504.cpp */
 /** Listing 35-4. Calling const and Non-const Member Functions */
-#include <cmath>
+#include <cmath> // for sqrt and atan2
 #include <iostream>
 
-// Use the same point definition as Listing 35-3
-// ... omitted for brevity ...
+struct point {
+    /// Distance to the origin.
+    double distance() const { return std::sqrt(x * x + y * y); }
+    /// Angle relative to x-axis.
+    double angle() const { return std::atan2(y, x); }
 
-#include "list3504.inc0"
+    /// Add an offset to x and y.
+    void offset(double off) { offset(off, off); }
+    /// Add an offset to x and an offset to y
+    void offset(double xoff, double yoff)
+    {
+        x = x + xoff;
+        y = y + yoff;
+    }
+
+    /// Scale x and y.
+    void scale(double mult) { this->scale(mult, mult); }
+    /// Scale x and y.
+    void scale(double xmult, double ymult)
+    {
+        this->x = this->x * xmult;
+        this->y = this->y * ymult;
+    }
+    double x;
+    double y;
+};
 
 void
 print_polar(point const &pt)
@@ -36,4 +58,5 @@ main()
     p2.offset(0.0, -2.0);
     print_polar(p2);
     print_cartesian(p2);
+    return 0;
 }

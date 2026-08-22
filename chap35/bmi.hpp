@@ -11,14 +11,14 @@
 #include <vector>
 
 /// Compute body-mass index from height in centimeters and weight in kilograms.
-int
+inline int
 compute_bmi(int height, int weight)
 {
     return static_cast<int>(weight * 10000 / (height * height) + 0.5);
 }
 
 /// Skip the rest of the input line.
-void
+inline void
 skip_line(std::istream &in)
 {
     in.ignore(std::numeric_limits<int>::max(), '\n');
@@ -27,14 +27,7 @@ skip_line(std::istream &in)
 /// Represent one person's record, storing the person's name, height, weight,
 /// sex, and body-mass index (BMI), which is computed from the height and weight.
 struct record {
-    record()
-        : height_ { 0 }
-        , weight_ { 0 }
-        , bmi_ { 0 }
-        , sex_ { '?' }
-        , name_ {}
-    {
-    }
+    record(): height_ { 0 }, weight_ { 0 }, bmi_ { 0 }, sex_ { '?' }, name_ {} { }
 
     /// Get this record, overwriting the data members.
     /// Error-checking omitted for brevity.
@@ -79,7 +72,16 @@ struct record {
         return true;
     }
 
-#include "list3502.hh"
+    /// Print this record to @p out.
+    void print(std::ostream &out, int threshold) const
+    {
+        out << std::setw(6) << height_ << std::setw(7) << weight_ << std::setw(3) << sex_ << std::setw(6) << bmi_;
+        if (bmi_ >= threshold)
+            out << '*';
+        else
+            out << ' ';
+        out << ' ' << name_ << '\n';
+    }
 
     int height_; ///< height in centimeters
     int weight_; ///< weight in kilograms
@@ -93,7 +95,7 @@ struct record {
  * Print only records for which sex matches @p sex.
  * At the end of each table, print the mean and median BMI.
  */
-void
+inline void
 print_table(char sex, std::vector<record> &records, int threshold)
 {
     std::cout << "Ht(cm) Wt(kg) Sex  BMI  Name\n";

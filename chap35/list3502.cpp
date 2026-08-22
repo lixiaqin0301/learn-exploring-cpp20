@@ -1,6 +1,5 @@
-#include <fstream>
-
 #include "bmi.hpp" // includes list3502.hh
+#include <fstream>
 
 /** Main program to compute BMI. */
 int
@@ -40,4 +39,6 @@ main(int argc, char *argv[])
     print_table('M', records, threshold);
     std::cout << "\nFemale data\n";
     print_table('F', records, threshold);
+
+    return 0;
 }

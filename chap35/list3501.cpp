@@ -7,7 +7,6 @@
 #include <iostream>
 #include <limits>
 #include <locale>
-#include <ranges>
 #include <string>
 #include <vector>
 
@@ -28,14 +27,7 @@ skip_line(std::istream &in)
 /// Represent one person's record, storing the person's name, height, weight,
 /// sex, and body-mass index (BMI), which is computed from the height and weight.
 struct record {
-    record()
-        : height_ { 0 }
-        , weight_ { 0 }
-        , bmi_ { 0 }
-        , sex_ { '?' }
-        , name_ {}
-    {
-    }
+    record(): height_ { 0 }, weight_ { 0 }, bmi_ { 0 }, sex_ { '?' }, name_ {} { }
 
     /// Get this record, overwriting the data members.
     /// Error-checking omitted for brevity.
@@ -178,4 +170,6 @@ main(int argc, char *argv[])
     print_table('M', records, threshold);
     std::cout << "\nFemale data\n";
     print_table('F', records, threshold);
+
+    return 0;
 }
