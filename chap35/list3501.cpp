@@ -14,7 +14,7 @@
 int
 compute_bmi(int height, int weight)
 {
-    return static_cast<int>(weight * 10000 / (height * height) + 0.5);
+    return static_cast<int>(weight * 10000.0 / (height * height) + 0.5);
 }
 
 /// Skip the rest of the input line.
@@ -22,10 +22,10 @@ void
 skip_line(std::istream &in)
 {
     in.ignore(std::numeric_limits<int>::max(), '\n');
+    return;
 }
 
-/// Represent one person's record, storing the person's name, height, weight,
-/// sex, and body-mass index (BMI), which is computed from the height and weight.
+/// Represent one person's record, storing the person's name, height, weight, sex, and body-mass index (BMI), which is computed from the height and weight.
 struct record {
     record(): height_ { 0 }, weight_ { 0 }, bmi_ { 0 }, sex_ { '?' }, name_ {} { }
 
@@ -62,8 +62,7 @@ struct record {
         skip_line(in);
         sex = std::toupper(sex, std::locale());
 
-        // Store information into data members only after reading
-        // everything successfully.
+        // Store information into data members only after reading everything successfully.
         name_ = name;
         height_ = height;
         weight_ = weight;
@@ -103,8 +102,7 @@ print_table(char sex, std::vector<record> &records, int threshold)
 
     float bmi_sum {};
     long int bmi_count {};
-    std::vector<int> tmpbmis {}; // store only the BMIs that are printed
-                                 // in order to compute the median
+    std::vector<int> tmpbmis {}; // store only the BMIs that are printed in order to compute the median
     for (auto rec : records) {
         if (rec.sex_ == sex) {
             bmi_sum = bmi_sum + rec.bmi_;
@@ -118,8 +116,7 @@ print_table(char sex, std::vector<record> &records, int threshold)
     if (bmi_count != 0) {
         std::cout << "Mean BMI = " << std::setprecision(1) << std::fixed << bmi_sum / bmi_count << '\n';
 
-        // Median BMI is trickier. The easy way is to sort the
-        // vector and pick out the middle item or items.
+        // Median BMI is trickier. The easy way is to sort the vector and pick out the middle item or items.
         std::ranges::sort(tmpbmis);
         std::cout << "Median BMI = ";
         // Index of median item.
@@ -130,6 +127,7 @@ print_table(char sex, std::vector<record> &records, int threshold)
             std::cout << tmpbmis.at(i) << '\n';
         }
     }
+    return;
 }
 
 /** Main program to compute BMI. */
@@ -157,8 +155,7 @@ main(int argc, char *argv[])
     }
     skip_line(std::cin);
 
-    std::cout << "Enter name, height (in cm),"
-                 " and weight (in kg) for each person:\n";
+    std::cout << "Enter name, height (in cm), and weight (in kg) for each person:\n";
     record rec {};
     while (rec.read(std::cin, records.size() + 1)) {
         records.emplace_back(rec);

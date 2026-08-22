@@ -34,12 +34,14 @@ void
 print_polar(point const &pt)
 {
     std::cout << "{ r=" << pt.distance() << ", angle=" << pt.angle() << " }\n";
+    return;
 }
 
 void
 print_cartesian(point const &pt)
 {
     std::cout << "{ x=" << pt.x << ", y=" << pt.y << " }\n";
+    return;
 }
 
 int

@@ -26,8 +26,7 @@ main(int argc, char *argv[])
     }
     skip_line(std::cin);
 
-    std::cout << "Enter name, height (in cm),"
-                 " and weight (in kg) for each person:\n";
+    std::cout << "Enter name, height (in cm), and weight (in kg) for each person:\n";
     record rec {};
     while (rec.read(std::cin, records.size() + 1)) {
         records.emplace_back(rec);
