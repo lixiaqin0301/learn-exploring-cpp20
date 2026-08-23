@@ -1,24 +1,25 @@
 /** @file list3805.cxx */
 /** Listing 38-5. Accidentally Inheriting Privately */
-class base
-{
+class base {
 public:
-  base(int v) : value_{v} {}
-  int value() const { return value_; }
+    base(int v): value_ { v } { }
+    int value() const { return value_; }
+
 private:
-  int value_;
+    int value_;
 };
 
-class derived : base
-{
+class derived : base {
 public:
-  derived() : base{42} {}
+    derived(): base { 42 } { }
 };
 
-int main()
+int
+main()
 {
-  base b{42};
-  int x{b.value()};
-  derived d{};
-  int y{d.value()};
+    base b { 42 };
+    int x { b.value() };
+    derived d {};
+    // int y { d.value() };
+    return 0;
 }

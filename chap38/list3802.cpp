@@ -21,4 +21,5 @@ int
 main()
 {
     derived d;
+    return 0;
 }
