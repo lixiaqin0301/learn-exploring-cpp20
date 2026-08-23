@@ -9,18 +9,14 @@
 class rational {
 public:
     rational(): rational { 0 } { }
-    rational(int num): numerator_ { num }, denominator_ { 1 } { } // no need to reduce
-    rational(rational const &) = default;
     rational(int num, int den): numerator_ { num }, denominator_ { den } { reduce(); }
-
-    rational(double r): rational { static_cast<int>(r * 100000), 100000 } { reduce(); }
+    explicit rational(int num): numerator_ { num }, denominator_ { 1 } { } // no need to reduce
+    explicit rational(double r): rational { static_cast<int>(r * 100000), 100000 } { reduce(); }
 
     int numerator() const { return numerator_; }
     int denominator() const { return denominator_; }
     float to_float() const { return static_cast<float>(numerator()) / denominator(); }
-
     double to_double() const { return static_cast<double>(numerator()) / denominator(); }
-
     long double to_long_double() const { return static_cast<long double>(numerator()) / denominator(); }
 
     /// Assign a numerator and a denominator, then reduce to normal form.
