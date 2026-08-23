@@ -23,6 +23,8 @@ public:
 int
 main()
 {
-    derived d;
+    {
+        derived d;
+    }
     return 0;
 }
