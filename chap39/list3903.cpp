@@ -58,7 +58,7 @@ int
 main()
 {
     std::vector<std::unique_ptr<work>> vec;
-    vec.push_back(std::make_unique<book>("11", "book12", "HuangShizhu", 2026));
+    vec.push_back(std::make_unique<book>("11", "book12", "LiXiaqin", 2026));
     vec.push_back(std::make_unique<periodical>("21", "periodical22", 23, 24, "2026-08-28"));
     for (auto const &i : vec) {
         std::cout << *i << '\n';
