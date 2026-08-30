@@ -24,4 +24,5 @@ main()
     std::vector<int> move { std::move(source) };
     print(move);
     print(source);
+    return 0;
 }

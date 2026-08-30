@@ -7,10 +7,7 @@
 /// Height in centimeters
 class height {
 public:
-    height(int h)
-        : value_ { h }
-    {
-    }
+    height(int h): value_ { h } { }
     int value() const { return value_; }
 
 private:
@@ -20,10 +17,7 @@ private:
 /// Weight in kilograms
 class weight {
 public:
-    weight(int w)
-        : value_ { w }
-    {
-    }
+    weight(int w): value_ { w } { }
     int value() const { return value_; }
 
 private:
@@ -53,14 +47,8 @@ operator>>(std::istream &stream, weight &wt)
 /// Body-mass index
 class bmi {
 public:
-    bmi()
-        : value_ { 0 }
-    {
-    }
-    bmi(height h, weight w)
-        : value_ { (w.value() * 10000) / (h.value() * h.value()) }
-    {
-    }
+    bmi(): value_ { 0 } { }
+    bmi(height h, weight w): value_ { (w.value() * 10000) / (h.value() * h.value()) } { }
     int value() const { return value_; }
 
 private:
@@ -93,4 +81,6 @@ main(int argc, char *argv[])
     std::cin >> w;
 
     std::cout << "Bogus metabolic index = " << bmi(h, w) << '\n';
+
+    return 0;
 }

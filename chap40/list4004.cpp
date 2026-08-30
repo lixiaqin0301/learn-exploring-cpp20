@@ -8,17 +8,9 @@
 
 class color {
 public:
-    color()
-        : color { 0, 0, 0 }
-    {
-    }
+    color(): color { 0, 0, 0 } { }
     color(color const &) = default;
-    color(int r, int g, int b)
-        : red_ { r }
-        , green_ { g }
-        , blue_ { b }
-    {
-    }
+    color(int r, int g, int b): red_ { r }, green_ { g }, blue_ { b } { }
     int red() const { return red_; }
     int green() const { return green_; }
     int blue() const { return blue_; }
@@ -55,8 +47,7 @@ operator<<(std::ostream &out, color const &c)
 {
     std::ostringstream tmp {};
     // The hex manipulator tells a stream to write or read in hexadecimal (base 16).
-    // Use a temporary stream in case the out stream has its own formatting,
-    // such as width, adjustment.
+    // Use a temporary stream in case the out stream has its own formatting, such as width, adjustment.
     tmp << '#' << std::hex << std::setw(6) << std::setfill('0') << c.combined();
     out << tmp.str();
     return out;
@@ -65,11 +56,7 @@ operator<<(std::ostream &out, color const &c)
 class ioflags {
 public:
     /// Save the formatting flags from @p stream.
-    ioflags(std::basic_ios<char> &stream)
-        : stream_ { stream }
-        , flags_ { stream.flags() }
-    {
-    }
+    ioflags(std::basic_ios<char> &stream): stream_ { stream }, flags_ { stream.flags() } { }
     ioflags(ioflags const &) = delete;
     /// Restore the formatting flags.
     ~ioflags() { stream_.flags(flags_); }
@@ -133,4 +120,6 @@ main(int argc, char *argv[])
             std::cout << c << '\n';
         }
     }
+
+    return 0;
 }

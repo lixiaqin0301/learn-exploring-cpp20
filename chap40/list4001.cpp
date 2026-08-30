@@ -34,4 +34,6 @@ main(int argc, char *argv[])
     std::cin >> w;
 
     std::cout << "Bogus Metabolic Index = " << compute_bmi(w, h) << '\n';
+
+    return 0;
 }
