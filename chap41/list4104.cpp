@@ -26,4 +26,6 @@ main(int argc, char *argv[])
     }
     auto longest { std::ranges::max(data, [](std::string const &a, std::string const &b) { return a.size() < b.size(); }) };
     std::cout << "Longest string is \"" << longest << "\"\n";
+
+    return 0;
 }

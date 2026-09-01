@@ -16,4 +16,5 @@ main()
     for (int i { 0 }; i != 10; ++i) {
         std::cout << generate_id() << '\n';
     }
+    return 0;
 }

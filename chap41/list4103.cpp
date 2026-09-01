@@ -11,4 +11,5 @@ main()
     std::cout << answer << '\n';
     int const &cent { ref * 10 }; // declaration; must be const to initialize with expr
     std::cout << cent << '\n';
+    return 0;
 }

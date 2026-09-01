@@ -27,21 +27,9 @@ private:
     int denominator_;
 };
 
-rational::rational()
-    : rational { 0, 1 }
-{
-}
-rational::rational(int num)
-    : numerator_ { num }
-    , denominator_ { 1 }
-{
-}
-rational::rational(int num, int den)
-    : numerator_ { num }
-    , denominator_ { den }
-{
-    reduce();
-}
+rational::rational(): rational { 0, 1 } { }
+rational::rational(int num): numerator_ { num }, denominator_ { 1 } { }
+rational::rational(int num, int den): numerator_ { num }, denominator_ { den } { reduce(); }
 
 std::ostream &
 operator<<(std::ostream &out, rational const &r)
@@ -57,4 +45,5 @@ int
 main()
 {
     std::cout << "pi = " << rational::pi << '\n';
+    return 0;
 }

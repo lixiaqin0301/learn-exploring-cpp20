@@ -4,10 +4,7 @@
 
 class generate_id {
 public:
-    generate_id()
-        : counter_ { 0 }
-    {
-    }
+    generate_id(): counter_ { 0 } { }
     long next();
 
 private:
@@ -36,4 +33,5 @@ main()
     for (int i { 0 }; i != 10; ++i) {
         std::cout << gen.next() << '\n';
     }
+    return 0;
 }
