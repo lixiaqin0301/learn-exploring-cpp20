@@ -18,13 +18,18 @@ main(int argc, char *argv[])
         }
     }
 
-    std::vector<std::string> data { std::istream_iterator<std::string>(std::cin), std::istream_iterator<std::string>() };
+    std::vector<std::string> data {
+        std::istream_iterator<std::string>(std::cin),
+        std::istream_iterator<std::string>()
+    };
 
     // Ensure at least one string to measure.
     if (data.empty()) {
         data.emplace_back();
     }
-    auto longest { std::ranges::max(data, [](std::string const &a, std::string const &b) { return a.size() < b.size(); }) };
+    auto longest { std::ranges::max(data, [](std::string const &a, std::string const &b) {
+        return a.size() < b.size();
+    }) };
     std::cout << "Longest string is \"" << longest << "\"\n";
 
     return 0;
