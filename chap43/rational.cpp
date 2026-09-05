@@ -4,13 +4,16 @@
 #include <cassert>
 #include <numeric>
 #include <ostream>
+
 void
 rational::assign(int num, int den)
 {
     numerator_ = num;
     denominator_ = den;
     reduce();
+    return;
 }
+
 void
 rational::reduce()
 {
@@ -22,7 +25,9 @@ rational::reduce()
     int div { std::gcd(numerator_, denominator_) };
     numerator_ = numerator_ / div;
     denominator_ = denominator_ / div;
+    return;
 }
+
 rational &
 rational::operator=(int num)
 {
@@ -30,6 +35,7 @@ rational::operator=(int num)
     denominator_ = 1;
     return *this;
 }
+
 std::ostream &
 operator<<(std::ostream &stream, rational const &r)
 {

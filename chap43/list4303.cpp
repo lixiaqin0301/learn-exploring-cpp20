@@ -8,4 +8,5 @@ main()
 {
     rational pi { 3927, 1250 };
     std::cout << "pi approximately equals " << pi << '\n';
+    return 0;
 }

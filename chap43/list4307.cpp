@@ -8,4 +8,5 @@ main()
 {
     std::cout << "Welcome to " << program_name << ' ' << program_version << '\n';
     std::cout << program_credits;
+    return 0;
 }
