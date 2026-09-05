@@ -1,6 +1,5 @@
 /** @file list4211.cpp */
 /** Listing 42-11. Main Program Imports a, b, and c */
-// module;
 #include "b.hpp"
 #include "c.hpp"
 #include <fstream>

@@ -1,4 +1,6 @@
 #ifndef A_HPP_
 #define A_HPP_
-#include "list4208.cc"
+
+double constexpr pi = 3.14159265358979323;
+
 #endif

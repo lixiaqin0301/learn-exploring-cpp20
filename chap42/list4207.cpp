@@ -1,3 +1,4 @@
+/** Listing 42-7. The vital_stats Class to Record a Person’s Vital Statistics */
 #include "stats.hpp"
 #include <fstream>
 #include <iostream>
@@ -22,4 +23,5 @@ main(int argc, char *argv[])
         ++count;
         stats.print(std::cout, threshold);
     }
+    return 0;
 }
