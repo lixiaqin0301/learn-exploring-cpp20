@@ -1,6 +1,5 @@
 /** @file generate_id.cpp */
 /** Listing 44-2. Implementation of the generate_id Function Call Operator */
-// module generate_id;
 #include "generate_id.hpp"
 
 short generate_id::prefix_ { 1 };

@@ -39,4 +39,6 @@ main(int argc, char *argv[])
         movie m(int_to_id(gen()), title, runtime);
         std::cout << "new movie: " << m << '\n';
     }
+
+    return 0;
 }
