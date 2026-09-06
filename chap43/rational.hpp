@@ -6,12 +6,12 @@
 #include <iosfwd>
 class rational {
 public:
-    inline rational(int num): numerator_ { num }, denominator_ { 1 } { }
-    inline rational(rational const &) = default;
-    inline rational(int num, int den): numerator_ { num }, denominator_ { den } { reduce(); }
+    rational(int num): numerator_ { num }, denominator_ { 1 } { }
+    rational(rational const &) = default;
+    rational(int num, int den): numerator_ { num }, denominator_ { den } { reduce(); }
     void assign(int num, int den);
-    inline int numerator() const { return numerator_; }
-    inline int denominator() const { return denominator_; }
+    int numerator() const { return numerator_; }
+    int denominator() const { return denominator_; }
     rational &operator=(int num);
 
 private:
