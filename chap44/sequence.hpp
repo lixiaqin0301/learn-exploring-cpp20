@@ -13,7 +13,7 @@ public:
     /// Return the current value in the sequence, and increment the value.
     int operator()()
     {
-        int result(value_);
+        int result { value_ };
         value_ = value_ + step_;
         return result;
     }
