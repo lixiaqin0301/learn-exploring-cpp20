@@ -6,9 +6,9 @@ public:
     /// Construct the functor.
     /// @param start the first value the generator returns
     /// @param step increment the value by this much for each call
-    inline sequence(int start, int step): value_ { start }, step_ { step } { }
-    inline sequence(int start): sequence { start, 1 } { }
-    inline sequence(): sequence { 0 } { }
+    sequence(int start, int step): value_ { start }, step_ { step } { }
+    explicit sequence(int start): sequence { start, 1 } { }
+    sequence(): sequence { 0 } { }
 
     /// Return the current value in the sequence, and increment the value.
     int operator()()
