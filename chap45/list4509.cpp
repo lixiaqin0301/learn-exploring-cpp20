@@ -1,13 +1,10 @@
 /** @file list4509.cpp */
 /** Listing 45-9. Testing Various Comparison Algorithms */
+#include "data.hpp"
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <ranges>
 #include <string>
-#include <vector>
-
-#include "data.hpp"
 
 int
 main(int argc, char *argv[])
@@ -43,4 +40,6 @@ main(int argc, char *argv[])
     std::cout << "mismatch(data1, data2) = index " << std::distance(data1.begin(), result.in2) << '\n';
 
     std::cout << "lex_comp(data1, data2) = " << std::ranges::lexicographical_compare(data1, data2) << '\n';
+
+    return 0;
 }

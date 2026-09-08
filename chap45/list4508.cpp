@@ -1,11 +1,8 @@
 /** @file list4508.cpp */
 /** Listing 45-8. Exploring the lower_bound and upper_bound Functions */
+#include "data.hpp"
 #include <algorithm>
 #include <iostream>
-#include <ranges>
-#include <vector>
-
-#include "data.hpp"
 
 int
 main()
@@ -20,4 +17,6 @@ main()
         auto ub { std::upper_bound(data.begin(), data.end(), test) };
         std::cout << "bounds of " << test << ": { " << std::distance(data.begin(), lb) << ", " << std::distance(data.begin(), ub) << " }\n";
     }
+
+    return 0;
 }

@@ -1,9 +1,8 @@
 /** @file list4501.cpp */
 /** Listing 45-1. Searching for an Integer */
+#include "data.hpp"
 #include <algorithm>
 #include <iostream>
-
-#include "data.hpp"
 
 int
 main()
@@ -18,4 +17,5 @@ main()
         std::cout << "Value 42 changed to 0:\n";
         write_data(data);
     }
+    return 0;
 }

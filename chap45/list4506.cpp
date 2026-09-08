@@ -1,12 +1,10 @@
 /** @file list4506.cpp */
 /** Listing 45-6. Finding a Sub-range That Matches the First Four Digits of π */
+#include "data.hpp"
+#include "randomint.hpp"
 #include <algorithm>
 #include <iostream>
 #include <iterator>
-#include <vector>
-
-#include "data.hpp"
-#include "randomint.hpp"
 
 int
 main()
@@ -24,4 +22,5 @@ main()
         std::ranges::copy(match, std::ostream_iterator<int>(std::cout, " "));
         std::cout << '\n';
     }
+    return 0;
 }

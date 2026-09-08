@@ -1,12 +1,10 @@
 /** @file list4507.cpp */
 /** Listing 45-7. Using lower_bound to Create a Sorted Vector */
+#include "data.hpp"
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <ranges>
 #include <string>
-
-#include "data.hpp"
 
 int
 main(int argc, char *argv[])
@@ -30,4 +28,6 @@ main(int argc, char *argv[])
         // else value is already in the vector
     }
     write_data(data);
+
+    return 0;
 }

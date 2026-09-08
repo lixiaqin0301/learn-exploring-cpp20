@@ -1,11 +1,9 @@
 /** @file list4504.cpp */
 /** Listing 45-4. Using find_if and intrange to Find an Integer That Lies Within a Range */
-#include <algorithm>
-#include <iostream>
-#include <ranges>
-
 #include "data.hpp"
 #include "intrange.hpp"
+#include <algorithm>
+#include <iostream>
 
 int
 main()
@@ -18,4 +16,5 @@ main()
     } else {
         std::cout << "Value " << *iter << " in range [10,20].\n";
     }
+    return 0;
 }

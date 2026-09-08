@@ -1,11 +1,8 @@
 /** @file list4513.cpp */
 /** Listing 45-13. Erasing Elements from a Vector */
+#include "data.hpp"
 #include <algorithm>
 #include <iterator>
-#include <ranges>
-
-#include "data.hpp"
-#include "intrange.hpp"
 
 int
 main()
@@ -18,4 +15,5 @@ main()
     intvector uniquely_odd {};
     std::unique_copy(begin(data), begin(odd), std::back_inserter(uniquely_odd));
     write_data(uniquely_odd);
+    return 0;
 }
