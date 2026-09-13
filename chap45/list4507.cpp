@@ -22,9 +22,9 @@ main(int argc, char *argv[])
     while (std::cin >> value) {
         auto lb { std::lower_bound(data.begin(), data.end(), value) };
         auto ub { std::upper_bound(data.begin(), data.end(), value) };
-        if (lb == ub)
-            // Not in data, so insert.
+        if (lb == ub) { // Not in data, so insert.
             data.insert(ub, value);
+        }
         // else value is already in the vector
     }
     write_data(data);
