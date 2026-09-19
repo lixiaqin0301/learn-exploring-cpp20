@@ -3,10 +3,18 @@
 #include "data.hpp"
 #include "intrange.hpp"
 #include <algorithm>
+#include <fstream>
 
 int
-main()
+main(int argc, char *argv[])
 {
+    std::ifstream input;
+    if (argc > 0 && argv[0] != nullptr) {
+        input.open(std::string(argv[0]) + ".input");
+        if (input.is_open()) {
+            std::cin.rdbuf(input.rdbuf());
+        }
+    }
     intvector data {};
     read_data(data);
     write_data(data);
