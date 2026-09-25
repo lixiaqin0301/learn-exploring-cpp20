@@ -26,4 +26,6 @@ main(int argc, char *argv[])
     }
 
     std::copy(data.begin(), data.end(), std::ostream_iterator<int>(std::cout, "\n"));
+
+    return 0;
 }

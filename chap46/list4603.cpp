@@ -16,4 +16,6 @@ main()
     std::vector<std::string>::const_iterator citer { lines.cbegin() };
     std::cout << *citer << '\n';
     std::cout << size << '\n';
+
+    return 0;
 }

@@ -1,10 +1,9 @@
 /** @file list4607.cpp */
 /** Listing 46-7. Revealing the Implementation of reverse_iterator */
-#include <algorithm>
-#include <iostream>
-
 #include "data.hpp"
 #include "sequence.hpp"
+#include <algorithm>
+#include <iostream>
 
 int
 main()
@@ -22,4 +21,6 @@ main()
     std::cout << *rev << '\n'; // prints 6
     std::cout << *rev.base() << '\n'; // prints 7
     std::cout << *data.rend().base() << '\n'; // prints 1
+
+    return 0;
 }
