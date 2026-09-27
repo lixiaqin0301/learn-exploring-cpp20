@@ -32,4 +32,6 @@ main(int argc, char *argv[])
         sum += score;
     }
     std::cout << "mean score is " << sum / count << '\n';
+
+    return 0;
 }

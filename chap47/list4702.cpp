@@ -23,4 +23,6 @@ main(int argc, char *argv[])
             std::cout << x << '\n';
         }
     }
+
+    return 0;
 }

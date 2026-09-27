@@ -29,4 +29,6 @@ main(int argc, char *argv[])
         auto middle { start + std::ranges::size(data) / 2 };
         std::cout << "The median value is " << *middle << '\n';
     }
+
+    return 0;
 }
