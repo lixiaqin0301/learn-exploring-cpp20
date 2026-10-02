@@ -3,4 +3,7 @@
 int
 main()
 {
+    rational r;
+    std::cout << r.numerator_ << "/" << r.denominator_ << "\n";
+    return 0;
 }

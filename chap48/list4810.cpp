@@ -29,4 +29,5 @@ main()
     } catch (std::exception const &ex) {
         std::cerr << ex.what() << '\n';
     }
+    return 0;
 }

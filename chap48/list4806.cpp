@@ -30,4 +30,6 @@ main(int argc, char *argv[])
         std::cerr << "Major I/O failure! Program terminated.\n" << ex.what() << '\n';
         std::terminate();
     }
+
+    return 0;
 }

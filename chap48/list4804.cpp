@@ -17,6 +17,7 @@ print_exception(const std::exception &e, int level = 0)
         print_exception(e, level + 1);
     } catch (...) {
     }
+    return;
 }
 
 int
@@ -33,4 +34,5 @@ main()
         file.close();
         throw;
     }
+    return 0;
 }

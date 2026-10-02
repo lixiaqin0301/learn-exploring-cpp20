@@ -7,19 +7,12 @@
 /// Make visual the construction and destruction of objects.
 class visual {
 public:
-    visual(std::string const &what)
-        : id_ { serial_ }
-        , what_ { what }
+    visual(std::string const &what): id_ { serial_ }, what_ { what }
     {
         ++serial_;
         print("");
     }
-    visual(visual const &ex)
-        : id_ { ex.id_ }
-        , what_ { ex.what_ }
-    {
-        print("copy ");
-    }
+    visual(visual const &ex): id_ { ex.id_ }, what_ { ex.what_ } { print("copy "); }
     ~visual() { print("~"); }
     void print(std::string const &label) const { std::cout << label << "visual(" << what_ << ": " << id_ << ")\n"; }
 
@@ -47,6 +40,7 @@ count_down(int n)
         throw;
     }
     std::cout << "end count_down(" << n << ")\n";
+    return;
 }
 
 int
@@ -60,4 +54,5 @@ main()
         ex.print("catch on line 66 ");
     }
     std::cout << "All done!\n";
+    return 0;
 }

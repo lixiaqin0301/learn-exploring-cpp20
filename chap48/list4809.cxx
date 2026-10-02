@@ -1,18 +1,21 @@
 /** @file list4809.cxx */
 /** Listing 48-9. Throwing an Exception from a noexcept Function */
-#include <iostream>
 #include <exception>
+#include <iostream>
 
-void function() noexcept
+void
+function() noexcept
 {
-  throw std::exception{};
+    throw std::exception {};
 }
 
-int main()
+int
+main()
 {
-  try {
-    function();
-  } catch (std::exception const& ex) {
-    std::cout << "Gotcha!\n";
-  }
+    try {
+        function();
+    } catch (std::exception const &ex) {
+        std::cout << "Gotcha!\n";
+    }
+    return 0;
 }

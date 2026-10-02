@@ -17,14 +17,12 @@ main(int argc, char *argv[])
             std::cin.rdbuf(input.rdbuf());
         }
     }
-
     std::string line {};
     while (std::getline(std::cin, line)) {
         try {
             line.at(10) = ' '; // can throw out_of_range
             if (line.size() < 20) {
-                line.append(line.max_size(), '*');
-                ; // can throw length_error
+                line.append(line.max_size(), '*'); // can throw length_error
             }
             for (std::string::size_type size(line.size()); size < line.max_size(); size = size * 2) {
                 line.resize(size); // can throw bad_alloc
@@ -44,4 +42,5 @@ main(int argc, char *argv[])
             std::abort();
         }
     }
+    return 0;
 }
