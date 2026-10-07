@@ -1,4 +1,0 @@
-// ... omitted for brevity ...
-   int numerator_;
-   int denominator_;
-   void reduce() {}
