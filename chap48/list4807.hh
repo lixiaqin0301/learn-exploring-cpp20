@@ -10,7 +10,7 @@ public:
     };
 
     rational(): rational { 0 } { }
-    rational(int num): numerator_ { num }, denominator_ { 1 } { }
+    explicit rational(int num): numerator_ { num }, denominator_ { 1 } { }
     rational(int num, int den): numerator_ { num }, denominator_ { den }
     {
         if (denominator_ == 0) {
