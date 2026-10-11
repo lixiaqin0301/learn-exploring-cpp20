@@ -1,6 +1,5 @@
 /** @file list4805.cpp */
 /** Listing 48-5. Visualizing an Exception */
-#include <exception>
 #include <iostream>
 #include <string>
 
