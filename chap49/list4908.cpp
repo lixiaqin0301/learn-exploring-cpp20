@@ -1,9 +1,5 @@
-#include <iostream>
-
 #include "rational.hpp"
-
-#include "list4902.hh"
-#include "list4908.hh"
+#include <iostream>
 
 int
 main()
@@ -11,4 +7,5 @@ main()
     rational r { 1, 2 };
     ++r;
     std::cout << r << '\n';
+    return 0;
 }

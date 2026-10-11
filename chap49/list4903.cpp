@@ -1,7 +1,6 @@
+#include "list4903.hh"
 #include <iostream>
 #include <vector>
-
-#include "list4903.hh"
 
 int
 main()
@@ -17,4 +16,6 @@ main()
     } else {
         std::cout << "fail at " << *find << '\n';
     }
+
+    return 0;
 }
