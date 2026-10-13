@@ -78,16 +78,6 @@ public:
 private:
     void reduce();
     void normalize();
-    int init_denominator(int den)
-    {
-        if (den == 0) {
-            throw zero_denominator("0 denominator");
-        } else if (den < 0) {
-            return -den;
-        } else {
-            return den;
-        }
-    }
     int numerator_;
     int denominator_;
 };
