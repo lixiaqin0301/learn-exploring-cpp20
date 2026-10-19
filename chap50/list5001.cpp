@@ -1,11 +1,10 @@
 /** @file list5001.cpp */
 /** Listing 50-1. Testing the fixed Class */
+#include "fixed.hpp"
+#include "test.hpp"
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-
-#include "fixed.hpp"
-#include "test.hpp"
 
 int
 main()
