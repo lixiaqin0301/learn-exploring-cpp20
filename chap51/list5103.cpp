@@ -1,6 +1,6 @@
 /** @file list5103.cpp */
 /** Listing 51-3. Testing the absval Function Template */
-#include "rational.hpp" // Listing 49-10
+#include "rational.hpp"
 #include <iostream>
 
 template <class T>

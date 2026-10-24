@@ -1,7 +1,16 @@
-#include "list5110.hh"
+/** Listing 51-10. Another Way to Implement the copy Algorithm */
 #include <iostream>
 #include <iterator>
 #include <vector>
+
+auto
+copy(auto range, auto output)
+{
+    for (auto const &item : range) {
+        *output++ = item;
+    }
+    return output;
+}
 
 int
 main()

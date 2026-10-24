@@ -1,6 +1,18 @@
+/** Listing 51-1. Writing an Absolute Value Function */
 #include <iostream>
+
 using T = int;
-#include "list5101.hh"
+
+T
+absval(T x)
+{
+    if (x < 0) {
+        return -x;
+    } else {
+        return x;
+    }
+}
+
 int
 main()
 {

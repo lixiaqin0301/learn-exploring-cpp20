@@ -1,6 +1,18 @@
-#include "list5106.hh"
+/** Listing 51-6. Implementing the find Algorithm */
 #include <iostream>
 #include <vector>
+
+template <class InputIterator, class T>
+InputIterator
+find(InputIterator start, InputIterator end, T value)
+{
+    for (; start != end; ++start) {
+        if (*start == value) {
+            return start;
+        }
+    }
+    return end;
+}
 
 int
 main()
