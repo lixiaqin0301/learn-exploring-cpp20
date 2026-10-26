@@ -1,7 +1,5 @@
 #include "rational.hpp"
 
-#include "list5206.hh"
-
 int
 main()
 {

@@ -1,8 +1,5 @@
-#include <iostream>
-
 #include "rational.hpp"
-
-#include "list5210.hh"
+#include <iostream>
 
 int
 main()

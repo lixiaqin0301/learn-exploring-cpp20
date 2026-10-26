@@ -1,4 +1,6 @@
-template <class T> class rational {
+/** Listing 52-8. Defining the Assignment Operator Function Template */
+template <class T>
+class rational {
 public:
     template <class U> rational<T> &operator=(rational<U> const &rhs);
     void assign(int, int) { }
@@ -7,7 +9,14 @@ public:
     T denominator() const { return 1; }
 };
 
-#include "list5208.hh"
+template <class T>
+template <class U>
+rational<T> &
+rational<T>::operator=(rational<U> const &rhs)
+{
+    assign(rhs.numerator(), rhs.denominator());
+    return *this;
+}
 
 int
 main()

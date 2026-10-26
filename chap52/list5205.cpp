@@ -1,10 +1,10 @@
 /** @file list5205.cpp */
 /** Listing 52-5. Testing rational Comparison Operator */
+#include "rational.hpp"
+
 #include <fstream>
 #include <iostream>
 #include <string>
-
-#include "rational.hpp"
 
 int
 main(int argc, char *argv[])
@@ -19,8 +19,9 @@ main(int argc, char *argv[])
 
     static const rational<int> zero {};
     rational<int> r {};
-    while (std::cin >> r)
+    while (std::cin >> r) {
         if (r != zero) {
             std::cout << r << '\n';
         }
+    }
 }

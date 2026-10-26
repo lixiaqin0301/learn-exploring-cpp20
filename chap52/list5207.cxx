@@ -2,9 +2,10 @@
 /** Listing 52-7. Trying to Mix rational Base Types */
 #include "rational.hpp"
 
-int main()
+int
+main()
 {
-  rational<int> little{};
-  rational<long> big{};
-  big = little;
+    rational<int> little {};
+    rational<long> big {};
+    big = little;
 }

@@ -5,22 +5,15 @@
 template <class T> class rational {
 public:
     using value_type = T;
-    rational()
-        : rational { 0 }
-    {
-    }
-    rational(value_type num)
-        : numerator_ { num }
-        , denominator_ { 1 }
-    {
-    }
+    rational(): rational { 0 } { }
+    rational(value_type num): numerator_ { num }, denominator_ { 1 } { }
     rational(value_type num, value_type den);
 
-    template <class U> rational(rational<U> const &);
+    template <class U> rational(rational<U> const &copy): numerator_ { copy.numerator() }, denominator_ { copy.denominator() } { }
 
     void assign(value_type num, value_type den);
 
-#include "snip5207.hh"
+    template <class U> rational &operator=(rational<U> const &rhs);
 
     rational const &operator+=(rational const &rhs);
     rational const &operator-=(rational const &rhs);
@@ -38,13 +31,7 @@ private:
     value_type denominator_;
 };
 
-template <class T>
-rational<T>::rational(value_type num, value_type den)
-    : numerator_ { num }
-    , denominator_ { den }
-{
-    reduce();
-}
+template <class T> rational<T>::rational(value_type num, value_type den): numerator_ { num }, denominator_ { den } { reduce(); }
 
 template <class T>
 void
@@ -93,8 +80,14 @@ operator<<(std::ostream &stream, rational<T> const &r)
     return stream;
 }
 
-#include "list5208.hh"
-#include "list5209.hh"
+template <class T>
+template <class U>
+rational<T> &
+rational<T>::operator=(rational<U> const &rhs)
+{
+    assign(rhs.numerator(), rhs.denominator());
+    return *this;
+}
 
 int
 main()
