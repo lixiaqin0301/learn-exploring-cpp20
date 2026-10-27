@@ -1,6 +1,10 @@
 BasedOnStyle: WebKit
-ColumnLimit: 500
-PointerAlignment: Right
 BreakAfterReturnType: TopLevelDefinitions
+BreakConstructorInitializers: AfterColon
+BreakTemplateDeclarations: Leave
+ColumnLimit: 500
 PackConstructorInitializers: CurrentLine
+PointerAlignment: Right
+SpaceAfterTemplateKeyword: false
 SpaceBeforeCtorInitializerColon: false
+SpaceBeforeInheritanceColon: false
