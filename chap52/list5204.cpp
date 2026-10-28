@@ -1,10 +1,9 @@
 /** @file list5204.cpp */
 /** Listing 52-4. Simple I/O Test of the rational Class Template */
+#include "rational.hpp"
 #include <fstream>
 #include <iostream>
 #include <string>
-
-#include "rational.hpp"
 
 int
 main(int argc, char *argv[])

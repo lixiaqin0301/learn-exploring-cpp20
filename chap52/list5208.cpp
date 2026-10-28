@@ -1,16 +1,16 @@
 /** Listing 52-8. Defining the Assignment Operator Function Template */
-template <class T>
+template<class T>
 class rational {
 public:
-    template <class U> rational<T> &operator=(rational<U> const &rhs);
+    template<class U> rational<T> &operator=(rational<U> const &rhs);
     void assign(int, int) { }
 
     T numerator() const { return 0; }
     T denominator() const { return 1; }
 };
 
-template <class T>
-template <class U>
+template<class T>
+template<class U>
 rational<T> &
 rational<T>::operator=(rational<U> const &rhs)
 {

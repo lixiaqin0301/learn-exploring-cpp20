@@ -1,7 +1,6 @@
 /** @file list5205.cpp */
 /** Listing 52-5. Testing rational Comparison Operator */
 #include "rational.hpp"
-
 #include <fstream>
 #include <iostream>
 #include <string>

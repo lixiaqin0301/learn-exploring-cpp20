@@ -1,7 +1,6 @@
 #include <iostream>
 
-/** Listing 52-1. The point Class Template */
-template <class T> class point {
+template<class T> class point {
 public:
     point(T x, T y): x_ { x }, y_ { y } { }
     T x() const { return x_; }
@@ -13,15 +12,15 @@ private:
     T x_, y_;
 };
 
-template <class T>
+template<class T>
 void
 point<T>::move_to(T x, T y)
 {
     x_ = x;
     y_ = y;
 }
-/** Listing 52-2. The move_by Member Function */
-template <class T>
+
+template<class T>
 void
 point<T>::move_by(T x, T y)
 {

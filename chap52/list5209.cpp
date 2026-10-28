@@ -2,25 +2,25 @@
 #include <numeric>
 #include <stdexcept>
 
-template <class T> class rational {
+template<class T> class rational {
 public:
     using value_type = T;
     rational(): rational { 0 } { }
     rational(value_type num): numerator_ { num }, denominator_ { 1 } { }
     rational(value_type num, value_type den);
 
-    template <class U> rational(rational<U> const &copy): numerator_ { copy.numerator() }, denominator_ { copy.denominator() } { }
+    template<class U> rational(rational<U> const &copy): numerator_ { copy.numerator() }, denominator_ { copy.denominator() } { }
 
     void assign(value_type num, value_type den);
 
-    template <class U> rational &operator=(rational<U> const &rhs);
+    template<class U> rational &operator=(rational<U> const &rhs);
 
     rational const &operator+=(rational const &rhs);
     rational const &operator-=(rational const &rhs);
     rational const &operator*=(rational const &rhs);
     rational const &operator/=(rational const &rhs);
 
-    template <class U> U convert() const { return static_cast<U>(numerator()) / static_cast<U>(denominator()); }
+    template<class U> U convert() const { return static_cast<U>(numerator()) / static_cast<U>(denominator()); }
 
     value_type const &numerator() const { return numerator_; }
     value_type const &denominator() const { return denominator_; }
@@ -31,9 +31,9 @@ private:
     value_type denominator_;
 };
 
-template <class T> rational<T>::rational(value_type num, value_type den): numerator_ { num }, denominator_ { den } { reduce(); }
+template<class T> rational<T>::rational(value_type num, value_type den): numerator_ { num }, denominator_ { den } { reduce(); }
 
-template <class T>
+template<class T>
 void
 rational<T>::assign(value_type num, value_type den)
 {
@@ -42,21 +42,21 @@ rational<T>::assign(value_type num, value_type den)
     reduce();
 }
 
-template <class T>
+template<class T>
 bool
 operator==(rational<T> const &a, rational<T> const &b)
 {
     return a.numerator() == b.numerator() and a.denominator() == b.denominator();
 }
 
-template <class T>
+template<class T>
 inline bool
 operator!=(rational<T> const &a, rational<T> const &b)
 {
     return not(a == b);
 }
 
-template <class T>
+template<class T>
 void
 rational<T>::reduce()
 {
@@ -72,7 +72,7 @@ rational<T>::reduce()
     denominator_ = denominator() / div;
 }
 
-template <class T>
+template<class T>
 std::ostream &
 operator<<(std::ostream &stream, rational<T> const &r)
 {
@@ -80,8 +80,8 @@ operator<<(std::ostream &stream, rational<T> const &r)
     return stream;
 }
 
-template <class T>
-template <class U>
+template<class T>
+template<class U>
 rational<T> &
 rational<T>::operator=(rational<U> const &rhs)
 {
