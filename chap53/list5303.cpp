@@ -8,18 +8,8 @@
 
 class person {
 public:
-    person()
-        : name_ {}
-        , address_ {}
-        , phone_ {}
-    {
-    }
-    person(std::string_view name, std::string_view address, std::string_view phone)
-        : name_ { name }
-        , address_ { address }
-        , phone_ { phone }
-    {
-    }
+    person(): name_ {}, address_ {}, phone_ {} { }
+    person(std::string_view name, std::string_view address, std::string_view phone): name_ { name }, address_ { address }, phone_ { phone } { }
     std::string const &name() const { return name_; }
     std::string const &address() const { return address_; }
     std::string const &phone() const { return phone_; }
@@ -29,9 +19,11 @@ private:
 };
 
 namespace std {
-template <> struct less<person> {
+
+template<> struct less<person> {
     bool operator()(person const &a, person const &b) const { return a.name() < b.name(); }
 };
+
 }
 
 int
