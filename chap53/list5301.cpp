@@ -10,5 +10,6 @@ class is_void<void>: public std::true_type { };
 int
 main()
 {
-    std::cout << std::boolalpha << is_void<int>::value << '\n' << is_void<void>::value << '\n';
+    std::cout << std::boolalpha << is_void<int>::value << '\n';
+    std::cout << std::boolalpha << is_void<void>::value << '\n';
 }
