@@ -1,6 +1,0 @@
-//     ... and so on...
-void print(std::ostream& stream)
-const
-{
-   stream << value_;
-}
