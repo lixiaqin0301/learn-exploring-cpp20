@@ -1,9 +1,7 @@
 /** Listing 53-5. Specializing numeric_limits for the rational Class */
+#include "rational_int.hpp"
 #include <iostream>
 #include <limits>
-#include <string>
-
-#include "rational_int.hpp"
 
 namespace std {
 
